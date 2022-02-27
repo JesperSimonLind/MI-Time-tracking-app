@@ -6,13 +6,11 @@
     background-size: cover;
     background-repeat: no-repeat;
     height: 100vh;
-    padding-top: 20px;
     color: #fff;
 
     @include mixins.desktop-only {
         background-image: url("/assets/hero-desktop.svg");
         height: 100vh;
-        padding-top: 50px;
         color: #fff;
     }
 
@@ -22,6 +20,7 @@
         margin: 0 auto;
         border-radius: 15px;
         background-color: rgba(0, 0, 7, 0.5);
+       
 
         @include mixins.desktop-only {
         width: 40%;
@@ -29,12 +28,12 @@
         border-radius: 15px;
         background-color: rgba(0, 0, 7, 0.5);
         padding: 20px;
+        margin-top: 20px; 
     }
 }
 
     .dashboard {
         background-color: #0F1424;
-
         border-radius: 10px;
     }
 
@@ -70,25 +69,31 @@
     .hello {
         margin: 0;
         padding: 0;
+        font-size: 1rem;
+        font-weight: 100;
+
+        @include mixins.tablet-only {
+            font-size: 1.1rem;
+        }
+
         @include mixins.desktop-only {
             font-size: 1.1rem;
-        font-weight: 100;
-      
         }
-    
     }
 
     .username {
         margin: 0;
         padding: 0;
-        font-size: 1rem;
+        font-size: 1.1rem;
+        font-weight: 500;
+
+        @include mixins.tablet-only {
+            font-size: 1.3rem;
+        }
 
         @include mixins.desktop-only {
             font-size: 1.3rem;
-            font-weight: 400;
-           
         }
-      
     }
 
     .icons {
@@ -109,7 +114,11 @@
     }
 
     .icon-plus svg {
-        width: 30px;
+        width: 40px;
+
+        @include mixins.tablet-only {
+            width: 50px;
+        }
 
         @include mixins.desktop-only {
             width: 50px;
@@ -132,6 +141,10 @@
 
     .icon-setting svg {
         width: 20px;
+
+        @include mixins.tablet-only {
+            width: 25px;
+        }
 
         @include mixins.desktop-only {
             width: 25px;
