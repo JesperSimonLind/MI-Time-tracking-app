@@ -1,13 +1,12 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&display=swap");
 body {
   height: 100%;
   background-color: #0F1424;
-  font-family: "Roboto", sans-serif;
 }
 
 main {
   padding-top: 30px;
   background-color: #0F1424;
-  font-family: "Roboto", sans-serif;
 }
 
 a {
@@ -96,6 +95,7 @@ a {
   margin: 0;
   box-sizing: border-box;
   font-size: 12pt;
+  font-family: "Roboto", sans-serif;
 }
 
 /*# sourceMappingURL=style.css.map */
