@@ -1,0 +1,108 @@
+@use "../mixins";
+
+body {
+    height: 100%;
+    background-color: #0F1424;
+    font-family: 'Roboto', sans-serif;
+}
+
+main {
+    padding-top: 30px;
+    background-color: #0F1424;
+    font-family: 'Roboto', sans-serif;
+}
+
+a {
+    color: #fff;
+    font-size: 0.9rem;
+}
+
+.wrapper {
+    @include mixins.desktop-only {
+        background-color: #0F1424;
+
+    }
+}
+
+.content {
+    @include mixins.desktop-only {
+        background-image: url("/assets/hero-mobile.svg");
+        background-position: top;
+        background-size: cover;
+        background-repeat: no-repeat;
+        width: 30%;
+        margin: 0 auto;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        height: 560px;
+        color: #fff;
+        border-radius: 15px;
+        padding: 270px 30px 20px;
+    }
+
+    h1 {
+
+        @include mixins.desktop-only {
+            font-size: 1.8rem;
+        }
+    }
+
+
+    form {
+
+        @include mixins.desktop-only {
+            display: flex;
+            flex-direction: column;
+            width: 100%;
+            padding: 0px;
+        }
+
+        input {
+
+            @include mixins.desktop-only {
+                margin: 5px 0px;
+                padding: 5px;
+                border-radius: 6px;
+                border: none;
+            }
+        }
+
+        label {
+            font-weight: 300;
+            font-size: 0.9rem;
+
+            @include mixins.desktop-only {
+                margin: 10px 0px 5px;
+            }
+        }
+
+        .login-btn {
+
+            @include mixins.desktop-only {
+                margin: 20px 0px 0px;
+                padding: 8px;
+                background-color: #5847EB;
+                border: none;
+                color: #fff;
+                border-radius: 6px;
+                font-weight: 500;
+
+                &:hover {
+                    cursor: pointer;
+                }
+            }
+        }
+
+        p {
+            @include mixins.desktop-only {
+                padding: 10px 0px;
+                text-align: center;
+                font-size: 0.9rem;
+            }
+        }
+    }
+
+
+}

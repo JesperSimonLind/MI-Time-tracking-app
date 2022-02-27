@@ -1,5 +1,11 @@
-@import "variables";
+@use "variables";
+@use "mixins";
+@use "./elements/home";
+@use "./elements/header";
 
-@import "./elements/home";
-@import "./elements/footer";
-@import "./elements/header";
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-size: 12pt;
+}

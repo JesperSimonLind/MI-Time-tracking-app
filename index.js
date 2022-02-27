@@ -33,7 +33,7 @@ app.use("/task", tasksRouter);
 // ROUTES //
 
 app.get('/', (req, res) => {
-    res.send("Hello")
+    res.render('home')
 })
 
 app.use('/users', usersRouter)
