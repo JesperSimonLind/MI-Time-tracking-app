@@ -16,31 +16,40 @@ a {
 }
 
 .wrapper {
-    @include mixins.desktop-only {
-        background-color: #0F1424;
+    background-color: #0F1424;
 
-    }
 }
 
 .content {
+    background-image: url("/assets/hero-mobile.svg");
+    background-position: top;
+    background-size: cover;
+    background-repeat: no-repeat;
+    width: 90%;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: #fff;
+    border-radius: 15px;
+    padding: 20px 30px 20px;
+    height: 100vh;
+
+    @include mixins.tablet-only {
+        width: 60%;
+        height: auto;
+        padding: 350px 30px 20px;
+    }
+
     @include mixins.desktop-only {
-        background-image: url("/assets/hero-mobile.svg");
-        background-position: top;
-        background-size: cover;
-        background-repeat: no-repeat;
         width: 30%;
-        margin: 0 auto;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
         height: 560px;
-        color: #fff;
-        border-radius: 15px;
         padding: 270px 30px 20px;
     }
 
     h1 {
+        font-size: 1.5rem;
 
         @include mixins.desktop-only {
             font-size: 1.8rem;
@@ -49,6 +58,10 @@ a {
 
 
     form {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        padding: 0px;
 
         @include mixins.desktop-only {
             display: flex;
@@ -58,6 +71,10 @@ a {
         }
 
         input {
+            margin: 5px 0px;
+            padding: 5px;
+            border-radius: 6px;
+            border: none;
 
             @include mixins.desktop-only {
                 margin: 5px 0px;
@@ -77,6 +94,13 @@ a {
         }
 
         .login-btn {
+            margin: 20px 0px 0px;
+            padding: 8px;
+            background-color: #5847EB;
+            border: none;
+            color: #fff;
+            border-radius: 6px;
+            font-weight: 500;
 
             @include mixins.desktop-only {
                 margin: 20px 0px 0px;
@@ -94,6 +118,10 @@ a {
         }
 
         p {
+            padding: 10px 0px;
+            text-align: center;
+            font-size: 0.9rem;
+
             @include mixins.desktop-only {
                 padding: 10px 0px;
                 text-align: center;
@@ -101,6 +129,4 @@ a {
             }
         }
     }
-
-
 }
