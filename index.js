@@ -9,8 +9,6 @@ const jwt = require('jsonwebtoken');
 const cookieParser = require('cookie-parser');
 
 const utils = require('./data/utils.js');
-const usersRouter = require('./data/routes/users-router.js')
-const tasksRouter = require('./data/routes/tasks-router.js')
 
 const app = express();
 
