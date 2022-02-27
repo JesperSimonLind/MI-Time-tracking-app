@@ -26,9 +26,6 @@ app.use(express.urlencoded({
     extended: true
 }));
 app.use(cookieParser());
-app.use("/user", usersRouter);
-app.use("/task", tasksRouter);
-
 
 // ROUTES //
 
