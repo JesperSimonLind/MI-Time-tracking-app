@@ -1,1 +1,141 @@
 @use "../mixins";
+
+.dashboard-wrapper {
+    background-image: url("/assets/hero-desktop.svg");
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    height: 100vh;
+    padding-top: 20px;
+    color: #fff;
+
+    @include mixins.desktop-only {
+        background-image: url("/assets/hero-desktop.svg");
+        height: 100vh;
+        padding-top: 50px;
+        color: #fff;
+    }
+
+
+    .dashboard-overlay {
+        width: 95%;
+        margin: 0 auto;
+        border-radius: 15px;
+        background-color: rgba(0, 0, 7, 0.5);
+
+        @include mixins.desktop-only {
+        width: 40%;
+        height: 500px;
+        border-radius: 15px;
+        background-color: rgba(0, 0, 7, 0.5);
+        padding: 20px;
+    }
+}
+
+    .dashboard {
+        background-color: #0F1424;
+
+        border-radius: 10px;
+    }
+
+    .dashboard-header {
+        background-color: #5847EB;
+        padding: 10px;
+        border-radius: 10px;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        gap: 10px;
+        width: 100%;
+    }
+
+    .image-container img {
+        width: 100%;
+        max-height: 100px;
+        border-radius: 50%;
+    }
+
+    .user-info-container {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        gap: 10px;
+    }
+
+    .user-info {
+        padding: 10px 5px;
+    }
+
+    .hello {
+        margin: 0;
+        padding: 0;
+        @include mixins.desktop-only {
+            font-size: 1.1rem;
+        font-weight: 100;
+      
+        }
+    
+    }
+
+    .username {
+        margin: 0;
+        padding: 0;
+        font-size: 1rem;
+
+        @include mixins.desktop-only {
+            font-size: 1.3rem;
+            font-weight: 400;
+           
+        }
+      
+    }
+
+    .icons {
+        display: flex;
+        flex-direction: row;
+        gap: 25px;
+    }
+
+    .icon-plus {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 10px;
+
+        &:hover {
+            cursor: pointer;
+        }
+    }
+
+    .icon-plus svg {
+        width: 30px;
+
+        @include mixins.desktop-only {
+            width: 50px;
+        }
+    }
+
+
+    .icon-setting {
+        display: flex;
+        justify-content: flex-start;
+        align-items: flex-start;
+        gap: 10px;
+
+        &:hover {
+            cursor: pointer;
+        }
+
+      
+    }
+
+    .icon-setting svg {
+        width: 20px;
+
+        @include mixins.desktop-only {
+            width: 25px;
+        }
+    }
+  
+}

@@ -129,6 +129,128 @@ a {
   }
 }
 
+.dashboard-wrapper {
+  background-image: url("/assets/hero-desktop.svg");
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  height: 100vh;
+  padding-top: 20px;
+  color: #fff;
+}
+@media screen and (min-width: 1100px) {
+  .dashboard-wrapper {
+    background-image: url("/assets/hero-desktop.svg");
+    height: 100vh;
+    padding-top: 50px;
+    color: #fff;
+  }
+}
+.dashboard-wrapper .dashboard-overlay {
+  width: 95%;
+  margin: 0 auto;
+  border-radius: 15px;
+  background-color: rgba(0, 0, 7, 0.5);
+}
+@media screen and (min-width: 1100px) {
+  .dashboard-wrapper .dashboard-overlay {
+    width: 40%;
+    height: 500px;
+    border-radius: 15px;
+    background-color: rgba(0, 0, 7, 0.5);
+    padding: 20px;
+  }
+}
+.dashboard-wrapper .dashboard {
+  background-color: #0F1424;
+  border-radius: 10px;
+}
+.dashboard-wrapper .dashboard-header {
+  background-color: #5847EB;
+  padding: 10px;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  gap: 10px;
+  width: 100%;
+}
+.dashboard-wrapper .image-container img {
+  width: 100%;
+  max-height: 100px;
+  border-radius: 50%;
+}
+.dashboard-wrapper .user-info-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+}
+.dashboard-wrapper .user-info {
+  padding: 10px 5px;
+}
+.dashboard-wrapper .hello {
+  margin: 0;
+  padding: 0;
+}
+@media screen and (min-width: 1100px) {
+  .dashboard-wrapper .hello {
+    font-size: 1.1rem;
+    font-weight: 100;
+  }
+}
+.dashboard-wrapper .username {
+  margin: 0;
+  padding: 0;
+  font-size: 1rem;
+}
+@media screen and (min-width: 1100px) {
+  .dashboard-wrapper .username {
+    font-size: 1.3rem;
+    font-weight: 400;
+  }
+}
+.dashboard-wrapper .icons {
+  display: flex;
+  flex-direction: row;
+  gap: 25px;
+}
+.dashboard-wrapper .icon-plus {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+}
+.dashboard-wrapper .icon-plus:hover {
+  cursor: pointer;
+}
+.dashboard-wrapper .icon-plus svg {
+  width: 30px;
+}
+@media screen and (min-width: 1100px) {
+  .dashboard-wrapper .icon-plus svg {
+    width: 50px;
+  }
+}
+.dashboard-wrapper .icon-setting {
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+  gap: 10px;
+}
+.dashboard-wrapper .icon-setting:hover {
+  cursor: pointer;
+}
+.dashboard-wrapper .icon-setting svg {
+  width: 20px;
+}
+@media screen and (min-width: 1100px) {
+  .dashboard-wrapper .icon-setting svg {
+    width: 25px;
+  }
+}
+
 * {
   padding: 0;
   margin: 0;
