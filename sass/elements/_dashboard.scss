@@ -21,18 +21,23 @@
         margin: 0 auto;
         border-radius: 15px;
         background-color: rgba(0, 0, 7, 0.5);
-       
+
+        @include mixins.tablet-only {
+            width: 70%;
+            height: 500px;
+            padding: 20px;
+            margin-top: 20px;
+        }
 
         @include mixins.desktop-only {
-        width: 40%;
-        height: 500px;
-        padding: 20px;
-        margin-top: 20px; 
+            width: 40%;
+            height: 500px;
+            padding: 20px;
+            margin-top: 20px;
+        }
     }
-}
 
     .dashboard {
-        background-color: variables.$color-verydkblue;
         border-radius: 10px;
     }
 
@@ -135,7 +140,7 @@
             cursor: pointer;
         }
 
-      
+
     }
 
     .icon-setting svg {
@@ -149,5 +154,42 @@
             width: 25px;
         }
     }
-  
+
+    .hours-average-header {
+        background-color: variables.$color-dkblue;
+        border-radius: 8px;
+        padding: 8px 0px;
+        display: flex;
+        flex-direction: row;
+        gap: 30px;
+        justify-content: center;
+        align-items: center;
+        margin: 5px 0px;
+
+        a {
+            color: variables.$color-paleblue;
+            text-decoration: none;
+        }
+    }
+
+    .dashboard-category-container {
+        background-color: variables.$color-dkblue;
+        border-radius: 8px;
+        margin: 5px 0px;
+        padding: 10px 15px;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+
+        .category-hours {
+            font-weight: 100;
+        }
+    }
+
+    svg:hover {
+        cursor: pointer;
+        color: #fff;
+    }
+
 }
