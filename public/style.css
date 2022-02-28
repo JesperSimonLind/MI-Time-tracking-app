@@ -259,6 +259,15 @@ a {
   }
 }
 
+.create-wrapper {
+  background-image: url("/assets/hero-desktop.svg");
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  height: 100vh;
+  color: #fff;
+}
+
 .navbar-dark .navbar-nav .nav-link {
   color: #fff;
 }
