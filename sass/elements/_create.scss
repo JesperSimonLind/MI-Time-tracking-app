@@ -26,4 +26,30 @@
 .create-form {
   display: flex;
   flex-direction: column;
+
+  input {
+    margin: 5px 0px;
+    padding: 4px;
+    border-radius: 6px;
+    border: none;
+  }
+
+  label {
+    font-weight: 300;
+    font-size: 0.85rem;
+  }
+
+  .add-btn {
+    margin: 20px 0px 0px;
+    padding: 8px;
+    background-color: variables.$color-paleblue;
+    border: none;
+    color: #fff;
+    border-radius: 6px;
+    font-weight: 500;
+
+    &:hover {
+      cursor: pointer;
+    }
+  }
 }

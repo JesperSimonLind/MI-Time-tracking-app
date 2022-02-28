@@ -286,6 +286,28 @@ a {
   display: flex;
   flex-direction: column;
 }
+.create-form input {
+  margin: 5px 0px;
+  padding: 4px;
+  border-radius: 6px;
+  border: none;
+}
+.create-form label {
+  font-weight: 300;
+  font-size: 0.85rem;
+}
+.create-form .add-btn {
+  margin: 20px 0px 0px;
+  padding: 8px;
+  background-color: #BDC1FF;
+  border: none;
+  color: #fff;
+  border-radius: 6px;
+  font-weight: 500;
+}
+.create-form .add-btn:hover {
+  cursor: pointer;
+}
 
 .navbar-dark .navbar-nav .nav-link {
   color: #fff;
