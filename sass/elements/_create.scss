@@ -2,7 +2,7 @@
 @use "../variables";
 
 .create-wrapper {
-  background-image: url("/assets/hero-desktop.svg");
+  background-color: variables.$color-verydkblue;
   background-position: center;
   background-size: cover;
   background-repeat: no-repeat;
@@ -16,16 +16,43 @@
   }
 }
 
+.create-overlay {
+  width: 95%;
+  margin: 0 auto;
+  border-radius: 15px;
+  background-color: variables.$color-dkblue;
+
+  height: 450px;
+
+  @include mixins.desktop-only {
+    background-color: rgba(0, 0, 7, 0.5);
+    width: 40%;
+    height: 500px;
+    padding: 20px;
+    margin-top: 20px;
+  }
+}
+
 .create {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  padding-top: 30px;
 }
 
-.create-form {
+form {
   display: flex;
   flex-direction: column;
+  width: 60%;
+  padding: 0px;
+
+  @include mixins.desktop-only {
+    display: flex;
+    flex-direction: column;
+    width: 60%;
+    padding: 0px;
+  }
 
   input {
     margin: 5px 0px;
