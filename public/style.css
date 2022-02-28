@@ -365,6 +365,68 @@ a {
   font-weight: 100;
 }
 
+.task-single-container {
+  border-radius: 8px;
+  background-color: #1c1f4a;
+  width: 100%;
+  margin: 5px 0px;
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+}
+
+.task-single-info {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin: 5px 0px;
+  background-color: #1c1f4a;
+}
+.task-single-info:hover {
+  cursor: pointer;
+}
+.task-single-info .task-description,
+.task-single-info .task-comment,
+.task-single-info .task-date {
+  font-size: 0.9rem;
+  margin: 5px 0px;
+}
+.task-single-info .task-comment,
+.task-single-info .task-date {
+  font-weight: 100;
+}
+
+.task-hours {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.buttons {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  gap: 20px;
+  padding: 20px 0px;
+}
+
+.btn {
+  margin: 20px 0px 0px;
+  padding: 8px;
+  background-color: #5847EB;
+  border: none;
+  color: #fff;
+  border-radius: 6px;
+  font-weight: 500;
+  width: 100%;
+}
+.btn:hover {
+  text-decoration: none;
+  color: #fff;
+}
+
 .navbar-dark .navbar-nav .nav-link {
   color: #fff;
 }

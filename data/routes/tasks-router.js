@@ -12,5 +12,9 @@ router.get('/list', (req, res) => {
     res.render('tasks/tasks-list')
 })
 
+router.get('/single', (req, res) => {
+    res.render('tasks/tasks-single')
+})
+
 
 module.exports = router;
