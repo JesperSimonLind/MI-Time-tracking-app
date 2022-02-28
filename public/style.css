@@ -298,6 +298,73 @@ a {
   color: #fff;
 }
 
+.tasks-category-container {
+  border-radius: 8px;
+  margin: 5px 0px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+}
+.tasks-category-container .tasks-info-container {
+  width: 100%;
+  background-color: #1c1f4a;
+  border-radius: 8px;
+  padding: 10px 15px;
+}
+.tasks-category-container .category-hours-average {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+.tasks-category-container .task-hours {
+  color: #BDC1FF;
+  font-size: 0.9rem;
+  margin: 0;
+}
+.tasks-category-container .task-hours .hours {
+  font-weight: 100;
+  font-size: 0.9rem;
+}
+.tasks-category-container svg:hover {
+  cursor: pointer;
+  color: #fff;
+}
+.tasks-category-container .tasks {
+  border-radius: 8px;
+  background-color: #1c1f4a;
+  width: 100%;
+  margin: 5px 0px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.tasks-category-container .tasks .task {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  margin: 5px 0px;
+  background-color: #1c1f4a;
+  padding: 10px 15px;
+}
+.tasks-category-container .tasks .task:hover {
+  background-color: rgba(0, 0, 7, 0.5);
+  cursor: pointer;
+}
+.tasks-category-container .tasks .task .task-description,
+.tasks-category-container .tasks .task .task-comment,
+.tasks-category-container .tasks .task .task-date {
+  font-size: 0.9rem;
+  margin: 5px 0px;
+}
+.tasks-category-container .tasks .task .task-comment,
+.tasks-category-container .tasks .task .task-date {
+  font-weight: 100;
+}
+
 .navbar-dark .navbar-nav .nav-link {
   color: #fff;
 }
