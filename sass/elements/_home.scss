@@ -1,12 +1,13 @@
 @use "../mixins";
+@use "../variables";
 
 body {
     height: 100%;
-    background-color: #0F1424;
+    background-color: variables.$color-verydkblue;
 }
 
 main {
-    background-color: #0F1424;
+    background-color: variables.$color-verydkblue;
 }
 
 a {
@@ -15,7 +16,7 @@ a {
 }
 
 .wrapper {
-    background-color: #0F1424;
+    background-color: variables.$color-verydkblue;
 
 }
 
@@ -39,12 +40,14 @@ a {
         width: 60%;
         height: auto;
         padding: 350px 30px 20px;
+        margin-top: 20px;
     }
 
     @include mixins.desktop-only {
         width: 30%;
         height: 560px;
         padding: 270px 30px 20px;
+        margin-top: 30px;
     }
 
     h1 {
@@ -95,25 +98,16 @@ a {
         .login-btn {
             margin: 20px 0px 0px;
             padding: 8px;
-            background-color: #5847EB;
+            background-color: variables.$color-purple;
             border: none;
             color: #fff;
             border-radius: 6px;
             font-weight: 500;
 
-            @include mixins.desktop-only {
-                margin: 20px 0px 0px;
-                padding: 8px;
-                background-color: #5847EB;
-                border: none;
-                color: #fff;
-                border-radius: 6px;
-                font-weight: 500;
-
                 &:hover {
                     cursor: pointer;
                 }
-            }
+            
         }
 
         p {

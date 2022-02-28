@@ -38,6 +38,7 @@ a {
     width: 60%;
     height: auto;
     padding: 350px 30px 20px;
+    margin-top: 20px;
   }
 }
 @media screen and (min-width: 1100px) {
@@ -45,6 +46,7 @@ a {
     width: 30%;
     height: 560px;
     padding: 270px 30px 20px;
+    margin-top: 30px;
   }
 }
 .content h1 {
@@ -101,19 +103,8 @@ a {
   border-radius: 6px;
   font-weight: 500;
 }
-@media screen and (min-width: 1100px) {
-  .content form .login-btn {
-    margin: 20px 0px 0px;
-    padding: 8px;
-    background-color: #5847EB;
-    border: none;
-    color: #fff;
-    border-radius: 6px;
-    font-weight: 500;
-  }
-  .content form .login-btn:hover {
-    cursor: pointer;
-  }
+.content form .login-btn:hover {
+  cursor: pointer;
 }
 .content form p {
   padding: 10px 0px;
@@ -153,8 +144,6 @@ a {
   .dashboard-wrapper .dashboard-overlay {
     width: 40%;
     height: 500px;
-    border-radius: 15px;
-    background-color: rgba(0, 0, 7, 0.5);
     padding: 20px;
     margin-top: 20px;
   }
