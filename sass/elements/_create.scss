@@ -8,4 +8,24 @@
   background-repeat: no-repeat;
   height: 100vh;
   color: #fff;
+
+  @include mixins.desktop-only {
+    background-image: url("/assets/hero-desktop.svg");
+    height: 100vh;
+    color: #fff;
+  }
+
+  .dashboard-overlay {
+    width: 95%;
+    margin: 0 auto;
+    border-radius: 15px;
+    background-color: rgba(0, 0, 7, 0.5);
+
+    @include mixins.desktop-only {
+      width: 40%;
+      height: 500px;
+      padding: 20px;
+      margin-top: 20px;
+    }
+  }
 }
