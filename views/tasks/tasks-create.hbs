@@ -1,0 +1,26 @@
+<div class="create-wrapper">
+{{> header}}
+
+<div class="create-overlay">
+    <div class="create">
+        <h1>Add task</h1>
+        <form action="" method="post">
+            <label for="description">Description</label>
+            <input type="text" name="description" placeholder="Description">
+            <label for="category">Category</label>
+            <select name="categoryId">
+                <option value="" disabled selected>Select category</option>
+                <option value="">Exercise</option>
+                <option value="">Study</option>
+                <option value="">Work</option>
+                <option value="">Play videogames</option>
+            </select>
+            <label for="hours">Hours</label>
+            <input type="number" name="hours" placeholder="Hours">
+            <label for="comment">Comment</label>
+            <input type="text" name="comment" placeholder="Comment">
+            <input type="submit" class="add-btn" value="Add">
+        </form>
+    </div>
+</div>
+</div>
