@@ -22,7 +22,7 @@ router.get("/update", (req, res) => {
 router.get("/delete", (req, res) => {
   res.render("tasks/tasks-delete");
 });
-router.get("/create-task", (req, res) => {
+router.get("/create", (req, res) => {
   res.render("tasks/tasks-create");
 });
 
