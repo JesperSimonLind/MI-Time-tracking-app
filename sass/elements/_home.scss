@@ -59,67 +59,69 @@ a {
     }
 
 
-    form {
+}
+
+
+form {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    padding: 0px;
+
+    @include mixins.desktop-only {
         display: flex;
         flex-direction: column;
         width: 100%;
         padding: 0px;
+    }
+
+    input {
+        margin: 5px 0px;
+        padding: 4px;
+        border-radius: 5px;
+        border: none;
 
         @include mixins.desktop-only {
-            display: flex;
-            flex-direction: column;
-            width: 100%;
-            padding: 0px;
-        }
-
-        input {
             margin: 5px 0px;
             padding: 4px;
             border-radius: 6px;
             border: none;
+        }
+    }
 
-            @include mixins.desktop-only {
-                margin: 5px 0px;
-                padding: 4px;
-                border-radius: 6px;
-                border: none;
+    label {
+        font-weight: 300;
+        font-size: 0.85rem;
+
+        @include mixins.desktop-only {
+            margin: 10px 0px 0px;
+        }
+    }
+
+    .login-btn {
+        margin: 20px 0px 0px;
+        padding: 8px;
+        background-color: variables.$color-purple;
+        border: none;
+        color: #fff;
+        border-radius: 6px;
+        font-weight: 500;
+
+            &:hover {
+                cursor: pointer;
             }
-        }
+        
+    }
 
-        label {
-            font-weight: 300;
-            font-size: 0.85rem;
+    p {
+        padding: 10px 0px;
+        text-align: center;
+        font-size: 0.9rem;
 
-            @include mixins.desktop-only {
-                margin: 10px 0px 0px;
-            }
-        }
-
-        .login-btn {
-            margin: 20px 0px 0px;
-            padding: 8px;
-            background-color: variables.$color-purple;
-            border: none;
-            color: #fff;
-            border-radius: 6px;
-            font-weight: 500;
-
-                &:hover {
-                    cursor: pointer;
-                }
-            
-        }
-
-        p {
+        @include mixins.desktop-only {
             padding: 10px 0px;
             text-align: center;
             font-size: 0.9rem;
-
-            @include mixins.desktop-only {
-                padding: 10px 0px;
-                text-align: center;
-                font-size: 0.9rem;
-            }
         }
     }
 }

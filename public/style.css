@@ -57,44 +57,45 @@ a {
     font-size: 1.6rem;
   }
 }
-.content form {
+
+form {
   display: flex;
   flex-direction: column;
   width: 100%;
   padding: 0px;
 }
 @media screen and (min-width: 1100px) {
-  .content form {
+  form {
     display: flex;
     flex-direction: column;
     width: 100%;
     padding: 0px;
   }
 }
-.content form input {
+form input {
   margin: 5px 0px;
   padding: 4px;
-  border-radius: 6px;
+  border-radius: 5px;
   border: none;
 }
 @media screen and (min-width: 1100px) {
-  .content form input {
+  form input {
     margin: 5px 0px;
     padding: 4px;
     border-radius: 6px;
     border: none;
   }
 }
-.content form label {
+form label {
   font-weight: 300;
   font-size: 0.85rem;
 }
 @media screen and (min-width: 1100px) {
-  .content form label {
+  form label {
     margin: 10px 0px 0px;
   }
 }
-.content form .login-btn {
+form .login-btn {
   margin: 20px 0px 0px;
   padding: 8px;
   background-color: #5847EB;
@@ -103,16 +104,16 @@ a {
   border-radius: 6px;
   font-weight: 500;
 }
-.content form .login-btn:hover {
+form .login-btn:hover {
   cursor: pointer;
 }
-.content form p {
+form p {
   padding: 10px 0px;
   text-align: center;
   font-size: 0.9rem;
 }
 @media screen and (min-width: 1100px) {
-  .content form p {
+  form p {
     padding: 10px 0px;
     text-align: center;
     font-size: 0.9rem;
@@ -424,6 +425,13 @@ a {
 }
 .btn:hover {
   text-decoration: none;
+  color: #fff;
+}
+
+.form {
+  padding: 10px 15px;
+}
+.form input {
   color: #fff;
 }
 

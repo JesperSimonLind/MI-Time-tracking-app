@@ -17,4 +17,12 @@ router.get('/single', (req, res) => {
 })
 
 
+router.get('/update', (req, res) => {
+    res.render('tasks/tasks-update')
+})
+
+router.get('/delete', (req, res) => {
+    res.render('tasks/tasks-delete')
+})
+
 module.exports = router;
