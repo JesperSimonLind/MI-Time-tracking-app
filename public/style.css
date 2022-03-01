@@ -428,44 +428,16 @@ form p {
   color: #fff;
 }
 
-.form {
-  padding: 10px 15px;
-}
-.form input {
-  color: #fff;
-}
-
-.create {
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  align-items: flex-start;
-  width: 100%;
-}
-
-form {
-  display: flex;
-  flex-direction: column;
-  width: 100%;
-  padding: 0px;
-}
-form input {
-  margin: 5px 0px;
-  padding: 4px;
-  border-radius: 6px;
-  border: none;
-}
-form label {
-  font-weight: 300;
-  font-size: 0.85rem;
-}
-
 .sm-heading {
   text-align: left;
   margin: 0;
   padding-top: 15px;
   font-size: 1rem;
   font-weight: 400;
+}
+
+.delete-form input {
+  color: #fff;
 }
 
 .navbar-dark .navbar-nav .nav-link {

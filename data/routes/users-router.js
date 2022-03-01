@@ -16,5 +16,9 @@ router.get('/dashboard', (req, res) => {
     res.render('users/users-dashboard')
 })
 
+router.get('/update', (req, res) => {
+    res.render('users/users-update')
+})
+
 
 module.exports = router;
