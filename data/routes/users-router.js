@@ -1,6 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const { UsersModel, TasksModel } = require("../models/Models.js");
+const { hashPassword, comparePassword } = require("../utils.js");
 
 // ROUTES //
 
@@ -25,7 +26,7 @@ router.post("/signup", async (req, res) => {
         } else {
             const newUser = new UsersModel({
                 username: username,
-                password: password,
+                password: hashPassword(password),
                 email: email,
                 profilePicture: profilePic,
             });
