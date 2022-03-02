@@ -1,5 +1,7 @@
 const express = require("express");
 const router = express.Router();
+const jwt = require("jsonwebtoken");
+const cookieParser = require("cookie-parser");
 const { UsersModel, TasksModel } = require("../models/Models.js");
 const { hashPassword, comparePassword } = require("../utils.js");
 
@@ -10,7 +12,19 @@ router.get("/", (req, res) => {
 });
 
 router.post("/", async (req, res) => {
-    res.send("inloggad");
+    const { username, password } = req.body;
+
+    UsersModel.findOne({ username }, (e, user) => {
+        if (user && comparePassword(password, user.password)) {
+            const userData = { userId: user._id.toString(), username };
+            const accessToken = jwt.sign(userData, process.env.JWTSECRET);
+
+            res.cookie("token", accessToken);
+            res.redirect("users/dashboard");
+        } else {
+            res.send("login failed");
+        }
+    });
 });
 
 router.get("/signup", (req, res) => {
@@ -35,6 +49,11 @@ router.post("/signup", async (req, res) => {
             res.redirect("/");
         }
     });
+});
+
+router.get("/signout", async (req, res) => {
+    res.cookie("token", "", { maxAge: 0 });
+    res.redirect("/");
 });
 
 router.get("/dashboard", (req, res) => {

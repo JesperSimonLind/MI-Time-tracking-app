@@ -31,10 +31,29 @@ app.use(
 );
 app.use(cookieParser());
 
+app.use((req, res, next) => {
+    const { token } = req.cookies;
+
+    if (token && jwt.verify(token, process.env.JWTSECRET)) {
+        const tokenData = jwt.decode(token, process.env.JWTSECRET);
+        res.locals.loggedIn = true;
+        res.locals.username = tokenData.username;
+    } else {
+        res.locals.loggedIn = false;
+    }
+    next();
+});
+
 // ROUTES //
 
 app.get("/", (req, res) => {
-    res.render("home");
+    const { token } = req.cookies;
+
+    if (token && jwt.verify(token, process.env.JWTSECRET)) {
+        res.redirect("/users/dashboard");
+    } else {
+        res.render("home");
+    }
 });
 
 app.use("/users", usersRouter);
