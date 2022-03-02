@@ -34,9 +34,13 @@ router.get("/signup", (req, res) => {
 router.post("/signup", async (req, res) => {
     const { username, password, email, profilePic } = req.body;
 
+    const errorMessage = "That username is already taken! Please pick another one.";
+
     UsersModel.findOne({ username }, async (error, user) => {
         if (user) {
-            res.send("Username taken");
+            res.render("users/users-create", 
+            {errorMessage}
+            );
         } else {
             const newUser = new UsersModel({
                 username: username,

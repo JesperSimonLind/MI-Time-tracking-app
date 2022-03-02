@@ -3,6 +3,7 @@
     <form action="/users/signup" method="post">
         <label for="username">Username</label>
         <input type="text" name="username" placeholder="Username" />
+        <p class="error-message">{{errorMessage}}</p>
         <label for="password">Password</label>
         <input type="password" name="password" placeholder="Password" />
         <label for="email">Email</label>
