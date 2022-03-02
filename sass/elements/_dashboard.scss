@@ -3,14 +3,24 @@
 
 .home-container {
     padding: 0px;
-    background-image: url("/assets/hero-desktop.svg");
-    background-position: center;
-    background-size: cover;
-    background-repeat: no-repeat;
     border-radius: 20px;
+    height: 100vh;
+
+    @include mixins.tablet-only {
+        background-image: url("/assets/hero-desktop.svg");
+        background-position: center;
+        background-size: cover;
+        background-repeat: no-repeat;
+        height: 100vh;
+        color: #fff;
+    }
+
 
     @include mixins.desktop-only {
         background-image: url("/assets/hero-desktop.svg");
+        background-position: center;
+        background-size: cover;
+        background-repeat: no-repeat;
         height: 100vh;
         color: #fff;
     }
@@ -19,17 +29,18 @@
 
 .home-container-overlay {
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     width: 95%;
     margin: 0 auto;
     border-radius: 15px;
     background-color: rgba(0, 0, 7, 0.6);
 
     @include mixins.tablet-only {
-        width: 70%;
-        height: 500px;
+        display: flex;
+        flex-direction: row;
+        width: 100%;
+        height: 100vh;
         padding: 20px;
-
     }
 
     @include mixins.desktop-only {
@@ -41,29 +52,58 @@
 }
 
 .community-wrapper {
-    width: 70%;
-    padding: 20px 0px 50px 100px;
-    position: absolute;
-    right: 0;
-    top: 0;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    padding-top: 20px;
+
+    @include mixins.tablet-only {
+        width: 70%;
+        padding: 20px 50px 50px 100px;
+        position: absolute;
+        right: 0;
+        top: 0;
+
+    }
 
 
-.community {
+    @include mixins.desktop-only {
+        width: 70%;
+        padding: 20px 0px 50px 100px;
+        position: absolute;
+        right: 0;
+        top: 0;
+
+    }
+
+
+    .community {
         display: flex;
         flex-direction: column;
         gap: 55px;
-      }
+
+        @include mixins.tablet-only {
+            gap: 30px;
+    
+        }
+    }
 
 
     .logout-container {
         display: flex;
         flex-direction: column;
+        display: none;
+
+        @include mixins.desktop-only {
+           display: block;
+    
+        }
     }
 
     .logout {
         text-align: right;
         padding: 0px 30px;
-    
+
     }
 
     a {
@@ -78,48 +118,78 @@
     }
 
 
-.user-post-container {
-    display: flex;
-    flex-direction: row;
-    justify-content: flex-start;
-    align-items: center;
-    gap: 20px;
-
-    .user-comment {
-        width: 70%;
-        background-color: rgba(177, 177, 177, 0.1);
-        color: #fff;
-        padding: 15px;
-        border-radius: 7px;
+    .user-post-container {
         display: flex;
-        flex-direction: column;
+        flex-direction: row;
+        justify-content: center;
+        align-items: flex-start;
         gap: 20px;
-    }
 
-    .user-image {
-        max-width: 100px;
-    }
+        @include mixins.desktop-only {
+            flex-direction: row;
+            justify-content: flex-start;
+            align-items: center;
+            gap: 20px;
+
+        }
+
+        .user-comment {
+            width: 100%;
+            background-color: rgba(177, 177, 177, 0.1);
+            color: #fff;
+            padding: 15px;
+            border-radius: 7px;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+
+            @include mixins.desktop-only {
+                width: 70%;
+    
+            }
+        }
+
+        .user-image {
+            max-width: 100px;
+        }
 
 
-    p {
-        margin: 0;
-    }
+        p {
+            margin: 0;
+        }
 
-    .bold {
-        font-weight: 600;
+        .bold {
+            font-weight: 600;
+        }
     }
-}
 
 }
 
 .dashboard-wrapper {
-    width: 30%;
+    width: 100%;
     background-color: variables.$color-dkblue;
-    height: 90vh;
+    height: auto;
     color: #fff;
     border-radius: 20px;
     overflow-y: scroll;
-    position: fixed;
+    padding-top: 10px;
+
+    @include mixins.tablet-only {
+        overflow-y: scroll;
+        position: fixed;
+        height: 55vh;
+        width: 35%;
+        padding: 0;
+    }
+
+
+    @include mixins.desktop-only {
+        overflow-y: scroll;
+        position: fixed;
+        height: 90vh;
+        width: 25%;
+        padding: 0;
+    }
 
 
     .dashboard {
@@ -158,26 +228,27 @@
         font-weight: 100;
 
         @include mixins.tablet-only {
-            font-size: 1.1rem;
+            font-size: 0.9rem;
         }
 
         @include mixins.desktop-only {
-            font-size: 1.1rem;
+            font-size: 1rem;
         }
+
     }
 
     .username {
         margin: 0;
         padding: 0;
-        font-size: 1.1rem;
+        font-size: 1rem;
         font-weight: 500;
 
         @include mixins.tablet-only {
-            font-size: 1.3rem;
+           font-size: 0.9rem;
         }
 
         @include mixins.desktop-only {
-            font-size: 1.3rem;
+           font-size: 1rem;
         }
     }
 
@@ -232,7 +303,8 @@
         }
 
         @include mixins.desktop-only {
-            width: 25px;
+            width: 30px;
+            height: 30px;
         }
     }
 
@@ -263,6 +335,11 @@
         justify-content: space-between;
         align-items: center;
 
+        &:hover {
+            background-color: rgba(0, 0, 7, 0.5);
+            cursor: pointer;
+        }
+
         .category-hours {
             font-weight: 100;
         }
@@ -279,10 +356,26 @@
     width: 100%;
     max-height: 100px;
     border-radius: 50%;
+
+    @include mixins.tablet-only {
+        max-height: 70px;
+    }
+
+    @include mixins.tablet-only {
+        max-height: 90px;
+    }
 }
 
 
 .user-image img {
     width: 100%;
     border-radius: 50%;
+
+    @include mixins.tablet-only {
+        max-height: 70px;
+    }
+
+    @include mixins.tablet-only {
+        max-height: 90px;
+    }
 }
