@@ -13,6 +13,10 @@ main {
 a {
     color: #fff;
     font-size: 0.9rem;
+
+    &:hover {
+        color: #fff;
+    }
 }
 
 .wrapper {
@@ -58,7 +62,14 @@ a {
         }
     }
 
-
+.error-message {
+    text-align: left;
+    margin: 0;
+    padding: 0;
+    color: red;
+    font-weight: 300;
+    font-size: 0.9rem;
+}
 }
 
 
