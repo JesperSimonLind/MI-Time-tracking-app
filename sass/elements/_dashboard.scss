@@ -51,6 +51,19 @@
     }
 }
 
+.logout-btn {
+    padding: 10px;
+    background-color: variables.$color-purple;
+    border: none;
+    color: #fff;
+    border-radius: 6px;
+    font-weight: 500;
+
+        &:hover {
+            cursor: pointer;
+        } 
+}
+
 .community-wrapper {
     display: flex;
     flex-direction: column;
@@ -353,11 +366,12 @@
     max-height: 100px;
     border-radius: 50%;
 
+  
     @include mixins.tablet-only {
         max-height: 70px;
     }
 
-    @include mixins.tablet-only {
+    @include mixins.desktop-only {
         max-height: 90px;
     }
 }
@@ -372,7 +386,7 @@
         max-height: 70px;
     }
 
-    @include mixins.tablet-only {
+    @include mixins.desktop-only {
         max-height: 90px;
     }
 }
