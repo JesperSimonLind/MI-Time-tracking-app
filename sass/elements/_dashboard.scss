@@ -63,13 +63,12 @@
         position: absolute;
         right: 0;
         top: 0;
-
     }
 
 
     @include mixins.desktop-only {
         width: 70%;
-        padding: 20px 0px 50px 100px;
+        padding: 20px 0px 50px 70px;
         position: absolute;
         right: 0;
         top: 0;
@@ -122,7 +121,7 @@
         display: flex;
         flex-direction: row;
         justify-content: center;
-        align-items: flex-start;
+        align-items: center;
         gap: 20px;
 
         @include mixins.desktop-only {
@@ -291,8 +290,6 @@
         &:hover {
             cursor: pointer;
         }
-
-
     }
 
     .icon-setting svg {
@@ -325,15 +322,17 @@
         }
     }
 
+
+
     .dashboard-category-container {
         background-color: variables.$color-dkblue;
         border-radius: 8px;
         margin: 5px 0px;
-        padding: 10px 15px;
         display: flex;
         flex-direction: row;
         justify-content: space-between;
         align-items: center;
+        padding: 10px;
 
         &:hover {
             background-color: rgba(0, 0, 7, 0.5);
@@ -370,6 +369,7 @@
 .user-image img {
     width: 100%;
     border-radius: 50%;
+    max-height: 100px;
 
     @include mixins.tablet-only {
         max-height: 70px;
@@ -378,4 +378,8 @@
     @include mixins.tablet-only {
         max-height: 90px;
     }
+}
+
+.form {
+    padding: 10px;
 }

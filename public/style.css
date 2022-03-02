@@ -189,7 +189,7 @@ form p {
 @media screen and (min-width: 1100px) {
   .community-wrapper {
     width: 70%;
-    padding: 20px 0px 50px 100px;
+    padding: 20px 0px 50px 70px;
     position: absolute;
     right: 0;
     top: 0;
@@ -232,7 +232,7 @@ form p {
   display: flex;
   flex-direction: row;
   justify-content: center;
-  align-items: flex-start;
+  align-items: center;
   gap: 20px;
 }
 @media screen and (min-width: 1100px) {
@@ -419,11 +419,11 @@ form p {
   background-color: #1c1f4a;
   border-radius: 8px;
   margin: 5px 0px;
-  padding: 10px 15px;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
+  padding: 10px;
 }
 .dashboard-wrapper .dashboard-category-container:hover {
   background-color: rgba(0, 0, 7, 0.5);
@@ -456,6 +456,7 @@ form p {
 .user-image img {
   width: 100%;
   border-radius: 50%;
+  max-height: 100px;
 }
 @media screen and (min-width: 768px) {
   .user-image img {
@@ -466,6 +467,10 @@ form p {
   .user-image img {
     max-height: 90px;
   }
+}
+
+.form {
+  padding: 10px;
 }
 
 .tasks-category-container {
@@ -605,6 +610,9 @@ form p {
   font-weight: 400;
 }
 
+.delete-form {
+  padding: 10px;
+}
 .delete-form input {
   color: #fff;
 }
