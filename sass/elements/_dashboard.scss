@@ -185,7 +185,7 @@
     @include mixins.desktop-only {
         overflow-y: scroll;
         position: fixed;
-        height: 90vh;
+        height: 95vh;
         width: 25%;
         padding: 0;
     }
@@ -230,9 +230,6 @@
             font-size: 0.9rem;
         }
 
-        @include mixins.desktop-only {
-            font-size: 1rem;
-        }
 
     }
 
