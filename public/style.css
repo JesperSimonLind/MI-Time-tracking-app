@@ -120,41 +120,179 @@ form p {
   }
 }
 
-.dashboard-wrapper {
-  background-image: url("/assets/hero-desktop.svg");
-  background-position: center;
-  background-size: cover;
-  background-repeat: no-repeat;
+.home-container {
+  padding: 0px;
+  border-radius: 20px;
   height: 100vh;
-  color: #fff;
 }
-@media screen and (min-width: 1100px) {
-  .dashboard-wrapper {
+@media screen and (min-width: 768px) {
+  .home-container {
     background-image: url("/assets/hero-desktop.svg");
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
     height: 100vh;
     color: #fff;
   }
 }
-.dashboard-wrapper .dashboard-overlay {
+@media screen and (min-width: 1100px) {
+  .home-container {
+    background-image: url("/assets/hero-desktop.svg");
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    height: 100vh;
+    color: #fff;
+  }
+}
+
+.home-container-overlay {
+  display: flex;
+  flex-direction: column;
   width: 95%;
   margin: 0 auto;
   border-radius: 15px;
-  background-color: rgba(0, 0, 7, 0.5);
+  background-color: rgba(0, 0, 7, 0.6);
 }
 @media screen and (min-width: 768px) {
-  .dashboard-wrapper .dashboard-overlay {
-    width: 70%;
-    height: 500px;
+  .home-container-overlay {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    height: 100vh;
     padding: 20px;
-    margin-top: 20px;
   }
 }
 @media screen and (min-width: 1100px) {
-  .dashboard-wrapper .dashboard-overlay {
-    width: 40%;
-    height: 500px;
+  .home-container-overlay {
+    width: 100%;
+    height: 100vh;
     padding: 20px;
-    margin-top: 20px;
+  }
+}
+
+.community-wrapper {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  padding-top: 20px;
+}
+@media screen and (min-width: 768px) {
+  .community-wrapper {
+    width: 70%;
+    padding: 20px 50px 50px 100px;
+    position: absolute;
+    right: 0;
+    top: 0;
+  }
+}
+@media screen and (min-width: 1100px) {
+  .community-wrapper {
+    width: 70%;
+    padding: 20px 0px 50px 70px;
+    position: absolute;
+    right: 0;
+    top: 0;
+  }
+}
+.community-wrapper .community {
+  display: flex;
+  flex-direction: column;
+  gap: 55px;
+}
+@media screen and (min-width: 768px) {
+  .community-wrapper .community {
+    gap: 30px;
+  }
+}
+.community-wrapper .logout-container {
+  display: flex;
+  flex-direction: column;
+  display: none;
+}
+@media screen and (min-width: 1100px) {
+  .community-wrapper .logout-container {
+    display: block;
+  }
+}
+.community-wrapper .logout {
+  text-align: right;
+  padding: 0px 30px;
+}
+.community-wrapper a {
+  font-size: 1rem;
+  font-weight: 400;
+  text-decoration: none;
+}
+.community-wrapper a:hover {
+  color: #fff;
+  text-decoration: underline;
+}
+.community-wrapper .user-post-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+}
+@media screen and (min-width: 1100px) {
+  .community-wrapper .user-post-container {
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 20px;
+  }
+}
+.community-wrapper .user-post-container .user-comment {
+  width: 100%;
+  background-color: rgba(177, 177, 177, 0.1);
+  color: #fff;
+  padding: 15px;
+  border-radius: 7px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+@media screen and (min-width: 1100px) {
+  .community-wrapper .user-post-container .user-comment {
+    width: 70%;
+  }
+}
+.community-wrapper .user-post-container .user-image {
+  max-width: 100px;
+}
+.community-wrapper .user-post-container p {
+  margin: 0;
+}
+.community-wrapper .user-post-container .bold {
+  font-weight: 600;
+}
+
+.dashboard-wrapper {
+  width: 100%;
+  background-color: #1c1f4a;
+  height: auto;
+  color: #fff;
+  border-radius: 20px;
+  overflow-y: scroll;
+  padding-top: 10px;
+}
+@media screen and (min-width: 768px) {
+  .dashboard-wrapper {
+    overflow-y: scroll;
+    position: fixed;
+    height: 55vh;
+    width: 35%;
+    padding: 0;
+  }
+}
+@media screen and (min-width: 1100px) {
+  .dashboard-wrapper {
+    overflow-y: scroll;
+    position: fixed;
+    height: 90vh;
+    width: 25%;
+    padding: 0;
   }
 }
 .dashboard-wrapper .dashboard {
@@ -169,11 +307,6 @@ form p {
   justify-content: space-between;
   gap: 10px;
   width: 100%;
-}
-.dashboard-wrapper .image-container img {
-  width: 100%;
-  max-height: 100px;
-  border-radius: 50%;
 }
 .dashboard-wrapper .user-info-container {
   display: flex;
@@ -193,28 +326,28 @@ form p {
 }
 @media screen and (min-width: 768px) {
   .dashboard-wrapper .hello {
-    font-size: 1.1rem;
+    font-size: 0.9rem;
   }
 }
 @media screen and (min-width: 1100px) {
   .dashboard-wrapper .hello {
-    font-size: 1.1rem;
+    font-size: 1rem;
   }
 }
 .dashboard-wrapper .username {
   margin: 0;
   padding: 0;
-  font-size: 1.1rem;
+  font-size: 1rem;
   font-weight: 500;
 }
 @media screen and (min-width: 768px) {
   .dashboard-wrapper .username {
-    font-size: 1.3rem;
+    font-size: 0.9rem;
   }
 }
 @media screen and (min-width: 1100px) {
   .dashboard-wrapper .username {
-    font-size: 1.3rem;
+    font-size: 1rem;
   }
 }
 .dashboard-wrapper .icons {
@@ -263,7 +396,8 @@ form p {
 }
 @media screen and (min-width: 1100px) {
   .dashboard-wrapper .icon-setting svg {
-    width: 25px;
+    width: 30px;
+    height: 30px;
   }
 }
 .dashboard-wrapper .hours-average-header {
@@ -285,11 +419,15 @@ form p {
   background-color: #1c1f4a;
   border-radius: 8px;
   margin: 5px 0px;
-  padding: 10px 15px;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
+  padding: 10px;
+}
+.dashboard-wrapper .dashboard-category-container:hover {
+  background-color: rgba(0, 0, 7, 0.5);
+  cursor: pointer;
 }
 .dashboard-wrapper .dashboard-category-container .category-hours {
   font-weight: 100;
@@ -297,6 +435,42 @@ form p {
 .dashboard-wrapper svg:hover {
   cursor: pointer;
   color: #fff;
+}
+
+.image-container img {
+  width: 100%;
+  max-height: 100px;
+  border-radius: 50%;
+}
+@media screen and (min-width: 768px) {
+  .image-container img {
+    max-height: 70px;
+  }
+}
+@media screen and (min-width: 768px) {
+  .image-container img {
+    max-height: 90px;
+  }
+}
+
+.user-image img {
+  width: 100%;
+  border-radius: 50%;
+  max-height: 100px;
+}
+@media screen and (min-width: 768px) {
+  .user-image img {
+    max-height: 70px;
+  }
+}
+@media screen and (min-width: 768px) {
+  .user-image img {
+    max-height: 90px;
+  }
+}
+
+.form {
+  padding: 10px;
 }
 
 .tasks-category-container {
@@ -436,6 +610,9 @@ form p {
   font-weight: 400;
 }
 
+.delete-form {
+  padding: 10px;
+}
 .delete-form input {
   color: #fff;
 }
