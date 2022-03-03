@@ -10,9 +10,6 @@ router.get("/", (req, res) => {
 });
 
 router.get("/list", async (req, res) => {
-    // const taskCollection = await TasksModel.find().lean();
-    // const studyCollection = await TasksModel.find({ category: "Study" });
-    // console.log(studyCollection);
     res.render("tasks/tasks-list");
 });
 
