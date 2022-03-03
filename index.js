@@ -2,12 +2,13 @@
 
 require("dotenv").config();
 require("./data/mongoose.js");
+require("./data/passport.js");
 
 const express = require("express");
 const exphbs = require("express-handlebars");
 const jwt = require("jsonwebtoken");
 const cookieParser = require("cookie-parser");
-
+const passport = require("passport");
 const { hashPassword, comparePassword } = require("./data/utils.js");
 const usersRouter = require("./data/routes/users-router.js");
 const tasksRouter = require("./data/routes/tasks-router.js");
@@ -30,6 +31,8 @@ app.use(
     })
 );
 app.use(cookieParser());
+
+app.use(passport.initialize());
 
 app.use((req, res, next) => {
     const { token } = req.cookies;
