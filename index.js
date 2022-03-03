@@ -61,7 +61,7 @@ app.use("/users", usersRouter);
 app.use("/tasks", tasksRouter);
 
 app.use("/", (req, res) => {
-    res.status(404).render("not-found");
+    res.render("home")
 });
 
 
