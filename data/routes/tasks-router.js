@@ -1,4 +1,5 @@
 const express = require("express");
+const jwt = require("jsonwebtoken");
 const router = express.Router();
 const { UsersModel, TasksModel } = require("../models/Models.js");
 
@@ -32,15 +33,24 @@ router.get("/create", async (req, res) => {
 
 router.post("/create", async (req, res) => {
     const { category, description, hours, public, created } = req.body;
-    const newTask = new TasksModel({
-        category: category,
-        description: description,
-        hours: hours,
-        public: true,
-        created: Date.now(),
-    });
-    const collection = await newTask.save();
-    console.log(collection);
+    const { token } = req.cookies;
+    const date = new Date().toISOString();
+
+    console.log(req.body);
+
+    if (token && jwt.verify(token, process.env.JWTSECRET)) {
+        const tokenData = jwt.decode(token, process.env.JWTSECRET);
+
+        const newTask = new TasksModel({
+            category: [category],
+            description: description,
+            hours: hours,
+            public: true,
+            created: date,
+            user: tokenData.userId,
+        });
+        const collection = await newTask.save();
+    }
     res.redirect("/tasks/list");
 });
 
