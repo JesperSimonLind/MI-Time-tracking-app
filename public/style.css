@@ -483,12 +483,25 @@ p {
   background-color: rgba(0, 0, 7, 0.5);
   cursor: pointer;
 }
+.dashboard-wrapper .dashboard-category-container a {
+  text-decoration: none;
+}
+.dashboard-wrapper .dashboard-category-container a:hover {
+  text-decoration: none;
+}
 .dashboard-wrapper .dashboard-category-container .category-hours {
   font-weight: 100;
 }
 .dashboard-wrapper svg:hover {
   cursor: pointer;
   color: #fff;
+}
+
+.category-info-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
 }
 
 .image-container img {
@@ -689,7 +702,7 @@ p {
 .sm-heading {
   text-align: left;
   margin: 0;
-  padding-top: 15px;
+  padding: 15px 0px 0px 0px;
   font-size: 1rem;
   font-weight: 400;
 }

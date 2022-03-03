@@ -14,9 +14,12 @@ const {
 
 // ROUTES //
 
+// 404 PAGE
 router.get("/", (req, res) => {
     res.status(404).render("not-found");
 });
+
+// POST: LOG IN PAGE
 
 router.post("/", async (req, res) => {
     const {
@@ -28,7 +31,6 @@ router.post("/", async (req, res) => {
         username
     }, (e, user) => {
 
-
         if (user && comparePassword(password, user.password)) {
             const userData = {
                 userId: user._id.toString(),
@@ -36,16 +38,31 @@ router.post("/", async (req, res) => {
             };
             const accessToken = jwt.sign(userData, process.env.JWTSECRET);
             res.cookie("token", accessToken);
-            res.redirect("users/dashboard");
+            
+            res.redirect('/users/' + user._id + '/dashboard');
         } else {
             res.render("not-found");
         }
     });
 });
 
+// GET: DASHBOARD
+router.get("/:id/dashboard", async (req, res) => {
+    const user = await UsersModel.findById(req.params.id).lean()
+  
+    res.render("users/users-dashboard", {
+        user
+    });  
+})
+
+
+// GET: SIGNUP PAGE
 router.get("/signup", (req, res) => {
     res.render("users/users-create");
 });
+
+
+// POST: SIGNUP PAGE
 
 router.post("/signup", async (req, res) => {
     const { username, password, email, profilePic } = req.body;
@@ -66,11 +83,12 @@ router.post("/signup", async (req, res) => {
             });
             await newUser.save();
 
-            res.redirect("/");
+            res.redirect('/users/' + newUser._id + '/dashboard');
         }
     });
 });
 
+// GET: Signout
 router.get("/signout", async (req, res) => {
     res.cookie("token", "", {
         maxAge: 0
@@ -78,9 +96,6 @@ router.get("/signout", async (req, res) => {
     res.redirect("/");
 });
 
-router.get("/dashboard", (req, res) => {
-    res.render("users/users-dashboard");
-});
 
 router.get("/update", (req, res) => {
     res.render("users/users-update");

@@ -384,6 +384,15 @@
             cursor: pointer;
         }
 
+        a {
+            text-decoration: none;
+       
+    
+        &:hover {
+            text-decoration: none;
+        }
+    }
+
         .category-hours {
             font-weight: 100;
         }
@@ -393,6 +402,14 @@
         cursor: pointer;
         color: #fff;
     }
+
+}
+
+.category-info-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
 
 }
 
