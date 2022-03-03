@@ -25,15 +25,7 @@ const forceAuthorize = (req, res, next) => {
     }
 };
 
-function validateUser(user) {
-    let valid = true;
-    valid = valid && user.password === user.confirmPassword;
-
-    return valid;
-  }
-
 module.exports = {
     hashPassword,
     comparePassword,
-    validateUser
 };
