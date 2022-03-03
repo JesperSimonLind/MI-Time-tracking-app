@@ -50,20 +50,15 @@ app.get("/", (req, res) => {
     const { token } = req.cookies;
 
     if (token && jwt.verify(token, process.env.JWTSECRET)) {
-        res.redirect("/users/dashboard");
+        const tokenData = jwt.decode(token, process.env.JWTSECRET);
+        res.redirect("/users/" + tokenData.userId + "/dashboard");
     } else {
         res.render("home");
     }
 });
 
-
 app.use("/users", usersRouter);
 app.use("/tasks", tasksRouter);
-
-app.use("/", (req, res) => {
-    res.render("home")
-});
-
 
 app.listen(8000, () => {
     console.log("http://localhost:8000/");
