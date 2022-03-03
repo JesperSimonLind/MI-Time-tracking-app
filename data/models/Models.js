@@ -1,4 +1,3 @@
-// import mongoose from "mongoose";
 const mongoose = require("mongoose");
 
 const taskSchema = new mongoose.Schema({
@@ -53,10 +52,17 @@ const userSchema = new mongoose.Schema({
     },
 });
 
+const googleSchema = new mongoose.Schema({
+    googleId: { type: String, required: true },
+    displayName: { type: String, required: true },
+});
+
 const UsersModel = mongoose.model("Users", userSchema);
 const TasksModel = mongoose.model("Tasks", taskSchema);
+const GoogleModel = mongoose.model("Google", googleSchema);
 
 module.exports = {
     UsersModel,
     TasksModel,
+    GoogleModel,
 };
