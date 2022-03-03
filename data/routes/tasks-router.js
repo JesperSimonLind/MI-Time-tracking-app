@@ -5,7 +5,7 @@ const { UsersModel, TasksModel } = require("../models/Models.js");
 // ROUTES //
 
 router.get("/", (req, res) => {
-    res.send("Hello Tasks router");
+    res.status(404).render("not-found");
 });
 
 router.get("/list", (req, res) => {
