@@ -54,8 +54,6 @@ a:hover {
 }
 .content h1 {
   font-size: 1.4rem;
-  margin: 0;
-  padding: 0;
 }
 @media screen and (min-width: 1100px) {
   .content h1 {
@@ -88,14 +86,14 @@ form {
 form input {
   margin: 5px 0px;
   padding: 4px;
-  border-radius: 4px;
+  border-radius: 5px;
   border: none;
 }
 @media screen and (min-width: 1100px) {
   form input {
     margin: 5px 0px;
     padding: 4px;
-    border-radius: 4px;
+    border-radius: 6px;
     border: none;
   }
 }
@@ -105,11 +103,11 @@ form label {
 }
 @media screen and (min-width: 1100px) {
   form label {
-    margin: 5px 0px 0px;
+    margin: 10px 0px 0px;
   }
 }
 form .login-btn {
-  margin: 5px 0px 0px;
+  margin: 20px 0px 0px;
   padding: 8px;
   background-color: #5847EB;
   border: none;
@@ -117,19 +115,20 @@ form .login-btn {
   border-radius: 6px;
   font-weight: 500;
 }
-form .login-btn a {
-  text-decoration: none;
-  font-size: 1rem;
-}
 form .login-btn:hover {
   cursor: pointer;
 }
-
-p {
-  font-size: 0.9rem;
+form p {
+  padding: 10px 0px;
   text-align: center;
-  padding: 5px;
-  margin: 0;
+  font-size: 0.9rem;
+}
+@media screen and (min-width: 1100px) {
+  form p {
+    padding: 10px 0px;
+    text-align: center;
+    font-size: 0.9rem;
+  }
 }
 
 .home-container {
