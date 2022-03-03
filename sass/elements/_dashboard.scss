@@ -59,9 +59,9 @@
     border-radius: 6px;
     font-weight: 500;
 
-        &:hover {
-            cursor: pointer;
-        } 
+    &:hover {
+        cursor: pointer;
+    }
 }
 
 .community-wrapper {
@@ -96,7 +96,7 @@
 
         @include mixins.tablet-only {
             gap: 30px;
-    
+
         }
     }
 
@@ -104,13 +104,25 @@
     .buttons-container {
         display: none;
 
+        @include mixins.tablet-only {
+            display: flex;
+            flex-direction: row;
+            gap: 10px;
+            justify-content: flex-end;
+            padding: 10px 0px 50px;
+        }
+
         @include mixins.desktop-only {
             display: flex;
             flex-direction: row;
-           gap: 10px;
-           justify-content: flex-end;
-           padding: 10px 10px 50px;
-    
+            gap: 10px;
+            justify-content: flex-end;
+            padding: 10px 50px 50px;
+
+        }
+
+        a:hover {
+            text-decoration: none;
         }
     }
 
@@ -139,12 +151,18 @@
         align-items: center;
         gap: 20px;
 
+        @include mixins.tablet-only {
+            flex-direction: row;
+            justify-content: flex-start;
+            align-items: center;
+            gap: 10px;
+        }
+
         @include mixins.desktop-only {
             flex-direction: row;
             justify-content: flex-start;
             align-items: flex-start;
             gap: 20px;
-
         }
 
         .user-comment {
@@ -157,13 +175,19 @@
             flex-direction: column;
             gap: 20px;
 
+            @include mixins.tablet-only {
+                align-items: flex-start;
+
+            }
+           
+            
             @include mixins.desktop-only {
                 width: 70%;
                 display: flex;
                 flex-direction: column;
                 justify-content: flex-start;
                 align-items: flex-start;
-    
+
             }
         }
 
@@ -259,11 +283,11 @@
         font-weight: 500;
 
         @include mixins.tablet-only {
-           font-size: 0.9rem;
+            font-size: 0.9rem;
         }
 
         @include mixins.desktop-only {
-           font-size: 1rem;
+            font-size: 1rem;
         }
     }
 
@@ -372,7 +396,7 @@
     max-height: 100px;
     border-radius: 50%;
 
-  
+
     @include mixins.tablet-only {
         max-height: 70px;
     }
