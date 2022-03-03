@@ -101,13 +101,15 @@
     }
 
 
-    .logout-container {
-        display: flex;
-        flex-direction: column;
+    .buttons-container {
         display: none;
 
         @include mixins.desktop-only {
-           display: block;
+            display: flex;
+            flex-direction: row;
+           gap: 10px;
+           justify-content: flex-end;
+           padding: 10px 10px 50px;
     
         }
     }

@@ -228,14 +228,16 @@ form p {
     gap: 30px;
   }
 }
-.community-wrapper .logout-container {
-  display: flex;
-  flex-direction: column;
+.community-wrapper .buttons-container {
   display: none;
 }
 @media screen and (min-width: 1100px) {
-  .community-wrapper .logout-container {
-    display: block;
+  .community-wrapper .buttons-container {
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    justify-content: flex-end;
+    padding: 10px 10px 50px;
   }
 }
 .community-wrapper .logout {
