@@ -2,15 +2,17 @@
 
 require("dotenv").config();
 require("./data/mongoose.js");
+require("./data/passport.js");
 
 const express = require("express");
 const exphbs = require("express-handlebars");
 const jwt = require("jsonwebtoken");
 const cookieParser = require("cookie-parser");
-
+const passport = require("passport");
 const { hashPassword, comparePassword } = require("./data/utils.js");
 const usersRouter = require("./data/routes/users-router.js");
 const tasksRouter = require("./data/routes/tasks-router.js");
+const googleRouter = require("./data/routes/google-router.js");
 const app = express();
 
 app.engine(
@@ -31,6 +33,8 @@ app.use(
 );
 app.use(cookieParser());
 
+app.use(passport.initialize());
+
 app.use((req, res, next) => {
     const { token } = req.cookies;
 
@@ -43,6 +47,17 @@ app.use((req, res, next) => {
     }
     next();
 });
+// app.use((req, res, next) => {
+//     const { token } = req.cookies;
+
+//     if (token && jwt.verify(token, process.env.JWT_SECRET)) {
+//         const tokenData = jwt.decode(token, process.env.JWTSECRET);
+//         res.locals.loginInfo = tokenData.displayName + " " + tokenData.id;
+//     } else {
+//         res.locals.loginInfo = "not logged in";
+//     }
+//     next();
+// });
 
 // ROUTES //
 
@@ -59,6 +74,7 @@ app.get("/", (req, res) => {
 
 app.use("/users", usersRouter);
 app.use("/tasks", tasksRouter);
+app.use("/google", googleRouter);
 
 app.listen(8000, () => {
     console.log("http://localhost:8000/");
