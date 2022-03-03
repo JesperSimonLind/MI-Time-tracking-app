@@ -14,7 +14,7 @@
                             </div>
                             <div class="user-info">
                                 <p class="hello">Welcome back,</p>
-                                <p class="username">Username</p>
+                                <p class="username">{{user.username}}</p>
                             </div>
                         </div>
 
@@ -45,19 +45,21 @@
                         <section class="dashboard-content">
                             <div class="form">
                                 <p class="sm-heading">Edit profile</p>
-                                <form action="" method="post">
-                                    <label for="description">{{user.username}}</label>
-                                    <input type="text" name="description" placeholder="Description">
+                                <form action="/users/{{user._id}}/update" method="post" enctype="multipart/form-data">
+                                    <label for="description">Username</label>
+                                    <input type="text" name="description" value="{{user.username}}">
                                     <label for="password">Password</label>
-                                    <input type="password" name="password" placeholder="Password">
-                                    <label for="hours">Profile picture</label>
+                                    <input type="password" name="password" value="{{user.password}}">
+                                      <label for="email">Email</label>
+                                    <input type="email" name="email" value="{{user.email}}">
+                                    <label for="profilePic">Profile picture</label>
                                     <input type="file" name="profilePic">
                                     <input type="submit" class="btn" value="Update">
                                 </form>
 
                                 <a href="/users/signout" class="btn">Logout</a>
                                 <a href="" class="btn">Delete account</a>
-                                 <a href="/users/dashboard" class="btn">Home</a>
+                                 <a href="" class="btn">Home</a>
                             </div>
                         </section>
                     </section>
