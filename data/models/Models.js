@@ -4,38 +4,39 @@ const mongoose = require("mongoose");
 const taskSchema = new mongoose.Schema({
     category: {
         type: Array,
-        required: true
+        required: true,
     },
     description: {
         type: String,
-        required: true
+        required: true,
     },
     hours: {
         type: Number,
-        required: true
+        required: true,
     },
     public: {
         type: Boolean,
-        required: true
+        required: true,
     },
     created: {
-        type: Date,
-        required: true
+        type: String,
+        required: true,
+    },
+    user: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "Users",
+        required: true,
     },
 });
 
 const userSchema = new mongoose.Schema({
     username: {
         type: String,
-        min: 2,
-        max: 20,
-        required: true
+        required: true,
     },
     password: {
         type: String,
         required: true,
-        min: 5,
-        max: 20,
     },
     email: {
         type: String,
@@ -44,15 +45,11 @@ const userSchema = new mongoose.Schema({
     admin: {
         type: Boolean,
         required: true,
-        default: false
+        default: false,
     },
     profilePicture: {
         type: String,
-        required: false
-    },
-    tasks: {
-        type: taskSchema,
-        required: false
+        required: false,
     },
 });
 
@@ -61,5 +58,5 @@ const TasksModel = mongoose.model("Tasks", taskSchema);
 
 module.exports = {
     UsersModel,
-    TasksModel
+    TasksModel,
 };
