@@ -9,12 +9,12 @@ router.get("/failed", (req, res) => {
 });
 
 router.get(
-    "/google",
+    "/",
     passport.authenticate("google", { scope: ["email", "profile"] })
 );
 
 router.get(
-    "/google/callback",
+    "/callback",
     passport.authenticate("google", {
         failureRedirect: "/failed",
     }),

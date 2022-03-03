@@ -12,6 +12,7 @@ const passport = require("passport");
 const { hashPassword, comparePassword } = require("./data/utils.js");
 const usersRouter = require("./data/routes/users-router.js");
 const tasksRouter = require("./data/routes/tasks-router.js");
+const googleRouter = require("./data/routes/google-router.js");
 const app = express();
 
 app.engine(
@@ -62,6 +63,7 @@ app.get("/", (req, res) => {
 
 app.use("/users", usersRouter);
 app.use("/tasks", tasksRouter);
+app.use("/google", googleRouter);
 
 app.listen(8000, () => {
     console.log("http://localhost:8000/");
