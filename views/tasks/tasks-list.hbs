@@ -55,6 +55,20 @@
                          <section class="tasks">
 
                              <div class="task">
+                                 {{#each taskCollection}}
+                                 <div class="task-info">
+                                     <p class="task-description">{{description}}</p>
+                                     <p class="task-date">{{created}}</p>
+                                     <p class="task-comment">Comment: </p>
+                                 </div>
+
+                                 <div class="task-hours">
+                                     <p>Hours</p>
+                                 </div>
+                             </div>
+                             {{/each}}
+
+                             {{!-- <div class="task">
                                  <div class="task-info">
                                      <p class="task-description">Description</p>
                                      <p class="task-date">Date</p>
@@ -64,19 +78,7 @@
                                  <div class="task-hours">
                                      <p>Hours</p>
                                  </div>
-                             </div>
-
-                             <div class="task">
-                                 <div class="task-info">
-                                     <p class="task-description">Description</p>
-                                     <p class="task-date">Date</p>
-                                     <p class="task-comment">Comment: </p>
-                                 </div>
-
-                                 <div class="task-hours">
-                                     <p>Hours</p>
-                                 </div>
-                             </div>
+                             </div> --}}
 
                          </section>
                      </div>
