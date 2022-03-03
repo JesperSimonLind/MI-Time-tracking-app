@@ -47,6 +47,17 @@ app.use((req, res, next) => {
     }
     next();
 });
+// app.use((req, res, next) => {
+//     const { token } = req.cookies;
+
+//     if (token && jwt.verify(token, process.env.JWT_SECRET)) {
+//         const tokenData = jwt.decode(token, process.env.JWTSECRET);
+//         res.locals.loginInfo = tokenData.displayName + " " + tokenData.id;
+//     } else {
+//         res.locals.loginInfo = "not logged in";
+//     }
+//     next();
+// });
 
 // ROUTES //
 

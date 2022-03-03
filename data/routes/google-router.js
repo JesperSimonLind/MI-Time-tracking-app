@@ -1,3 +1,5 @@
+require("dotenv").config();
+
 const express = require("express");
 const jwt = require("jsonwebtoken");
 const router = express.Router();
@@ -20,14 +22,14 @@ router.get(
     }),
     async (req, res) => {
         GoogleModel.findOne({ googleId: req.user.id }, async (err, user) => {
-            const userData = { displayName: req.user.displayName };
+            const userData = { username: req.user.username };
 
             if (user) {
                 userData.id = user._id;
             } else {
                 const newUser = new GoogleModel({
                     googleId: req.user.id,
-                    displayName: req.user.displayName,
+                    username: req.user.username,
                 });
                 const result = await newUser.save();
                 userData.id = result._id;
