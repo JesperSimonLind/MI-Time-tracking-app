@@ -1,5 +1,4 @@
 // REQUIRES //
-
 require("dotenv").config();
 require("./data/mongoose.js");
 require("./data/passport.js");
@@ -9,7 +8,6 @@ const exphbs = require("express-handlebars");
 const jwt = require("jsonwebtoken");
 const cookieParser = require("cookie-parser");
 const passport = require("passport");
-const { hashPassword, comparePassword } = require("./data/utils.js");
 const usersRouter = require("./data/routes/users-router.js");
 const tasksRouter = require("./data/routes/tasks-router.js");
 const googleRouter = require("./data/routes/google-router.js");
