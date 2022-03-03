@@ -55,13 +55,21 @@ router.get("/signup", (req, res) => {
 // POST: SIGNUP PAGE
 
 router.post("/signup", async (req, res) => {
-    const { username, password, email, profilePic } = req.body;
+    const {
+        username,
+        password,
+        email,
+        profilePic
+    } = req.body;
 
     const usernameTaken =
         "That username is already taken! Please pick another one.";
 
-    UsersModel.findOne({ username }, async (error, user) => {
+    UsersModel.findOne({
+        username
+    }, async (error, user) => {
         if (user) {
+
             res.render("users/users-create", { usernameTaken });
         } else {
             const newUser = new UsersModel({
@@ -85,8 +93,29 @@ router.get("/signout", async (req, res) => {
     res.redirect("/");
 });
 
-router.get("/update", (req, res) => {
-    res.render("users/users-update");
+
+// GET: USER UPDATE SETTINGS
+router.get("/:id/update", async (req, res) => {
+    const user = await UsersModel.findById(req.params.id).lean()
+    res.render("users/users-update", {
+        user
+    });
 });
+
+// POST: UPDATE USER SETTINGS
+router.post("/:id/update", async (req, res) => {
+
+    const user = await UsersModel.findById(req.params.id)
+
+    user.username = req.body.username
+    user.password = req.body.password
+    user.email = req.body.email
+    user.profilePic = req.body.profilePic
+    
+    await user.save()
+
+    res.render("users/" + user._id + "/dashboard");
+})
+
 
 module.exports = router;

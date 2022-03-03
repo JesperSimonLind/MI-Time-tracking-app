@@ -592,12 +592,12 @@ p {
 }
 .tasks-category-container .task-hours {
   color: #BDC1FF;
-  font-size: 0.9rem;
+  font-size: 0.8rem;
   margin: 0;
 }
 .tasks-category-container .task-hours .hours {
   font-weight: 100;
-  font-size: 0.9rem;
+  font-size: 0.8rem;
 }
 .tasks-category-container svg:hover {
   cursor: pointer;
