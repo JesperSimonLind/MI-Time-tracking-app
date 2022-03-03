@@ -56,6 +56,8 @@ a {
 
     h1 {
         font-size: 1.4rem;
+        margin: 0;
+        padding: 0;
 
         @include mixins.desktop-only {
             font-size: 1.6rem;
@@ -89,15 +91,17 @@ form {
     input {
         margin: 5px 0px;
         padding: 4px;
-        border-radius: 5px;
+        border-radius: 4px;
         border: none;
 
         @include mixins.desktop-only {
             margin: 5px 0px;
             padding: 4px;
-            border-radius: 6px;
+            border-radius: 4px;
             border: none;
         }
+
+     
     }
 
     label {
@@ -105,18 +109,23 @@ form {
         font-size: 0.85rem;
 
         @include mixins.desktop-only {
-            margin: 10px 0px 0px;
+            margin: 5px 0px 0px;
         }
     }
 
     .login-btn {
-        margin: 20px 0px 0px;
+        margin: 5px 0px 0px;
         padding: 8px;
         background-color: variables.$color-purple;
         border: none;
         color: #fff;
         border-radius: 6px;
         font-weight: 500;
+      
+        a {
+            text-decoration: none;
+            font-size: 1rem;
+        }
 
             &:hover {
                 cursor: pointer;
@@ -124,16 +133,11 @@ form {
         
     }
 
+}
 
-    p {
-        padding: 10px 0px;
-        text-align: center;
-        font-size: 0.9rem;
-
-        @include mixins.desktop-only {
-            padding: 10px 0px;
-            text-align: center;
-            font-size: 0.9rem;
-        }
-    }
+p {
+    font-size: 0.9rem;
+    text-align: center;
+    padding: 5px;
+    margin: 0;
 }

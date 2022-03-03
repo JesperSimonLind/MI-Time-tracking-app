@@ -13,7 +13,9 @@ const comparePassword = (password, hash) => {
 };
 
 const forceAuthorize = (req, res, next) => {
-    const { token } = req.cookies;
+    const {
+        token
+    } = req.cookies;
 
     if (token && jwt.verify(token, process.env.JWTSECRET)) {
         const tokenData = jwt.decode(token, process.env.JWTSECRET);
@@ -23,4 +25,7 @@ const forceAuthorize = (req, res, next) => {
     }
 };
 
-module.exports = { hashPassword, comparePassword };
+module.exports = {
+    hashPassword,
+    comparePassword,
+};
