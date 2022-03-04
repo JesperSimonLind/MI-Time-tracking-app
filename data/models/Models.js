@@ -52,14 +52,8 @@ const userSchema = new mongoose.Schema({
     },
 });
 
-// const googleSchema = new mongoose.Schema({
-//     googleId: { type: String, required: true },
-//     username: { type: String, required: true },
-// });
-
 const UsersModel = mongoose.model("Users", userSchema);
 const TasksModel = mongoose.model("Tasks", taskSchema);
-// const GoogleModel = mongoose.model("Google", googleSchema);
 
 module.exports = {
     UsersModel,

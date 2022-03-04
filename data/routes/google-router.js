@@ -26,7 +26,7 @@ router.get(
                 const userData = { username: req.user.displayName };
 
                 if (user) {
-                    userData.id = user._id;
+                    userData.userId = user._id;
                 } else {
                     const newUser = new UsersModel({
                         username: req.user.displayName,
@@ -35,14 +35,14 @@ router.get(
                         profilePicture: "",
                     });
                     const result = await newUser.save();
-                    userData.id = result._id;
+                    userData.userId = result._id;
                     const accessToken = jwt.sign(
                         userData,
                         process.env.JWTSECRET
                     );
 
                     res.cookie("token", accessToken);
-                    res.redirect("/users/" + userData.id + "/dashboard");
+                    res.redirect("/users/" + userData.userId + "/dashboard");
                 }
             }
         );
