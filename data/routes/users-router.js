@@ -103,22 +103,18 @@ router.get("/:id/update", async (req, res) => {
 
 // POST: UPDATE USER SETTINGS
 router.post("/:id/update", async (req, res) => {
-    const user = await UsersModel.findById(req.params.id);
     const { token } = req.cookies;
 
-    const updateId = {
-        _id: req.params.id,
-    };
-
-    const update = {
-        username: req.body.username,
-        password: hashPassword(req.body.password),
-        email: req.body.email,
-        admin: false,
-        profilePicture: req.body.profilePic,
-    };
-
-    await UsersModel.findOneAndUpdate(updateId, update);
+    await UsersModel.findOneAndUpdate(
+        { _id: req.params.id },
+        {
+            username: req.body.username,
+            password: hashPassword(req.body.password),
+            email: req.body.email,
+            admin: false,
+            profilePicture: req.body.profilePic,
+        }
+    );
 
     if (token && jwt.verify(token, process.env.JWTSECRET)) {
         const tokenData = jwt.decode(token, process.env.JWTSECRET);
