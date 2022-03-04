@@ -34,7 +34,7 @@ router.get("/create", async (req, res) => {
 router.post("/create", async (req, res) => {
     const { category, description, hours, public, created } = req.body;
     const { token } = req.cookies;
-    const date = new Date().toISOString();
+    const date = new Date().toLocaleDateString();
 
     console.log(req.body);
 

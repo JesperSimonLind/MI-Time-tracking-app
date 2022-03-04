@@ -44,9 +44,14 @@ router.post("/", async (req, res) => {
 // GET: DASHBOARD
 router.get("/:id/dashboard", async (req, res) => {
     const user = await UsersModel.findById(req.params.id).lean();
-
-    res.render("users/users-dashboard", {
-        user,
+    TasksModel.find({
+        user: user._id
+    }, function (err, tasks) {
+        res.render("users/users-dashboard", {
+            tasks,
+            user
+        });
+        console.log(tasks)
     });
 });
 
