@@ -12,6 +12,7 @@ const usersRouter = require("./data/routes/users-router.js");
 const tasksRouter = require("./data/routes/tasks-router.js");
 const googleRouter = require("./data/routes/google-router.js");
 const app = express();
+const bcrypt = require("bcrypt");
 
 app.engine(
     "hbs",

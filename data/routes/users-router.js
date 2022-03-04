@@ -1,16 +1,12 @@
+require("dotenv").config();
 const express = require("express");
 const router = express.Router();
 const jwt = require("jsonwebtoken");
 const cookieParser = require("cookie-parser");
-const {
-    UsersModel,
-    TasksModel
-} = require("../models/Models.js");
-const {
-    hashPassword,
-    comparePassword,
-    validateUser
-} = require("../utils.js");
+const { UsersModel, TasksModel } = require("../models/Models.js");
+const { hashPassword, comparePassword } = require("../utils.js");
+const bcrypt = require("bcrypt");
+const { default: mongoose } = require("mongoose");
 
 // ROUTES //
 
@@ -22,12 +18,10 @@ router.get("/", (req, res) => {
 // POST: LOG IN PAGE
 
 router.post("/", async (req, res) => {
-    const {
-        username,
-        password
-    } = req.body;
+    const { username, password } = req.body;
 
-    UsersModel.findOne({
+    UsersModel.findOne(
+        {
             username,
         },
         (e, user) => {
@@ -64,36 +58,33 @@ router.get("/signup", (req, res) => {
 // POST: SIGNUP PAGE
 
 router.post("/signup", async (req, res) => {
-    const {
-        username,
-        password,
-        email,
-        profilePic
-    } = req.body;
+    const { username, password, email, profilePic } = req.body;
 
     const usernameTaken =
         "That username is already taken! Please pick another one.";
 
-    UsersModel.findOne({
-        username
-    }, async (error, user) => {
-        if (user) {
+    UsersModel.findOne(
+        {
+            username,
+        },
+        async (error, user) => {
+            if (user) {
+                res.render("users/users-create", {
+                    usernameTaken,
+                });
+            } else {
+                const newUser = new UsersModel({
+                    username: username,
+                    password: hashPassword(password),
+                    email: email,
+                    profilePicture: profilePic,
+                });
+                await newUser.save();
 
-            res.render("users/users-create", {
-                usernameTaken
-            });
-        } else {
-            const newUser = new UsersModel({
-                username: username,
-                password: hashPassword(password),
-                email: email,
-                profilePicture: profilePic,
-            });
-            await newUser.save();
-
-            res.redirect("/users/" + newUser._id + "/dashboard");
+                res.redirect("/users/" + newUser._id + "/dashboard");
+            }
         }
-    });
+    );
 });
 
 // GET: Signout
@@ -104,49 +95,51 @@ router.get("/signout", async (req, res) => {
     res.redirect("/");
 });
 
-
 // GET: USER UPDATE SETTINGS
 router.get("/:id/update", async (req, res) => {
-    const user = await UsersModel.findById(req.params.id).lean()
-    res.render("users/users-update", {
-        user
-    });
+    const user = await UsersModel.findById(req.params.id).lean();
+    res.render("users/users-update", { user });
 });
 
 // POST: UPDATE USER SETTINGS
 router.post("/:id/update", async (req, res) => {
-    const user = await UsersModel.findById(req.params.id).lean()
+    const user = await UsersModel.findById(req.params.id);
+    const { token } = req.cookies;
 
-    UsersModel.findByIdAndUpdate(
-        user.id,
-        {
-            username: req.body.username,
-            password: req.body.password,
-            email: req.body.email,
-            new: true
-        },
-        (error, docs, result) => {
-            if (error) throw error;
-            res.render("users/" + user.id + "/dashboard");
-        }
-    );
+    const updateId = {
+        _id: req.params.id,
+    };
 
-})
+    const update = {
+        _id: req.params.id,
+        username: req.body.username,
+        password: hashPassword(req.body.password),
+        email: req.body.email,
+        admin: false,
+        profilePicture: req.body.profilePic,
+    };
+
+    await UsersModel.findOneAndUpdate(updateId, update);
+
+    if (token && jwt.verify(token, process.env.JWTSECRET)) {
+        const tokenData = jwt.decode(token, process.env.JWTSECRET);
+        res.redirect("/users/" + tokenData.userId + "/dashboard");
+    }
+});
 
 // GET: DELETE ACCOUNT PAGE
 router.get("/:id/delete", async (req, res) => {
-    const user = await UsersModel.findById(req.params.id).lean()
+    const user = await UsersModel.findById(req.params.id).lean();
     res.render("users/users-delete", {
-        user
+        user,
     });
 });
 
 // GET: DELETE ACCOUNT PAGE
 router.post("/:id/delete", async (req, res) => {
-    await UsersModel.findByIdAndDelete(req.params.id)
+    await UsersModel.findByIdAndDelete(req.params.id);
     res.clearCookie("token");
-    res.redirect('/')
+    res.redirect("/");
 });
-
 
 module.exports = router;

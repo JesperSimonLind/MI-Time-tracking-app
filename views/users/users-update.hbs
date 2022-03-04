@@ -45,12 +45,12 @@
                         <section class="dashboard-content">
                             <div class="form">
                                 <p class="sm-heading">Update profile</p>
-                                <form action="/users/{{user._id}}/update" method="post" enctype="multipart/form-data">
-                                    <label for="description">Username</label>
-                                    <input type="text" name="description" value="{{user.username}}">
+                                <form action="/users/{{user._id}}/update" method="post">
+                                    <label for="username">Username</label>
+                                    <input type="text" name="username" value="{{user.username}}">
                                     <label for="password">Password</label>
                                     <input type="password" name="password" value="{{user.password}}">
-                                      <label for="email">Email</label>
+                                    <label for="email">Email</label>
                                     <input type="email" name="email" value="{{user.email}}">
                                     <label for="profilePic">Profile picture</label>
                                     <input type="file" name="profilePic">
