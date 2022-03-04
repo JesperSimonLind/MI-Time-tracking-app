@@ -50,17 +50,14 @@ router.post("/", async (req, res) => {
 // GET: DASHBOARD
 router.get("/:id/dashboard", async (req, res) => {
     const user = await UsersModel.findById(req.params.id).lean();
-    const tasks = await TasksModel.find()
-    console.log(user._id)
-
-    tasks.forEach(task => {
-           if (task.user == user._id) {
-           console.log(task)
-            }
-    })
-
-    res.render("users/users-dashboard", {
-        user
+    TasksModel.find({
+        user: user._id
+    }, function (err, tasks) {
+        res.render("users/users-dashboard", {
+            tasks,
+            user
+        });
+        console.log(tasks)
     });
 });
 
@@ -126,8 +123,7 @@ router.post("/:id/update", async (req, res) => {
     const user = await UsersModel.findById(req.params.id).lean()
 
     UsersModel.findByIdAndUpdate(
-        user.id,
-        {
+        user.id, {
             username: req.body.username,
             password: req.body.password,
             email: req.body.email,
