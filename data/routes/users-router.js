@@ -2,8 +2,15 @@ const express = require("express");
 const router = express.Router();
 const jwt = require("jsonwebtoken");
 const cookieParser = require("cookie-parser");
-const { UsersModel, TasksModel } = require("../models/Models.js");
-const { hashPassword, comparePassword, validateUser } = require("../utils.js");
+const {
+    UsersModel,
+    TasksModel
+} = require("../models/Models.js");
+const {
+    hashPassword,
+    comparePassword,
+    validateUser
+} = require("../utils.js");
 
 // ROUTES //
 
@@ -15,10 +22,12 @@ router.get("/", (req, res) => {
 // POST: LOG IN PAGE
 
 router.post("/", async (req, res) => {
-    const { username, password } = req.body;
+    const {
+        username,
+        password
+    } = req.body;
 
-    UsersModel.findOne(
-        {
+    UsersModel.findOne({
             username,
         },
         (e, user) => {
@@ -70,7 +79,9 @@ router.post("/signup", async (req, res) => {
     }, async (error, user) => {
         if (user) {
 
-            res.render("users/users-create", { usernameTaken });
+            res.render("users/users-create", {
+                usernameTaken
+            });
         } else {
             const newUser = new UsersModel({
                 username: username,
@@ -104,18 +115,38 @@ router.get("/:id/update", async (req, res) => {
 
 // POST: UPDATE USER SETTINGS
 router.post("/:id/update", async (req, res) => {
+    const user = await UsersModel.findById(req.params.id).lean()
 
-    const user = await UsersModel.findById(req.params.id)
+    UsersModel.findByIdAndUpdate(
+        user.id,
+        {
+            username: req.body.username,
+            password: req.body.password,
+            email: req.body.email,
+            new: true
+        },
+        (error, docs, result) => {
+            if (error) throw error;
+            res.render("users/" + user.id + "/dashboard");
+        }
+    );
 
-    user.username = req.body.username
-    user.password = req.body.password
-    user.email = req.body.email
-    user.profilePic = req.body.profilePic
-    
-    await user.save()
-
-    res.render("users/" + user._id + "/dashboard");
 })
+
+// GET: DELETE ACCOUNT PAGE
+router.get("/:id/delete", async (req, res) => {
+    const user = await UsersModel.findById(req.params.id).lean()
+    res.render("users/users-delete", {
+        user
+    });
+});
+
+// GET: DELETE ACCOUNT PAGE
+router.post("/:id/delete", async (req, res) => {
+    await UsersModel.findByIdAndDelete(req.params.id)
+    res.clearCookie("token");
+    res.redirect('/')
+});
 
 
 module.exports = router;

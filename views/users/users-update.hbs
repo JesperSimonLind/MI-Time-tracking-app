@@ -44,7 +44,7 @@
                     <section class="dashboard-content">
                         <section class="dashboard-content">
                             <div class="form">
-                                <p class="sm-heading">Edit profile</p>
+                                <p class="sm-heading">Update profile</p>
                                 <form action="/users/{{user._id}}/update" method="post" enctype="multipart/form-data">
                                     <label for="description">Username</label>
                                     <input type="text" name="description" value="{{user.username}}">
@@ -58,7 +58,7 @@
                                 </form>
 
                                 <a href="/users/signout" class="btn">Logout</a>
-                                <a href="" class="btn">Delete account</a>
+                                <a href="/users/{{user._id}}/delete" class="btn">Delete account</a>
                                  <a href="" class="btn">Home</a>
                             </div>
                         </section>
