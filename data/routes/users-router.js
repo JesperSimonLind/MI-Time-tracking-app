@@ -50,9 +50,17 @@ router.post("/", async (req, res) => {
 // GET: DASHBOARD
 router.get("/:id/dashboard", async (req, res) => {
     const user = await UsersModel.findById(req.params.id).lean();
+    const tasks = await TasksModel.find()
+    console.log(user._id)
+
+    tasks.forEach(task => {
+           if (task.user == user._id) {
+           console.log(task)
+            }
+    })
 
     res.render("users/users-dashboard", {
-        user,
+        user
     });
 });
 
