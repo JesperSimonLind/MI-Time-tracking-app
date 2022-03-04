@@ -111,7 +111,6 @@ router.post("/:id/update", async (req, res) => {
     };
 
     const update = {
-        _id: req.params.id,
         username: req.body.username,
         password: hashPassword(req.body.password),
         email: req.body.email,
