@@ -1,82 +1,82 @@
-  <div class="home-container">
+<div class="home-container">
 
-     <div class="home-container-overlay">
-         
-         <div class="dashboard-wrapper">
-     <div class="dashboard-overlay">
-         <div class="dashboard">
-             <section class="dashboard-header">
-                 <div class="user-info-container">
-                     <div class="image-container">
-                         <img src="/assets/profile.jpg" alt="Profile picture">
-                     </div>
-                     <div class="user-info">
-                         <p class="hello">Welcome back,</p>
-                         <p class="username">Username</p>
-                     </div>
-                 </div>
-                 <div class="icons">
-                      <a href="/users/{{user._id}}/update" title="Settings"> 
-                     <div class="icon-setting">
-                         <div class="icon">
-                             <span>
-                                     <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor"
-                                         class="bi bi-gear" viewBox="0 0 16 16">
-                                         <path
-                                             d="M8 4.754a3.246 3.246 0 1 0 0 6.492 3.246 3.246 0 0 0 0-6.492zM5.754 8a2.246 2.246 0 1 1 4.492 0 2.246 2.246 0 0 1-4.492 0z" />
-                                         <path
-                                             d="M9.796 1.343c-.527-1.79-3.065-1.79-3.592 0l-.094.319a.873.873 0 0 1-1.255.52l-.292-.16c-1.64-.892-3.433.902-2.54 2.541l.159.292a.873.873 0 0 1-.52 1.255l-.319.094c-1.79.527-1.79 3.065 0 3.592l.319.094a.873.873 0 0 1 .52 1.255l-.16.292c-.892 1.64.901 3.434 2.541 2.54l.292-.159a.873.873 0 0 1 1.255.52l.094.319c.527 1.79 3.065 1.79 3.592 0l.094-.319a.873.873 0 0 1 1.255-.52l.292.16c1.64.893 3.434-.902 2.54-2.541l-.159-.292a.873.873 0 0 1 .52-1.255l.319-.094c1.79-.527 1.79-3.065 0-3.592l-.319-.094a.873.873 0 0 1-.52-1.255l.16-.292c.893-1.64-.902-3.433-2.541-2.54l-.292.159a.873.873 0 0 1-1.255-.52l-.094-.319zm-2.633.283c.246-.835 1.428-.835 1.674 0l.094.319a1.873 1.873 0 0 0 2.693 1.115l.291-.16c.764-.415 1.6.42 1.184 1.185l-.159.292a1.873 1.873 0 0 0 1.116 2.692l.318.094c.835.246.835 1.428 0 1.674l-.319.094a1.873 1.873 0 0 0-1.115 2.693l.16.291c.415.764-.42 1.6-1.185 1.184l-.291-.159a1.873 1.873 0 0 0-2.693 1.116l-.094.318c-.246.835-1.428.835-1.674 0l-.094-.319a1.873 1.873 0 0 0-2.692-1.115l-.292.16c-.764.415-1.6-.42-1.184-1.185l.159-.291A1.873 1.873 0 0 0 1.945 8.93l-.319-.094c-.835-.246-.835-1.428 0-1.674l.319-.094A1.873 1.873 0 0 0 3.06 4.377l-.16-.292c-.415-.764.42-1.6 1.185-1.184l.292.159a1.873 1.873 0 0 0 2.692-1.115l.094-.319z" />
-                                     </svg>
-                              
-                             </span>
-                         </div>
-                     </div>
-                        </a>
-                 </div>
-             </section>
+    <div class="home-container-overlay">
 
-             <section class="dashboard-content">
-                                  <div class="dashboard-home-btn">
-                       <a href="/users/{{user._id}}/dashboard" class="logout-btn">Home</a>
-                       </div>
-                 <div class="form">
-                       <p class="sm-heading">Update activity</p>
-                     <form action="ADD FORM ACTION" method="post">
-                         <label for="description">Description</label>
-                         <input type="text" name="description" placeholder="Description">
-                         <label for="category">Category</label>
-                             <select name="category" id="category">
-                                 <option value="" disabled selected>Select category</option>
-                                 <option value="exercise">Exercise</option>
-                                 <option value="study">Study</option>
-                                 <option value="work">Work</option>
-                                 <option value="play">Play</option>
-                                 <option value="social">Social</option>
-                                 <option value="other">Other</option>
-                             </select>
-                         <label for="date">Date:</label>
-                         <input type="date" name="date" placeholder="Date">
-                         <label for="hours">Hours:</label>
-                         <input type="number" name="hours" placeholder="Hours">
-                          <div class="privacy-container">
-                                <div> 
-                                 <label for="hours">Public</label>
-                                 <input type="radio" name="privacy" value="public" checked="checked" />
-                                 </div>
-                                 <div> 
-                                 <label for="hours">Private</label>
-                                 <input type="radio" name="privacy" value="private" />
+        <div class="dashboard-wrapper">
+            <div class="dashboard-overlay">
+                <div class="dashboard">
+                    <section class="dashboard-header">
+                        <div class="user-info-container">
+                            <div class="image-container">
+                                <img src="/assets/profile.jpg" alt="Profile picture">
+                            </div>
+                            <div class="user-info">
+                                <p class="hello">Hello,</p>
+                                <p class="username">Username</p>
+                            </div>
+                        </div>
+                        <div class="icons">
+                            <a href="/users/{{user._id}}/update" title="Settings">
+                                <div class="icon-setting">
+                                    <div class="icon">
+                                        <span>
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25"
+                                                fill="currentColor" class="bi bi-gear" viewBox="0 0 16 16">
+                                                <path
+                                                    d="M8 4.754a3.246 3.246 0 1 0 0 6.492 3.246 3.246 0 0 0 0-6.492zM5.754 8a2.246 2.246 0 1 1 4.492 0 2.246 2.246 0 0 1-4.492 0z" />
+                                                <path
+                                                    d="M9.796 1.343c-.527-1.79-3.065-1.79-3.592 0l-.094.319a.873.873 0 0 1-1.255.52l-.292-.16c-1.64-.892-3.433.902-2.54 2.541l.159.292a.873.873 0 0 1-.52 1.255l-.319.094c-1.79.527-1.79 3.065 0 3.592l.319.094a.873.873 0 0 1 .52 1.255l-.16.292c-.892 1.64.901 3.434 2.541 2.54l.292-.159a.873.873 0 0 1 1.255.52l.094.319c.527 1.79 3.065 1.79 3.592 0l.094-.319a.873.873 0 0 1 1.255-.52l.292.16c1.64.893 3.434-.902 2.54-2.541l-.159-.292a.873.873 0 0 1 .52-1.255l.319-.094c1.79-.527 1.79-3.065 0-3.592l-.319-.094a.873.873 0 0 1-.52-1.255l.16-.292c.893-1.64-.902-3.433-2.541-2.54l-.292.159a.873.873 0 0 1-1.255-.52l-.094-.319zm-2.633.283c.246-.835 1.428-.835 1.674 0l.094.319a1.873 1.873 0 0 0 2.693 1.115l.291-.16c.764-.415 1.6.42 1.184 1.185l-.159.292a1.873 1.873 0 0 0 1.116 2.692l.318.094c.835.246.835 1.428 0 1.674l-.319.094a1.873 1.873 0 0 0-1.115 2.693l.16.291c.415.764-.42 1.6-1.185 1.184l-.291-.159a1.873 1.873 0 0 0-2.693 1.116l-.094.318c-.246.835-1.428.835-1.674 0l-.094-.319a1.873 1.873 0 0 0-2.692-1.115l-.292.16c-.764.415-1.6-.42-1.184-1.185l.159-.291A1.873 1.873 0 0 0 1.945 8.93l-.319-.094c-.835-.246-.835-1.428 0-1.674l.319-.094A1.873 1.873 0 0 0 3.06 4.377l-.16-.292c-.415-.764.42-1.6 1.185-1.184l.292.159a1.873 1.873 0 0 0 2.692-1.115l.094-.319z" />
+                                            </svg>
+
+                                        </span>
+                                    </div>
                                 </div>
-                             </div>
-                         <input type="submit" class="btn" value="Update">
-                     </form>
-                 </div>
-             </section>
-         </div>
-     </div>
- </div>
+                            </a>
+                        </div>
+                    </section>
 
-  {{> community}}
+                    <section class="dashboard-content">
+                        <div class="dashboard-home-btn">
+                            <a href="/users/{{user._id}}/dashboard" class="logout-btn">Home</a>
+                        </div>
+                        <div class="form">
+                            <p class="sm-heading">Update activity</p>
+                            <form action="ADD FORM ACTION" method="post">
+                                <label for="description">Description</label>
+                                <input type="text" name="description" placeholder="Description">
+                                <label for="category">Category</label>
+                                <select name="category" id="category">
+                                    <option value="" disabled selected>Select category</option>
+                                    <option value="exercise">Exercise</option>
+                                    <option value="study">Study</option>
+                                    <option value="work">Work</option>
+                                    <option value="play">Play</option>
+                                    <option value="social">Social</option>
+                                    <option value="other">Other</option>
+                                </select>
+                                <label for="date">Date:</label>
+                                <input type="date" name="date" placeholder="Date">
+                                <label for="hours">Hours:</label>
+                                <input type="number" name="hours" placeholder="Hours">
+                                <div class="privacy-container">
+                                    <div>
+                                        <label for="hours">Public</label>
+                                        <input type="radio" name="privacy" value="public" checked="checked" />
+                                    </div>
+                                    <div>
+                                        <label for="hours">Private</label>
+                                        <input type="radio" name="privacy" value="private" />
+                                    </div>
+                                </div>
+                                <input type="submit" class="btn" value="Update">
+                            </form>
+                        </div>
+                    </section>
+                </div>
+            </div>
+        </div>
 
-   </div>
- </div>
+        {{> community}}
+
+    </div>
+</div>

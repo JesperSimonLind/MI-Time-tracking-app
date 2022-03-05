@@ -116,14 +116,14 @@ router.get("/:id/dashboard", async (req, res) => {
     TasksModel.find({
         private: false
     }, function (err, publicTasks) {    
-    console.log(publicTasks)
+    // console.log(publicTasks)
     }).lean()
 
 
     TasksModel.find({
         user: user._id
     }, function (err, tasks) {
-       console.log(tasks)
+      //  console.log(tasks)
         res.render("users/users-dashboard", {
             tasks,
             user

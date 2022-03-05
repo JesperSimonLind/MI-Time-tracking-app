@@ -372,12 +372,17 @@ p {
 .dashboard-wrapper .hello {
   margin: 0;
   padding: 0;
-  font-size: 1rem;
+  font-size: 1.2rem;
   font-weight: 100;
 }
 @media screen and (min-width: 768px) {
   .dashboard-wrapper .hello {
-    font-size: 0.9rem;
+    font-size: 1.5rem;
+  }
+}
+@media screen and (min-width: 768px) {
+  .dashboard-wrapper .hello {
+    font-size: 1.7rem;
   }
 }
 .dashboard-wrapper .username {
@@ -426,6 +431,7 @@ p {
 .dashboard-wrapper .dashboard-content {
   display: flex;
   flex-direction: column;
+  position: relative;
 }
 .dashboard-wrapper .icon-setting {
   display: flex;
@@ -456,13 +462,13 @@ p {
   padding: 8px 0px;
   display: flex;
   flex-direction: row;
-  gap: 30px;
+  gap: 40px;
   justify-content: center;
   align-items: center;
   margin: 5px 0px;
 }
 .dashboard-wrapper .hours-average-header a {
-  color: #BDC1FF;
+  color: #fff;
   text-decoration: none;
 }
 .dashboard-wrapper .dashboard-home-btn {
@@ -507,6 +513,10 @@ p {
   flex-direction: column;
   justify-content: flex-start;
   align-items: flex-start;
+}
+.category-info-container p {
+  padding: 0;
+  text-align: left;
 }
 
 .image-container {
@@ -564,6 +574,58 @@ p {
   text-decoration: none;
 }
 
+.show > .btn-secondary.dropdown-toggle {
+  padding: 10px;
+  background: transparent;
+  border: none;
+  color: #fff;
+  border-radius: 6px;
+  font-weight: 500;
+}
+.show > .btn-secondary.dropdown-toggle:hover {
+  cursor: pointer;
+}
+
+.btn {
+  margin: 5px 0px;
+}
+
+.dropdown a {
+  font-size: 1rem;
+  border-bottom: 2px solid #1c1f4a;
+  transition: border-bottom 0.1s ease-in-out;
+}
+.dropdown a:hover {
+  border-bottom: 2px solid #fff;
+}
+
+.dropdown .show {
+  background-color: #1c1f4a;
+  width: 100%;
+}
+
+.dropdown-item {
+  padding: 10px 20px;
+}
+.dropdown-item:hover {
+  background-color: unset;
+  text-decoration: underline;
+}
+.dropdown-item a {
+  color: #fff;
+}
+.dropdown-item a:hover {
+  text-decoration: underline;
+}
+
+.dropdown-item .category-link {
+  color: #fff;
+}
+.dropdown-item .category-link:hover {
+  text-decoration: underline;
+  border-bottom: 2px solid #fff;
+}
+
 .not-found-container {
   color: #fff;
   display: flex;
@@ -615,7 +677,7 @@ p {
   align-items: center;
 }
 .tasks-category-container .task-hours {
-  color: #BDC1FF;
+  color: #cacdff;
   font-size: 0.8rem;
   margin: 0;
 }
@@ -709,7 +771,6 @@ p {
 }
 
 .btn {
-  margin: 20px 0px 0px;
   padding: 8px;
   background-color: #5847EB;
   border: none;

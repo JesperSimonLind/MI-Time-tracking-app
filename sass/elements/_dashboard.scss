@@ -272,11 +272,15 @@
     .hello {
         margin: 0;
         padding: 0;
-        font-size: 1rem;
+        font-size: 1.2rem;
         font-weight: 100;
 
         @include mixins.tablet-only {
-            font-size: 0.9rem;
+            font-size: 1.5rem;
+        }
+
+        @include mixins.tablet-only {
+            font-size: 1.7rem;
         }
 
 
@@ -287,6 +291,7 @@
         padding: 0;
         font-size: 1rem;
         font-weight: 500;
+
 
         @include mixins.tablet-only {
             font-size: 0.9rem;
@@ -329,6 +334,7 @@
     .dashboard-content {
         display: flex;
         flex-direction: column;
+        position: relative;
     }
 
     .icon-setting {
@@ -361,13 +367,13 @@
         padding: 8px 0px;
         display: flex;
         flex-direction: row;
-        gap: 30px;
+        gap: 40px;
         justify-content: center;
         align-items: center;
         margin: 5px 0px;
 
         a {
-            color: variables.$color-paleblue;
+            color: #fff;
             text-decoration: none;
         }
     }
@@ -428,6 +434,11 @@
     justify-content: flex-start;
     align-items: flex-start;
 
+    p {
+        padding: 0;
+        text-align: left;
+    }
+
 }
 
 .image-container {
@@ -482,4 +493,67 @@
         text-decoration: none;
     }
 
+}
+
+// DROPDOWN CATEGORY MENU
+
+.show>.btn-secondary.dropdown-toggle {
+    padding: 10px;
+    background: transparent;
+    border: none;
+    color: #fff;
+    border-radius: 6px;
+    font-weight: 500;
+
+    &:hover {
+        cursor: pointer;
+    }
+}
+
+.btn {
+    margin: 5px 0px;
+
+}
+
+.dropdown a {
+    font-size: 1rem;
+    border-bottom: 2px solid variables.$color-dkblue;
+    transition: border-bottom 0.1s ease-in-out;
+
+    &:hover {
+        border-bottom: 2px solid #fff;
+    }
+}
+
+.dropdown .show {
+    background-color: variables.$color-dkblue;
+    width: 100%;
+}
+
+.dropdown-item {
+    padding: 10px 20px;
+
+    &:hover {
+        background-color: unset;
+        text-decoration: underline;
+    }
+
+    a {
+        color: #fff;
+
+        &:hover {
+
+            text-decoration: underline;
+        }
+    }
+}
+
+
+.dropdown-item .category-link {
+    color: #fff;
+
+    &:hover {
+        text-decoration: underline;
+        border-bottom: 2px solid #fff;
+    }
 }

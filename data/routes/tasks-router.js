@@ -44,7 +44,7 @@ router.post("/:id/create", async (req, res) => {
     const tokenData = jwt.decode(token, process.env.JWTSECRET);
 
     const newTask = new TasksModel({
-      category: [category],
+      category: category,
       description: description,
       hours: hours,
       private: Boolean(req.body.private),
@@ -55,5 +55,9 @@ router.post("/:id/create", async (req, res) => {
   }
   res.redirect("/users/" + user._id + "/dashboard");
 });
+
+router.get("/category/work", async (req, res) => {
+  res.render("tasks/tasks-list")
+})
 
 module.exports = router;

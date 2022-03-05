@@ -2,7 +2,7 @@ const mongoose = require("mongoose");
 
 const taskSchema = new mongoose.Schema({
     category: {
-        type: Array,
+        type: String,
         required: true,
     },
     description: {
