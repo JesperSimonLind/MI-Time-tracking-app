@@ -34,10 +34,11 @@ router.get("/:id/create", async (req, res) => {
 });
 
 router.post("/create", async (req, res) => {
-    const { category, description, hours, public, created } = req.body;
+
+    const { category, description, hours, private, created } = req.body;
     const { token } = req.cookies;
     const date = new Date().toLocaleDateString();
-
+  
     if (token && jwt.verify(token, process.env.JWTSECRET)) {
         const tokenData = jwt.decode(token, process.env.JWTSECRET);
 
@@ -45,7 +46,7 @@ router.post("/create", async (req, res) => {
             category: [category],
             description: description,
             hours: hours,
-            public: true,
+            private: Boolean(req.body.private),
             created: date,
             user: tokenData.userId,
         });

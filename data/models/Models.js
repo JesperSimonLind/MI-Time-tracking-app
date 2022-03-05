@@ -13,7 +13,7 @@ const taskSchema = new mongoose.Schema({
         type: Number,
         required: true,
     },
-    public: {
+    private: {
         type: Boolean,
         required: true,
     },
