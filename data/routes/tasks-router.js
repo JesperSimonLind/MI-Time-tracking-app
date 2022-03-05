@@ -34,7 +34,8 @@ router.get("/:id/create", async (req, res) => {
   res.render("tasks/tasks-create", { user });
 });
 
-router.post("/create", async (req, res) => {
+router.post("/:id/create", async (req, res) => {
+  const user = await UsersModel.findById(req.params.id).lean();
   const { category, description, hours, private, created } = req.body;
   const { token } = req.cookies;
   const date = new Date().toLocaleDateString();
@@ -52,7 +53,7 @@ router.post("/create", async (req, res) => {
     });
     const collection = await newTask.save();
   }
-  res.redirect("/tasks/list");
+  res.redirect("/users/" + user._id + "/dashboard");
 });
 
 module.exports = router;

@@ -44,7 +44,7 @@
                     </div>
                     <div class="form">
                         <p class="sm-heading">Add new activity</p>
-                        <form action="/tasks/create" method="post">
+                        <form action="/tasks/{{user._id}}/create" method="post">
                             <label for="description">Description</label>
                             <input type="text" name="description" placeholder="Description" />
                             <label for="category">Category</label>
