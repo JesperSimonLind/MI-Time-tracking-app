@@ -111,20 +111,25 @@ router.get("/dashboard", (req, res) => {
 });
 
 router.get("/:id/dashboard", async (req, res) => {
-  const user = await UsersModel.findById(req.params.id).lean();
+    const user = await UsersModel.findById(req.params.id).lean();
 
-  TasksModel.find(
-    {
-      user: user._id,
-    },
-    function (err, tasks) {
-      console.log(tasks);
-      res.render("users/users-dashboard", {
-        tasks,
-        user,
-      });
-    }
-  );
+    TasksModel.find({
+        private: false
+    }, function (err, publicTasks) {    
+    console.log(publicTasks)
+    }).lean()
+
+
+    TasksModel.find({
+        user: user._id
+    }, function (err, tasks) {
+       console.log(tasks)
+        res.render("users/users-dashboard", {
+            tasks,
+            user
+        });
+
+    }).lean();
 });
 
 // SIGN OUT

@@ -326,6 +326,10 @@
         }
     }
 
+    .dashboard-content {
+        display: flex;
+        flex-direction: column;
+    }
 
     .icon-setting {
         display: flex;
@@ -367,6 +371,7 @@
             text-decoration: none;
         }
     }
+
     .dashboard-home-btn {
         display: flex;
         flex-direction: column;
@@ -396,12 +401,14 @@
 
         a {
             text-decoration: none;
-       
-    
-        &:hover {
-            text-decoration: none;
+
+
+            &:hover {
+                text-decoration: none;
+            }
         }
-    }
+
+
 
         .category-hours {
             font-weight: 100;
@@ -462,4 +469,17 @@
 
 .form {
     padding: 10px;
+}
+
+.category {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 10px;
+    align-items: center;
+
+    a {
+        text-decoration: none;
+    }
+
 }

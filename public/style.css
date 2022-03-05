@@ -423,6 +423,10 @@ p {
     width: 50px;
   }
 }
+.dashboard-wrapper .dashboard-content {
+  display: flex;
+  flex-direction: column;
+}
 .dashboard-wrapper .icon-setting {
   display: flex;
   justify-content: flex-start;
@@ -547,6 +551,17 @@ p {
 
 .form {
   padding: 10px;
+}
+
+.category {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding: 10px;
+  align-items: center;
+}
+.category a {
+  text-decoration: none;
 }
 
 .not-found-container {
