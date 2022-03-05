@@ -3,75 +3,23 @@
 
 
         <div class="community">
-                    <div class="buttons-container">
-     <a href="/users/{{user._id}}/dashboard" class="logout-btn">Home</a>
-         <a href="/users/signout" class="logout-btn">Logout</a>
+            <div class="buttons-container">
+                <a href="/users/{{user._id}}/dashboard" class="logout-btn">Home</a>
+                <a href="/users/signout" class="logout-btn">Logout</a>
 
-        </div>
+            </div>
+
+            {{!-- {{#each publicTasks}} --}}
             <div class="user-post-container">
                 <div class="user-image">
-                    <img
-                        src="/assets/profile.jpg"
-                        alt="Profile picture of user"
-                    />
+                    <img src="/assets/profile.jpg" alt="Profile picture of user" />
                 </div>
                 <div class="user-comment">
                     <p> <span class="bold">@username</span> added 2 hours:</p>
-                    <p class="comment">Description</p>
+                    <p class="comment">{{publicTasks.description}}</p>
                 </div>
             </div>
-
-            <div class="user-post-container">
-                <div class="user-image">
-                    <img
-                        src="/assets/profile.jpg"
-                        alt="Profile picture of user"
-                    />
-                </div>
-                <div class="user-comment">
-                    <p> <span class="bold">@username</span> added 2 hours:</p>
-                    <p class="comment">Description</p>
-                </div>
-            </div>
-
-            <div class="user-post-container">
-                <div class="user-image">
-                    <img
-                        src="/assets/profile.jpg"
-                        alt="Profile picture of user"
-                    />
-                </div>
-                <div class="user-comment">
-                    <p> <span class="bold">@username</span> added 2 hours:</p>
-                    <p class="comment">Description</p>
-                </div>
-            </div>
-
-            <div class="user-post-container">
-                <div class="user-image">
-                    <img
-                        src="/assets/profile.jpg"
-                        alt="Profile picture of user"
-                    />
-                </div>
-                <div class="user-comment">
-                    <p> <span class="bold">@username</span> added 2 hours:</p>
-                    <p class="comment">Description</p>
-                </div>
-            </div>
-
-            <div class="user-post-container">
-                <div class="user-image">
-                    <img
-                        src="/assets/profile.jpg"
-                        alt="Profile picture of user"
-                    />
-                </div>
-                <div class="user-comment">
-                    <p> <span class="bold">@username</span> added 2 hours:</p>
-                    <p class="comment">Description</p>
-                </div>
-            </div>
+            {{!-- {{/each}} --}}
 
         </div>
     </div>
