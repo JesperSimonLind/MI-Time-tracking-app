@@ -91,14 +91,6 @@ form input {
   border-radius: 4px;
   border: none;
 }
-@media screen and (min-width: 1100px) {
-  form input {
-    margin: 5px 0px;
-    padding: 4px;
-    border-radius: 4px;
-    border: none;
-  }
-}
 form label {
   font-weight: 300;
   font-size: 0.85rem;
@@ -313,9 +305,6 @@ p {
     align-items: flex-start;
   }
 }
-.community-wrapper .user-post-container .user-image {
-  max-width: 100px;
-}
 .community-wrapper .user-post-container p {
   margin: 0;
 }
@@ -376,6 +365,9 @@ p {
   flex-direction: column;
   justify-content: flex-start;
   align-items: flex-start;
+}
+.dashboard-wrapper .user-info p {
+  text-align: left;
 }
 .dashboard-wrapper .hello {
   margin: 0;
@@ -469,6 +461,15 @@ p {
   color: #BDC1FF;
   text-decoration: none;
 }
+.dashboard-wrapper .dashboard-home-btn {
+  display: flex;
+  flex-direction: column;
+  padding: 10px 0px;
+  text-align: center;
+}
+.dashboard-wrapper .dashboard-home-btn a {
+  text-decoration: none;
+}
 .dashboard-wrapper .dashboard-category-container {
   background-color: #1c1f4a;
   border-radius: 8px;
@@ -504,10 +505,14 @@ p {
   align-items: flex-start;
 }
 
+.image-container {
+  max-width: 100px;
+}
+
 .image-container img {
   width: 100%;
-  max-height: 100px;
   border-radius: 50%;
+  max-height: 100px;
 }
 @media screen and (min-width: 768px) {
   .image-container img {
@@ -518,6 +523,10 @@ p {
   .image-container img {
     max-height: 90px;
   }
+}
+
+.user-image {
+  max-width: 100px;
 }
 
 .user-image img {
@@ -705,6 +714,32 @@ p {
   padding: 15px 0px 0px 0px;
   font-size: 1rem;
   font-weight: 400;
+}
+
+.privacy-container {
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
+  padding: 10px 0px;
+}
+
+input[type=radio] {
+  height: 20px;
+  width: 20px;
+  vertical-align: middle;
+}
+
+select {
+  background-color: #fff;
+  border: none;
+  border-radius: 4px;
+  padding: 5px 2px;
+  margin: 0;
+  width: 100%;
+  font-family: inherit;
+  font-size: inherit;
+  cursor: inherit;
+  line-height: inherit;
 }
 
 .delete-form {

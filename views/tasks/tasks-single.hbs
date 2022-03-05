@@ -9,8 +9,6 @@
 
 
                  <div class="dashboard">
-
-
                      <section class="dashboard-header">
                          <div class="user-info-container">
                              <div class="image-container">
@@ -22,11 +20,10 @@
                              </div>
                          </div>
 
-                         <a href="/users/update" title="Settings">
+                         <a href="/users/{{user._id}}/update" title="Settings">
                              <div class="icon-setting">
                                  <div class="icon">
                                      <span>
-
                                          <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25"
                                              fill="currentColor" class="bi bi-gear" viewBox="0 0 16 16">
                                              <path
@@ -44,7 +41,9 @@
                  </section>
 
                  <section class="dashboard-content">
-
+                  <div class="dashboard-home-btn">
+                       <a href="/users/{{user._id}}/dashboard" class="logout-btn">Home</a>
+                       </div>
                      <div class="tasks-category-container">
 
                          <div class="tasks-info-container">
@@ -66,8 +65,8 @@
 
 
                              <div class="buttons">
-                                 <a href="" class="btn">Update</a>
-                                 <a href="" class="btn">Delete</a>
+                                 <a href="/tasks/{{user._id}}/update" class="btn">Update</a>
+                                 <a href="/tasks/{{user._id}}/delete" class="btn">Delete</a>
                              </div>
                          </div>
                      </div>

@@ -25,7 +25,16 @@ const forceAuthorize = (req, res, next) => {
     }
 };
 
+const getUniqueFilename = (filename) => {
+        const timestamp = Date.now()
+
+        const extension = filename.split('.').pop()
+
+        return `${timestamp}.${extension}`
+    }
+
 module.exports = {
     hashPassword,
     comparePassword,
+    getUniqueFilename
 };

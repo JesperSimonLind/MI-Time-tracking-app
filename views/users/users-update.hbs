@@ -10,7 +10,7 @@
                     <section class="dashboard-header">
                         <div class="user-info-container">
                             <div class="image-container">
-                                <img src="/assets/profile.jpg" alt="Profile picture">
+                                <img src="{{user.profilePicture}}" alt="Profile picture">
                             </div>
                             <div class="user-info">
                                 <p class="hello">Welcome back,</p>
@@ -41,11 +41,14 @@
 
                     </section>
 
-                    <section class="dashboard-content">
+
                         <section class="dashboard-content">
+                                          <div class="dashboard-home-btn">
+                       <a href="/users/{{user._id}}/dashboard" class="logout-btn">Home</a>
+                       </div>
                             <div class="form">
                                 <p class="sm-heading">Update profile</p>
-                                <form action="/users/{{user._id}}/update" method="post">
+                                <form action="/users/{{user._id}}/update" method="post" enctype="multipart/form-data">
                                     <label for="username">Username</label>
                                     <input type="text" name="username" value="{{user.username}}">
                                     <label for="password">Password</label>
@@ -53,13 +56,13 @@
                                     <label for="email">Email</label>
                                     <input type="email" name="email" value="{{user.email}}">
                                     <label for="profilePic">Profile picture</label>
-                                    <input type="file" name="profilePic">
+                                    <input type="file" name="profilePic" id="profilePic">
                                     <input type="submit" class="btn" value="Update">
                                 </form>
 
                                 <a href="/users/signout" class="btn">Logout</a>
                                 <a href="/users/{{user._id}}/delete" class="btn">Delete account</a>
-                                 <a href="" class="btn">Home</a>
+                                
                             </div>
                         </section>
                     </section>

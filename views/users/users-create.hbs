@@ -1,6 +1,6 @@
 <div class="content">
     <h1>Sign up</h1>
-    <form action="/users/signup" method="post">
+    <form action="/users/signup" method="post" enctype="multipart/form-data">
         <label for="username">Username</label>
         <input type="text" name="username" placeholder="Username" />
         <p class="error-message">{{usernameTaken}}</p>
@@ -12,7 +12,7 @@
         <label for="email">Email</label>
         <input type="email" name="email" placeholder="Email" />
         <label for="profilePic">Profile picture</label>
-        <input type="file" name="profilePic" placeholder="Profile Picture" />
+        <input type="file" name="profilePic" id="profilePic" placeholder="Profile Picture" />
         <input type="submit" class="login-btn" value="Sign up" />
     </form>
 </div>

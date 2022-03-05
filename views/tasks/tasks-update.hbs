@@ -16,7 +16,7 @@
                      </div>
                  </div>
                  <div class="icons">
-                      <a href="/users/update" title="Settings"> 
+                      <a href="/users/{{user._id}}/update" title="Settings"> 
                      <div class="icon-setting">
                          <div class="icon">
                              <span>
@@ -36,15 +36,38 @@
              </section>
 
              <section class="dashboard-content">
+                                  <div class="dashboard-home-btn">
+                       <a href="/users/{{user._id}}/dashboard" class="logout-btn">Home</a>
+                       </div>
                  <div class="form">
                        <p class="sm-heading">Update activity</p>
-                     <form action="" method="post">
+                     <form action="ADD FORM ACTION" method="post">
                          <label for="description">Description</label>
                          <input type="text" name="description" placeholder="Description">
+                         <label for="category">Category</label>
+                             <select name="category" id="category">
+                                 <option value="" disabled selected>Select category</option>
+                                 <option value="exercise">Exercise</option>
+                                 <option value="study">Study</option>
+                                 <option value="work">Work</option>
+                                 <option value="play">Play</option>
+                                 <option value="social">Social</option>
+                                 <option value="other">Other</option>
+                             </select>
                          <label for="date">Date:</label>
                          <input type="date" name="date" placeholder="Date">
                          <label for="hours">Hours:</label>
                          <input type="number" name="hours" placeholder="Hours">
+                          <div class="privacy-container">
+                                <div> 
+                                 <label for="hours">Public</label>
+                                 <input type="radio" name="privacy" value="public" checked="checked" />
+                                 </div>
+                                 <div> 
+                                 <label for="hours">Private</label>
+                                 <input type="radio" name="privacy" value="private" />
+                                </div>
+                             </div>
                          <input type="submit" class="btn" value="Update">
                      </form>
                  </div>

@@ -17,7 +17,7 @@
                              </div>
                          </div>
 
-                         <a href="/users/update" title="Settings">
+                         <a href="/users/{{user._id}}/update" title="Settings">
                              <div class="icon-setting">
                                  <div class="icon">
                                      <span>
@@ -40,7 +40,9 @@
 
 
                  <section class="dashboard-content">
-
+                 <div class="dashboard-home-btn">
+                       <a href="/users/{{user._id}}/dashboard" class="logout-btn">Home</a>
+                       </div>
                      <div class="tasks-category-container">
                          <div class="tasks-info-container">
                              <div class="category-name-container">

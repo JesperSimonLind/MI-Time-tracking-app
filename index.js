@@ -5,6 +5,7 @@ require("./data/passport.js");
 
 const express = require("express");
 const exphbs = require("express-handlebars");
+const fileUpload = require('express-fileupload')
 const jwt = require("jsonwebtoken");
 const cookieParser = require("cookie-parser");
 const passport = require("passport");
@@ -13,6 +14,7 @@ const tasksRouter = require("./data/routes/tasks-router.js");
 const googleRouter = require("./data/routes/google-router.js");
 const app = express();
 const bcrypt = require("bcrypt");
+const { getUniqueFilename } = require('./data/utils.js')
 
 app.engine(
     "hbs",
@@ -24,6 +26,7 @@ app.engine(
 
 app.set("view engine", "hbs");
 app.use(express.static("public"));
+app.use(fileUpload())
 app.use(express.json());
 app.use(
     express.urlencoded({

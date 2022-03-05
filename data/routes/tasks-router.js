@@ -27,16 +27,16 @@ router.get("/update", (req, res) => {
 router.get("/delete", (req, res) => {
     res.render("tasks/tasks-delete");
 });
-router.get("/create", async (req, res) => {
-    res.render("tasks/tasks-create");
+
+router.get("/:id/create", async (req, res) => {
+        const user = await UsersModel.findById(req.params.id).lean();
+    res.render("tasks/tasks-create", { user });
 });
 
 router.post("/create", async (req, res) => {
     const { category, description, hours, public, created } = req.body;
     const { token } = req.cookies;
     const date = new Date().toLocaleDateString();
-
-    console.log(req.body);
 
     if (token && jwt.verify(token, process.env.JWTSECRET)) {
         const tokenData = jwt.decode(token, process.env.JWTSECRET);

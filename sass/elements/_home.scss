@@ -93,15 +93,6 @@ form {
         padding: 4px;
         border-radius: 4px;
         border: none;
-
-        @include mixins.desktop-only {
-            margin: 5px 0px;
-            padding: 4px;
-            border-radius: 4px;
-            border: none;
-        }
-
-     
     }
 
     label {

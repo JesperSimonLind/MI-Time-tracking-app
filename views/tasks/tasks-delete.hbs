@@ -17,7 +17,7 @@
                              </div>
                          </div>
 
-                         <a href="/users/update" title="Settings">
+                         <a href="/users/{{user._id}}/update" title="Settings">
                              <div class="icon-setting">
                                  <div class="icon">
                                      <span>
@@ -39,8 +39,11 @@
                  </section>
 
              <section class="dashboard-content">
+                                  <div class="dashboard-home-btn">
+                       <a href="/users/{{user._id}}/dashboard" class="logout-btn">Home</a>
+                       </div>
                 <div class="delete-form">
-                    <form action="" method="post">
+                    <form action="ADD FORM ACTION" method="post">
                          <p class="sm-heading">Delete activity</p>
                         <label for="description">Description</label>
                         <input type="text" name="description" placeholder="Description" disabled>

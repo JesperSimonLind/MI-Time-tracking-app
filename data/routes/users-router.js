@@ -1,12 +1,24 @@
+// REQUIRES //
+
 require("dotenv").config();
 const express = require("express");
 const router = express.Router();
 const jwt = require("jsonwebtoken");
 const cookieParser = require("cookie-parser");
-const { UsersModel, TasksModel } = require("../models/Models.js");
-const { hashPassword, comparePassword } = require("../utils.js");
+const {
+    UsersModel,
+    TasksModel
+} = require("../models/Models.js");
+const {
+    hashPassword,
+    comparePassword,
+    getUniqueFilename
+} = require("../utils.js");
 const bcrypt = require("bcrypt");
-const { default: mongoose } = require("mongoose");
+const path = require("path");
+const {
+    default: mongoose
+} = require("mongoose");
 
 // ROUTES //
 
@@ -15,13 +27,15 @@ router.get("/", (req, res) => {
     res.status(404).render("not-found");
 });
 
-// POST: LOG IN PAGE
+// LOG IN PAGE
 
 router.post("/", async (req, res) => {
-    const { username, password } = req.body;
+    const {
+        username,
+        password
+    } = req.body;
 
-    UsersModel.findOne(
-        {
+    UsersModel.findOne({
             username,
         },
         (e, user) => {
@@ -41,35 +55,32 @@ router.post("/", async (req, res) => {
     );
 });
 
-// GET: DASHBOARD
-router.get("/:id/dashboard", async (req, res) => {
-    const user = await UsersModel.findById(req.params.id).lean();
-    TasksModel.find({
-        user: user._id
-    }, function (err, tasks) {
-        res.render("users/users-dashboard", {
-            tasks,
-            user
-        });
-        console.log(tasks)
-    });
-});
 
-// GET: SIGNUP PAGE
+// READ - SIGN UP PAGE
 router.get("/signup", (req, res) => {
     res.render("users/users-create");
 });
 
-// POST: SIGNUP PAGE
-
+// POST – SIGN UP PAGE
 router.post("/signup", async (req, res) => {
-    const { username, password, email, profilePic } = req.body;
+
+    // Profile picture (image upload)
+    const image = req.files.profilePic;
+    const filename = getUniqueFilename(image.name);
+    const uploadPath = path.join(__dirname, '../../public/uploads', filename);
+    await image.mv(uploadPath);
+
+    const {
+        username,
+        password,
+        email,
+        profilePic
+    } = req.body;
 
     const usernameTaken =
         "That username is already taken! Please pick another one.";
 
-    UsersModel.findOne(
-        {
+    UsersModel.findOne({
             username,
         },
         async (error, user) => {
@@ -82,7 +93,7 @@ router.post("/signup", async (req, res) => {
                     username: username,
                     password: hashPassword(password),
                     email: email,
-                    profilePicture: profilePic,
+                    profilePicture: '/uploads/' + filename
                 });
                 await newUser.save();
 
@@ -92,7 +103,30 @@ router.post("/signup", async (req, res) => {
     );
 });
 
-// GET: Signout
+
+// READ - DASHBOARD
+
+router.get("/dashboard", (req, res) => {
+    res.status(404).render("not-found");
+})
+
+router.get("/:id/dashboard", async (req, res) => {
+    const user = await UsersModel.findById(req.params.id).lean();
+
+    TasksModel.find({
+        user: user._id
+    }, function (err, tasks) {
+        console.log(tasks)
+        res.render("users/users-dashboard", {
+            tasks,
+            user
+        });
+
+    });
+});
+
+
+// SIGN OUT
 router.get("/signout", async (req, res) => {
     res.cookie("token", "", {
         maxAge: 0,
@@ -100,26 +134,37 @@ router.get("/signout", async (req, res) => {
     res.redirect("/");
 });
 
-// GET: USER UPDATE SETTINGS
+
+// READ – UPDATE USER
 router.get("/:id/update", async (req, res) => {
     const user = await UsersModel.findById(req.params.id).lean();
-    res.render("users/users-update", { user });
+    res.render("users/users-update", {
+        user
+    });
 });
 
-// POST: UPDATE USER SETTINGS
+// POST – UPDATE USER
 router.post("/:id/update", async (req, res) => {
-    const { token } = req.cookies;
+    
+    // Profile picture (image upload)
+    const image = req.files.profilePic;
+    const filename = getUniqueFilename(image.name);
+    const uploadPath = path.join(__dirname, '../../public/uploads', filename);
+    await image.mv(uploadPath);
 
-    await UsersModel.findOneAndUpdate(
-        { _id: req.params.id },
-        {
-            username: req.body.username,
-            password: hashPassword(req.body.password),
-            email: req.body.email,
-            admin: false,
-            profilePicture: req.body.profilePic,
-        }
-    );
+    const {
+        token
+    } = req.cookies;
+
+    await UsersModel.findOneAndUpdate({
+        _id: req.params.id
+    }, {
+        username: req.body.username,
+        password: hashPassword(req.body.password),
+        email: req.body.email,
+        admin: false,
+        profilePicture: '/uploads/' + filename,
+    });
 
     if (token && jwt.verify(token, process.env.JWTSECRET)) {
         const tokenData = jwt.decode(token, process.env.JWTSECRET);
@@ -127,7 +172,7 @@ router.post("/:id/update", async (req, res) => {
     }
 });
 
-// GET: DELETE ACCOUNT PAGE
+// READ – DELETE USER ACCOUNT
 router.get("/:id/delete", async (req, res) => {
     const user = await UsersModel.findById(req.params.id).lean();
     res.render("users/users-delete", {
@@ -135,7 +180,7 @@ router.get("/:id/delete", async (req, res) => {
     });
 });
 
-// GET: DELETE ACCOUNT PAGE
+// POST – DELETE USER ACCOUNT
 router.post("/:id/delete", async (req, res) => {
     await UsersModel.findByIdAndDelete(req.params.id);
     res.clearCookie("token");
