@@ -46,7 +46,7 @@
 
 
                 <section class="dashboard-content">
-                    <a href="/users/:id/tasks-list">
+                    <a href="/users//tasks-list">
                         {{#each user.tasks}}
                         <div class="category-info-container">
                             <div class="category-name-container">
@@ -59,7 +59,7 @@
                         {{/each}}
                     </a>
 
-                    <a href="/users/:id/tasks-list">
+                    <a href="/tasks/{{user._id}}/list">
                         <div class="arrow-container">
                             <div class="arrow-icon">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" fill="currentColor"
