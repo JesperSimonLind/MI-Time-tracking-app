@@ -268,12 +268,6 @@
                 text-decoration: none;
             }
         }
-
-
-
-        .task-hours {
-            font-weight: 100;
-        }
     }
 
     svg:hover {
@@ -337,6 +331,7 @@
             display: flex;
             justify-content: flex-start;
             align-items: flex-start;
+            color: variables.$color-paleblue;
         }
     }
 }

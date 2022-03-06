@@ -412,9 +412,6 @@ p {
 .dashboard-wrapper .dashboard-category-container a:hover {
   text-decoration: none;
 }
-.dashboard-wrapper .dashboard-category-container .task-hours {
-  font-weight: 100;
-}
 .dashboard-wrapper svg:hover {
   cursor: pointer;
   color: #fff;
@@ -466,6 +463,7 @@ p {
   display: flex;
   justify-content: flex-start;
   align-items: flex-start;
+  color: #cacdff;
 }
 
 .task-date {
