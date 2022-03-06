@@ -70,7 +70,7 @@
                         </div>
                     </section>
                     <div class="delete-form-container">
-                        <form action="ADD FORM ACTION" method="post" class="delete-form">
+                        <form action="/tasks/{{user._id}}/{{task._id}}/delete"" method="post" class="delete-form">
                             <p class="sm-heading">Delete activity</p>
                             <label for="description">Description</label>
                             <input type="text" name="description" placeholder="{{task.description}}" disabled>

@@ -1,10 +1,7 @@
 const express = require("express");
 const jwt = require("jsonwebtoken");
 const router = express.Router();
-const {
-  UsersModel,
-  TasksModel
-} = require("../models/Models.js");
+const { UsersModel, TasksModel } = require("../models/Models.js");
 
 // ROUTES //
 
@@ -18,7 +15,7 @@ router.get("/:id/list", async (req, res) => {
   // const studyCollection = await TasksModel.find({ category: "Study" });
   // console.log(studyCollection);
   res.render("tasks/tasks-list", {
-    user
+    user,
   });
 });
 
@@ -27,32 +24,33 @@ router.get("/:userid/:id/single", async (req, res) => {
   const user = await UsersModel.findById(req.params.userid).lean();
   const task = await TasksModel.findById(req.params.id).lean();
 
-  TasksModel.findOne({
-    _id : task
-  }, function (err, task) {
-    console.log(task)
-    res.render("tasks/tasks-single", {task, user});
-
-  }).lean();
-
+  TasksModel.findOne(
+    {
+      _id: task,
+    },
+    function (err, task) {
+      console.log(task);
+      res.render("tasks/tasks-single", { task, user });
+    }
+  ).lean();
 });
-
 
 // READ – UPDATE TASK
 router.get("/:userid/:id/update", async (req, res) => {
   const user = await UsersModel.findById(req.params.userid).lean();
   const task = await TasksModel.findById(req.params.id).lean();
 
-  TasksModel.findOne({
-    _id : task
-  }, function (err, task) {
-    console.log(task)
-    res.render("tasks/tasks-update", {task, user});
-
-  }).lean();
+  TasksModel.findOne(
+    {
+      _id: task,
+    },
+    function (err, task) {
+      console.log(task);
+      res.render("tasks/tasks-update", { task, user });
+    }
+  ).lean();
 
   // LÄGG TILL FUNKTIONALITET FÖR ATT UPPDATERA TASK
-
 });
 
 // READ - DELETE TASK
@@ -60,38 +58,37 @@ router.get("/:userid/:id/delete", async (req, res) => {
   const user = await UsersModel.findById(req.params.userid).lean();
   const task = await TasksModel.findById(req.params.id).lean();
 
-  TasksModel.findOne({
-    _id : task
-  }, function (err, task) {
-    res.render("tasks/tasks-delete", {task, user});
-
-  }).lean();
+  TasksModel.findOne(
+    {
+      _id: task,
+    },
+    function (err, task) {
+      res.render("tasks/tasks-delete", { task, user });
+    }
+  ).lean();
 
   // LÄGG TILL FUNKTIONALITET FÖR ATT TA BORT TASK
+});
 
+router.post("/:userid/:id/delete", async (req, res) => {
+  const user = await UsersModel.findById(req.params.id).lean();
+  const task = await TasksModel.findByIdAndDelete(req.params.id).lean();
+  res.render("./users/users-dashboard");
 });
 
 // READ – CREATE TASK
 router.get("/:id/create", async (req, res) => {
   const user = await UsersModel.findById(req.params.id).lean();
   res.render("tasks/tasks-create", {
-    user
+    user,
   });
 });
 
 // POST – CREATE TASK
 router.post("/:id/create", async (req, res) => {
   const user = await UsersModel.findById(req.params.id).lean();
-  const {
-    category,
-    description,
-    hours,
-    private,
-    created
-  } = req.body;
-  const {
-    token
-  } = req.cookies;
+  const { category, description, hours, private, created } = req.body;
+  const { token } = req.cookies;
   const date = new Date().toLocaleDateString();
 
   if (token && jwt.verify(token, process.env.JWTSECRET)) {
@@ -114,54 +111,60 @@ router.post("/:id/create", async (req, res) => {
 router.get("/:id/category/study", async (req, res) => {
   const user = await UsersModel.findById(req.params.id).lean();
 
-  TasksModel.find({
-    user: user._id,
-    category: "Study"
-  }, function (err, tasks) {
-    res.render("tasks/tasks-list", {tasks, user})
-
-  }).lean();
-})
+  TasksModel.find(
+    {
+      user: user._id,
+      category: "Study",
+    },
+    function (err, tasks) {
+      res.render("tasks/tasks-list", { tasks, user });
+    }
+  ).lean();
+});
 
 // READ – WORK CATEOGORY
 router.get("/:id/category/work", async (req, res) => {
   const user = await UsersModel.findById(req.params.id).lean();
 
-  TasksModel.find({
-    user: user._id,
-    category: "Work"
-  }, function (err, tasks) {
-    res.render("tasks/tasks-list", {tasks, user})
-
-  }).lean();
-})
+  TasksModel.find(
+    {
+      user: user._id,
+      category: "Work",
+    },
+    function (err, tasks) {
+      res.render("tasks/tasks-list", { tasks, user });
+    }
+  ).lean();
+});
 
 // READ – EXERCISE CATEOGORY
 router.get("/:id/category/exercise", async (req, res) => {
   const user = await UsersModel.findById(req.params.id).lean();
 
-  TasksModel.find({
-    user: user._id,
-    category: "Exercise"
-  }, function (err, tasks) {
-    res.render("tasks/tasks-list", {tasks, user})
-
-  }).lean();
-})
+  TasksModel.find(
+    {
+      user: user._id,
+      category: "Exercise",
+    },
+    function (err, tasks) {
+      res.render("tasks/tasks-list", { tasks, user });
+    }
+  ).lean();
+});
 
 // READ – SOMETHING ELSE COOL CATEOGORY
 router.get("/:id/category/other", async (req, res) => {
   const user = await UsersModel.findById(req.params.id).lean();
 
-  TasksModel.find({
-    user: user._id,
-    category: "Something else cool"
-  }, function (err, tasks) {
-    
-    res.render("tasks/tasks-list", {tasks, user})
-
-  }).lean();
-})
-
+  TasksModel.find(
+    {
+      user: user._id,
+      category: "Something else cool",
+    },
+    function (err, tasks) {
+      res.render("tasks/tasks-list", { tasks, user });
+    }
+  ).lean();
+});
 
 module.exports = router;
