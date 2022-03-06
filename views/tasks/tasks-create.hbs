@@ -30,6 +30,7 @@
 
                                         </span>
                                     </div>
+                                    <a href="/users/{{user._id}}/dashboard" class="home-btn">Home</a>
                                 </div>
                             </a>
                         </div>
@@ -37,9 +38,7 @@
                 </section>
 
                 <section class="dashboard-content">
-                    <div class="dashboard-home-btn">
-                        <a href="/users/{{user._id}}/dashboard" class="logout-btn">Home</a>
-                    </div>
+
 
                     <!-- CREATE TASK FORM -->
 
@@ -73,9 +72,10 @@
                                     <input type="checkbox" name="private" value="private" />
                                 </div>
                             </div>
+
+                            <input type="submit" class="btn" value="Add" />
+                        </form>
                     </div>
-                    <input type="submit" class="btn" value="Add" />
-                    </form>
             </div>
             </section>
         </div>
