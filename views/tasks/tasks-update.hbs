@@ -20,6 +20,7 @@
                                 <div class="icon-setting">
                                     <div class="icon">
                                         <span>
+
                                             <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25"
                                                 fill="currentColor" class="bi bi-gear" viewBox="0 0 16 16">
                                                 <path
@@ -30,15 +31,41 @@
 
                                         </span>
                                     </div>
+                                    <a href="/users/{{user._id}}/dashboard" class="home-btn">Home</a>
                                 </div>
                             </a>
                         </div>
                     </section>
 
                     <section class="dashboard-content">
-                        <div class="dashboard-home-btn">
-                            <a href="/users/{{user._id}}/dashboard" class="logout-btn">Home</a>
-                        </div>
+
+                        <!-- DROPDOWN MENU -->
+                        <section class="dashboard-navigation">
+                            <div class="category-dropdown">
+                                <div class="dropdown show">
+                                    <a class="categories-btn dropdown-toggle" href="#" role="button"
+                                        id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true"
+                                        aria-expanded="false">
+                                        Categories
+                                    </a>
+
+                                    <div class="dropdown-menu dropdown-container" aria-labelledby="dropdownMenuLink">
+                                        <a class="dropdown-item category-link"
+                                            href="/tasks/{{user._id}}/category/work">Work</a>
+                                        <a class="dropdown-item category-link"
+                                            href="/tasks/{{user._id}}/category/study">Study</a>
+                                        <a class="dropdown-item category-link"
+                                            href="/tasks/{{user._id}}/category/exercise">Exercise</a>
+                                        <a class="dropdown-item category-link"
+                                            href="/tasks/{{user._id}}/category/other">Something else
+                                            cool</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="create-btn">
+                                <a href="/tasks/{{user._id}}/create" class="btn">Add hours</a>
+                            </div>
+                        </section>
                         <div class="form">
                             <p class="sm-heading">Update activity</p>
                             <form action="ADD FORM ACTION" method="post">

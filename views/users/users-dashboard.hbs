@@ -17,7 +17,6 @@
                         </div>
 
                         <div class="icons">
-
                             <a href="/users/{{user._id}}/update" title="Settings">
                                 <div class="icon-setting">
                                     <div class="icon">
@@ -33,12 +32,15 @@
 
                                         </span>
                                     </div>
+                                    <a href="/users/{{user._id}}/dashboard" class="home-btn">Home</a>
+                                </div>
                             </a>
                         </div>
                 </div>
 
                 </section>
 
+                <!-- DROPDOWN MENU -->
                 <section class="dashboard-navigation">
                     <div class="category-dropdown">
                         <div class="dropdown show">
@@ -68,10 +70,8 @@
                 <section class="dashboard-content">
 
                     {{#each tasks}}
-
-                    <div class="task">
-
-                        <a href="/tasks/{{user}}/{{_id}}/single">
+                    <a href="/tasks/{{user}}/{{_id}}/single">
+                        <div class="task">
                             <div class="task-info-container">
                                 <div class="task-name-container">
                                     <p class="task-name">{{category}}</p>
@@ -83,10 +83,7 @@
                                     <p class="task-hours">Hours: {{hours}}</p>
                                 </div>
                             </div>
-                        </a>
-
-                        <div class="arrow-container">
-                            <a href="/tasks/{{user}}/{{_id}}/single">
+                            <div class="arrow-container">
                                 <div class="arrow-icon">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" fill="currentColor"
                                         class="bi bi-arrow-right-circle" viewBox="0 0 16 16">
@@ -94,17 +91,18 @@
                                             d="M1 8a7 7 0 1 0 14 0A7 7 0 0 0 1 8zm15 0A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM4.5 7.5a.5.5 0 0 0 0 1h5.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3a.5.5 0 0 0 0-.708l-3-3a.5.5 0 1 0-.708.708L10.293 7.5H4.5z" />
                                     </svg>
                                 </div>
-                            </a>
+                            </div>
                         </div>
-                    </div>
+                    </a>
                     {{/each}}
-                </section>
             </div>
+            </section>
         </div>
     </div>
+</div>
 
 
-    {{> communityfeed}}
+{{> communityfeed}}
 
 </div>
 </div>

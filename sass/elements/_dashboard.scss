@@ -81,7 +81,7 @@
         position: fixed;
         height: 55vh;
         width: 37%;
-        padding: 0px 10px;
+        padding: 0px;
     }
 
 
@@ -93,6 +93,9 @@
         padding: 0px 0px 30px;
     }
 
+    .dashboard-content a {
+        text-decoration: none;
+    }
 
     .dashboard {
         border-radius: 10px;
@@ -108,9 +111,11 @@
         gap: 10px;
         width: 100%;
         box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+
+        @include mixins.tablet-only {
+            padding: 10px 12px;
+        }
     }
-
-
 
     .user-info-container {
         display: flex;
@@ -180,30 +185,51 @@
 
     .icon-setting {
         display: flex;
-        justify-content: flex-start;
-        align-items: flex-start;
-        gap: 10px;
+        justify-content: center;
+        align-items: flex-end;
+        gap: 14px;
+        flex-direction: column;
 
         &:hover {
             cursor: pointer;
+        }
+
+        a {
+            text-decoration: none;
+        }
+    }
+
+    .home-btn {
+        background-color: variables.$color-dkblue;
+        padding: 8px;
+        border: none;
+        color: #fff;
+        border-radius: 6px;
+        transition: background-color 0.2s ease;
+
+        &:hover {
+            cursor: pointer;
+            background-color: #3d3491;
+        }
+
+        a {
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.9rem;
         }
     }
 
     .icon-setting svg {
         width: 20px;
+        height: 20px;
 
         @include mixins.tablet-only {
             width: 25px;
-        }
-
-        @include mixins.desktop-only {
-            width: 30px;
-            height: 30px;
+            height: 25px;
         }
     }
 
     .dashboard-navigation {
-        background-color: variables.$color-dkblue;
         border-radius: 8px;
         padding: 8px 0px;
         display: flex;
@@ -218,18 +244,6 @@
             text-decoration: none;
         }
     }
-
-    .dashboard-home-btn {
-        display: flex;
-        flex-direction: column;
-        padding: 10px 0px;
-        text-align: center;
-
-        a {
-            text-decoration: none;
-        }
-    }
-
 
     .dashboard-category-container {
         background-color: variables.$color-dkblue;

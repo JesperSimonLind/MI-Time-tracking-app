@@ -60,6 +60,10 @@
         flex-direction: column;
         gap: 10px;
 
+        a {
+            text-decoration: none
+        }
+
         .task {
             width: 100%;
             display: flex;
