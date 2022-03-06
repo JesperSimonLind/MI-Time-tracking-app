@@ -63,7 +63,6 @@ router.get("/:userid/:id/delete", async (req, res) => {
   TasksModel.findOne({
     _id : task
   }, function (err, task) {
-    console.log(task)
     res.render("tasks/tasks-delete", {task, user});
 
   }).lean();

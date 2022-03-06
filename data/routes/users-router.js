@@ -123,7 +123,6 @@ router.get("/:id/dashboard", async (req, res) => {
     TasksModel.find({
         user: user._id
     }, function (err, tasks) {
-      //  console.log(tasks)
         res.render("users/users-dashboard", {
             tasks,
             user
