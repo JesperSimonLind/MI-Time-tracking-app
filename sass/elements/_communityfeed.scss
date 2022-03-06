@@ -1,0 +1,139 @@
+@use "../mixins";
+@use "../variables";
+
+.community-wrapper {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    padding: 20px 10px;
+
+    @include mixins.tablet-only {
+        width: 70%;
+        padding: 20px 50px 50px 100px;
+        position: absolute;
+        right: 0;
+        top: 0;
+    }
+
+
+    @include mixins.desktop-only {
+        width: 70%;
+        padding: 20px 0px 50px 70px;
+        position: absolute;
+        right: 0;
+        top: 0;
+
+    }
+
+
+    .community {
+        display: flex;
+        flex-direction: column;
+        gap: 55px;
+
+        @include mixins.tablet-only {
+            gap: 30px;
+
+        }
+    }
+
+
+    .buttons-container {
+        display: none;
+
+        @include mixins.tablet-only {
+            display: flex;
+            flex-direction: row;
+            gap: 10px;
+            justify-content: flex-end;
+            padding: 10px 0px 50px;
+        }
+
+        @include mixins.desktop-only {
+            display: flex;
+            flex-direction: row;
+            gap: 10px;
+            justify-content: flex-end;
+            padding: 10px 50px 50px;
+
+        }
+
+        a:hover {
+            text-decoration: none;
+        }
+    }
+
+    .logout {
+        text-align: right;
+        padding: 0px 30px;
+
+    }
+
+    a {
+        font-size: 1rem;
+        font-weight: 400;
+        text-decoration: none;
+
+        &:hover {
+            color: #fff;
+            text-decoration: underline;
+        }
+    }
+
+
+    .user-post-container {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        gap: 20px;
+
+        @include mixins.tablet-only {
+            flex-direction: row;
+            justify-content: flex-start;
+            align-items: center;
+            gap: 10px;
+        }
+
+        @include mixins.desktop-only {
+            flex-direction: row;
+            justify-content: flex-start;
+            align-items: flex-start;
+            gap: 20px;
+        }
+
+        .user-comment {
+            width: 100%;
+            background-color: rgba(177, 177, 177, 0.1);
+            color: #fff;
+            padding: 5px;
+            border-radius: 7px;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            border: 2px solid rgb(21, 14, 39, 0.5);
+            justify-content: flex-start;
+            align-items: flex-start;
+
+            @include mixins.tablet-only {
+                padding: 15px;
+                align-items: flex-start;
+                justify-content: flex-start;
+                box-shadow: 0 20px 40px rgba(40, 6, 117, 0.5);
+            }
+
+            @include mixins.desktop-only {
+                width: 70%;
+            }
+        }
+
+        p {
+            margin: 0;
+        }
+
+        .bold {
+            font-weight: 600;
+        }
+    }
+
+}

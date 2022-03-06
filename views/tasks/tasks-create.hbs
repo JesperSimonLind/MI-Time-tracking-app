@@ -1,8 +1,5 @@
 <div class="home-container">
-
     <div class="home-container-overlay">
-
-
         <div class="dashboard-wrapper">
             <div class="dashboard-overlay">
                 <div class="dashboard">
@@ -16,12 +13,10 @@
                                 <p class="username">{{user.username}}</p>
                             </div>
                         </div>
-
                         <a href="/users/{{user._id}}/update" title="Settings">
                             <div class="icon-setting">
                                 <div class="icon">
                                     <span>
-
                                         <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25"
                                             fill="currentColor" class="bi bi-gear" viewBox="0 0 16 16">
                                             <path
@@ -35,48 +30,57 @@
                             </div>
                         </a>
                 </div>
-
                 </section>
 
                 <section class="dashboard-content">
                     <div class="dashboard-home-btn">
                         <a href="/users/{{user._id}}/dashboard" class="logout-btn">Home</a>
                     </div>
-                    <div class="form">
-                        <p class="sm-heading">Add new activity</p>
-                        <form action="/tasks/{{user._id}}/create" method="post">
-                            <label for="description">Description</label>
-                            <input type="text" name="description" placeholder="Description" />
-                            <label for="category">Category</label>
-                            <select name="category" id="category">
-                                <option value="" disabled selected>Select category</option>
-                                <option value="Exercise">Exercise</option>
-                                <option value="Study">Study</option>
-                                <option value="Work">Work</option>
-                                <option value="Play">Play</option>
-                                <option value="Social">Social</option>
-                                <option value="Other">Other</option>
-                            </select>
-                            <label for="hours">Hours spent</label>
-                            <input type="number" name="hours" placeholder="Hours" />
-                            <div class="privacy-container">
 
+                    <!-- CREATE TASK FORM -->
+
+                    <div class="form">
+                        <p class="sm-heading">Add hours</p>
+                        <form action="/tasks/{{user._id}}/create" method="post" class="task-form">
+                            <div>
+                                <label for="category">Pick a category*</label>
+                                <select name="category" id="category">
+                                    <option value="" disabled selected>Select category</option>
+                                    <option value="Exercise">Exercise</option>
+                                    <option value="Study">Study</option>
+                                    <option value="Work">Work</option>
+                                    <option value="Something else cool">Something else cool</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label for="description">Add a description*</label>
+                                <input type="text" name="description" placeholder="Description" />
+                            </div>
+
+                            <div>
+                                <label for="hours">Hours spent*</label>
+                                <input type="number" name="hours" placeholder="Hours" />
+                            </div>
+                            <div class="privacy-container">
                                 <div>
                                     <label for="hours">Private</label>
+                                </div>
+                                <div>
                                     <input type="checkbox" name="private" value="private" />
                                 </div>
                             </div>
-                            <input type="submit" class="btn" value="Add" />
-                        </form>
                     </div>
-                </section>
+                    <input type="submit" class="btn" value="Add" />
+                    </form>
             </div>
+            </section>
         </div>
-
-
     </div>
 
-    {{> community}}
+
+</div>
+
+{{> communityfeed}}
 
 </div>
 </div>

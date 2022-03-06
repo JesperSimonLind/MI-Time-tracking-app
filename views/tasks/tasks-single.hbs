@@ -1,25 +1,21 @@
 <div class="home-container">
 
     <div class="home-container-overlay">
-
         <div class="dashboard-wrapper">
-
             <div class="dashboard-overlay">
-
-
-
                 <div class="dashboard">
+
+                    <!-- HEADER -->
                     <section class="dashboard-header">
                         <div class="user-info-container">
                             <div class="image-container">
-                                <img src="/assets/profile.jpg" alt="Profile picture">
+                                <img src="{{user.profilePicture}}" alt="Profile picture">
                             </div>
                             <div class="user-info">
                                 <p class="hello">Hello,</p>
-                                <p class="username">Username</p>
+                                <p class="username">{{user.username}}</p>
                             </div>
                         </div>
-
                         <a href="/users/{{user._id}}/update" title="Settings">
                             <div class="icon-setting">
                                 <div class="icon">
@@ -37,48 +33,39 @@
                             </div>
                         </a>
                 </div>
-
                 </section>
 
+                <!-- DASHBOARD -->
                 <section class="dashboard-content">
                     <div class="dashboard-home-btn">
                         <a href="/users/{{user._id}}/dashboard" class="logout-btn">Home</a>
                     </div>
                     <div class="tasks-category-container">
-
                         <div class="tasks-info-container">
-
                             <div class="category-name-container">
-                                <p class="category-name">Study</p>
+                                <p class="sm-heading">Details</p>
                             </div>
-
                             <div class="task-single-container">
                                 <div class="task-single-info">
-                                    <p class="task-description">Description</p>
-                                    <p class="task-date">Date</p>
+                                    <p class="task-description">{{task.description}}</p>
+                                    <p class="task-date">{{task.created}}</p>
                                 </div>
-
                                 <div class="task-hours">
-                                    <p>Hours</p>
+                                    <p>Hours: {{task.hours}}</p>
                                 </div>
                             </div>
-
-
                             <div class="buttons">
-                                <a href="/tasks/{{user._id}}/update" class="btn">Update</a>
-                                <a href="/tasks/{{user._id}}/delete" class="btn">Delete</a>
+                                <a href="/tasks/{{user._id}}/{{task._id}}/update" class="btn">Update</a>
+                                <a href="/tasks/{{user._id}}/{{task._id}}/delete" class="btn">Delete</a>
                             </div>
                         </div>
                     </div>
-
                 </section>
-
-
             </div>
         </div>
     </div>
 
-    {{> community}}
+    {{> communityfeed}}
 
 </div>
 </div>

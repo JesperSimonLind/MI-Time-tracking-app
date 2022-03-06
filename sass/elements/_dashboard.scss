@@ -58,150 +58,12 @@
     color: #fff;
     border-radius: 6px;
     font-weight: 500;
+    transition: background-color 0.2s ease;
 
     &:hover {
         cursor: pointer;
+        background-color: #453aa9;
     }
-}
-
-.community-wrapper {
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-    padding-top: 20px;
-
-    @include mixins.tablet-only {
-        width: 70%;
-        padding: 20px 50px 50px 100px;
-        position: absolute;
-        right: 0;
-        top: 0;
-    }
-
-
-    @include mixins.desktop-only {
-        width: 70%;
-        padding: 20px 0px 50px 70px;
-        position: absolute;
-        right: 0;
-        top: 0;
-
-    }
-
-
-    .community {
-        display: flex;
-        flex-direction: column;
-        gap: 55px;
-
-        @include mixins.tablet-only {
-            gap: 30px;
-
-        }
-    }
-
-
-    .buttons-container {
-        display: none;
-
-        @include mixins.tablet-only {
-            display: flex;
-            flex-direction: row;
-            gap: 10px;
-            justify-content: flex-end;
-            padding: 10px 0px 50px;
-        }
-
-        @include mixins.desktop-only {
-            display: flex;
-            flex-direction: row;
-            gap: 10px;
-            justify-content: flex-end;
-            padding: 10px 50px 50px;
-
-        }
-
-        a:hover {
-            text-decoration: none;
-        }
-    }
-
-    .logout {
-        text-align: right;
-        padding: 0px 30px;
-
-    }
-
-    a {
-        font-size: 1rem;
-        font-weight: 400;
-        text-decoration: none;
-
-        &:hover {
-            color: #fff;
-            text-decoration: underline;
-        }
-    }
-
-
-    .user-post-container {
-        display: flex;
-        flex-direction: row;
-        justify-content: center;
-        align-items: center;
-        gap: 20px;
-
-        @include mixins.tablet-only {
-            flex-direction: row;
-            justify-content: flex-start;
-            align-items: center;
-            gap: 10px;
-        }
-
-        @include mixins.desktop-only {
-            flex-direction: row;
-            justify-content: flex-start;
-            align-items: flex-start;
-            gap: 20px;
-        }
-
-        .user-comment {
-            width: 100%;
-            background-color: rgba(177, 177, 177, 0.1);
-            color: #fff;
-            padding: 15px;
-            border-radius: 7px;
-            display: flex;
-            flex-direction: column;
-            gap: 20px;
-
-            @include mixins.tablet-only {
-                align-items: flex-start;
-
-            }
-
-
-            @include mixins.desktop-only {
-                width: 70%;
-                display: flex;
-                flex-direction: column;
-                justify-content: flex-start;
-                align-items: flex-start;
-
-            }
-        }
-
-
-
-        p {
-            margin: 0;
-        }
-
-        .bold {
-            font-weight: 600;
-        }
-    }
-
 }
 
 .dashboard-wrapper {
@@ -212,13 +74,14 @@
     border-radius: 20px;
     overflow-y: scroll;
     padding-top: 10px;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
 
     @include mixins.tablet-only {
         overflow-y: scroll;
         position: fixed;
         height: 55vh;
-        width: 35%;
-        padding: 0;
+        width: 37%;
+        padding: 0px 10px;
     }
 
 
@@ -226,8 +89,8 @@
         overflow-y: scroll;
         position: fixed;
         height: 95vh;
-        width: 25%;
-        padding: 0;
+        width: 29%;
+        padding: 0px 0px 30px;
     }
 
 
@@ -244,6 +107,7 @@
         justify-content: space-between;
         gap: 10px;
         width: 100%;
+        box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
     }
 
 
@@ -308,29 +172,6 @@
         gap: 25px;
     }
 
-    .icon-plus {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        gap: 10px;
-
-        &:hover {
-            cursor: pointer;
-        }
-    }
-
-    .icon-plus svg {
-        width: 40px;
-
-        @include mixins.tablet-only {
-            width: 50px;
-        }
-
-        @include mixins.desktop-only {
-            width: 50px;
-        }
-    }
-
     .dashboard-content {
         display: flex;
         flex-direction: column;
@@ -361,7 +202,7 @@
         }
     }
 
-    .hours-average-header {
+    .dashboard-navigation {
         background-color: variables.$color-dkblue;
         border-radius: 8px;
         padding: 8px 0px;
@@ -416,7 +257,7 @@
 
 
 
-        .category-hours {
+        .task-hours {
             font-weight: 100;
         }
     }
@@ -428,17 +269,67 @@
 
 }
 
-.category-info-container {
+.task {
     display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    align-items: flex-start;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 10px;
+    align-items: center;
+    margin: 5px 0px;
 
-    p {
-        padding: 0;
-        text-align: left;
+    a {
+        text-decoration: none;
     }
 
+    &:hover {
+        cursor: pointer;
+        background-color: rgba(0, 0, 7, 0.5);
+    }
+
+
+
+
+    .task-info-container {
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: flex-start;
+        gap: 6px;
+
+        p {
+            text-align: left;
+            padding: 0;
+            margin: 0;
+            font-weight: 400;
+        }
+
+        .task-name {
+            font-size: 1rem;
+            font-weight: 100;
+        }
+
+        .task-description {
+            font-weight: 300;
+            padding: 0;
+            margin: 0;
+        }
+
+        .task-hours {
+            font-size: 0.9rem;
+            text-align: left;
+            font-weight: 500;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: flex-start;
+            align-items: flex-start;
+        }
+    }
+}
+
+.task-date {
+    padding: 0;
+    margin: 0;
 }
 
 .image-container {
@@ -479,21 +370,18 @@
 }
 
 .form {
-    padding: 10px;
-}
+    padding: 10px 18px;
 
-.category {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    padding: 10px;
-    align-items: center;
-
-    a {
-        text-decoration: none;
+    @include mixins.tablet-only {
+        padding: 10px 0px;
     }
 
+    @include mixins.desktop-only {
+        padding: 10px 18px;
+    }
 }
+
+
 
 // DROPDOWN CATEGORY MENU
 
@@ -512,7 +400,12 @@
 
 .btn {
     margin: 5px 0px;
+    transition: background-color 0.2s ease;
 
+    &:hover {
+        background-color: #453aa9;
+
+    }
 }
 
 .dropdown a {
@@ -528,6 +421,7 @@
 .dropdown .show {
     background-color: variables.$color-dkblue;
     width: 100%;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
 }
 
 .dropdown-item {
@@ -556,4 +450,8 @@
         text-decoration: underline;
         border-bottom: 2px solid #fff;
     }
+}
+
+.dropdown-container {
+    min-width: 14rem;
 }

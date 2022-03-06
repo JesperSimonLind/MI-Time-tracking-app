@@ -8,11 +8,11 @@
                     <section class="dashboard-header">
                         <div class="user-info-container">
                             <div class="image-container">
-                                <img src="/assets/profile.jpg" alt="Profile picture">
+                                <img src="{{user.profilePicture}}" alt="Profile picture">
                             </div>
                             <div class="user-info">
                                 <p class="hello">Hello,</p>
-                                <p class="username">Username</p>
+                                <p class="username">{{user.username}}</p>
                             </div>
                         </div>
                         <div class="icons">
@@ -43,7 +43,7 @@
                             <p class="sm-heading">Update activity</p>
                             <form action="ADD FORM ACTION" method="post">
                                 <label for="description">Description</label>
-                                <input type="text" name="description" placeholder="Description">
+                                <input type="text" name="description" placeholder="{{task.description}}">
                                 <label for="category">Category</label>
                                 <select name="category" id="category">
                                     <option value="" disabled selected>Select category</option>
@@ -57,15 +57,13 @@
                                 <label for="date">Date:</label>
                                 <input type="date" name="date" placeholder="Date">
                                 <label for="hours">Hours:</label>
-                                <input type="number" name="hours" placeholder="Hours">
+                                <input type="number" name="hours" placeholder="{{task.hours}}">
                                 <div class="privacy-container">
                                     <div>
-                                        <label for="hours">Public</label>
-                                        <input type="radio" name="privacy" value="public" checked="checked" />
+                                        <label for="hours">Private</label>
                                     </div>
                                     <div>
-                                        <label for="hours">Private</label>
-                                        <input type="radio" name="privacy" value="private" />
+                                        <input type="checkbox" name="private" value="private" />
                                     </div>
                                 </div>
                                 <input type="submit" class="btn" value="Update">
@@ -76,7 +74,7 @@
             </div>
         </div>
 
-        {{> community}}
+        {{> communityfeed}}
 
     </div>
 </div>

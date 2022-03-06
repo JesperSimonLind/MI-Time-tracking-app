@@ -34,19 +34,41 @@
                                 </div>
                             </div>
                         </a>
+                    </section>
+                    <div class="dashboard-home-btn">
+                        <a href="/users/{{user._id}}/dashboard" class="logout-btn">Home</a>
+                    </div>
+                    <section class="dashboard-navigation">
+                        <div class="category-dropdown">
+                            <div class="dropdown show">
+                                <a class="categories-btn dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
+                                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    Categories
+                                </a>
 
-
+                                <div class="dropdown-menu dropdown-container" aria-labelledby="dropdownMenuLink">
+                                    <a class="dropdown-item category-link"
+                                        href="/tasks/{{user._id}}/category/work">Work</a>
+                                    <a class="dropdown-item category-link"
+                                        href="/tasks/{{user._id}}/category/study">Study</a>
+                                    <a class="dropdown-item category-link"
+                                        href="/tasks/{{user._id}}/category/exercise">Exercise</a>
+                                    <a class="dropdown-item category-link"
+                                        href="/tasks/{{user._id}}/category/other">Something else
+                                        cool</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="create-btn">
+                            <a href="/tasks/{{user._id}}/create" class="btn">Add hours</a>
+                        </div>
                     </section>
 
-
                     <section class="dashboard-content">
-                        <div class="dashboard-home-btn">
-                            <a href="/users/{{user._id}}/dashboard" class="logout-btn">Home</a>
-                        </div>
-                        <div class="tasks-category-container">
+                        <div class="tasks-container">
                             <div class="tasks-info-container">
                                 <div class="category-name-container">
-                                    <p class="category-name">Study</p>
+                                    <p class="category-name">{{category}}</p>
                                 </div>
                                 <div class="category-hours-average">
                                     <p class="task-hours">Daily average: <span class="hours"> 2 hours</span></p>
@@ -55,17 +77,16 @@
                             </div>
 
                             <section class="tasks">
-                                {{#each taskCollection}}
+                                {{#each tasks}}
 
                                 <div class="task">
                                     <div class="task-info">
                                         <p class="task-description">{{description}}</p>
                                         <p class="task-date">{{created}}</p>
-                                        <p class="task-comment">Comment: </p>
                                     </div>
 
                                     <div class="task-hours">
-                                        <p>Hours</p>
+                                        <p>Hours: {{hours}}</p>
                                     </div>
                                 </div>
                                 {{/each}}
@@ -78,7 +99,7 @@
         </div>
     </div>
 
-    {{> community}}
+    {{> communityfeed}}
 
 </div>
 </div>

@@ -2,7 +2,7 @@
 @use "../variables";
 
 
-.tasks-category-container {
+.tasks-container {
     border-radius: 8px;
     margin: 5px 0px;
     display: flex;
@@ -15,6 +15,15 @@
         background-color: variables.$color-dkblue;
         border-radius: 8px;
         padding: 10px 15px;
+
+    }
+
+    .task-info {
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: flex-start;
+        gap: 10px;
     }
 
     .category-hours-average {
@@ -26,12 +35,13 @@
 
     .task-hours {
         color: variables.$color-paleblue;
-        font-size: 0.8rem;
-        margin: 0;
+        font-size: 0.9rem;
+        margin: 0px;
 
         .hours {
             font-weight: 100;
             font-size: 0.8rem;
+            margin: 0px 4px;
         }
     }
 
@@ -69,7 +79,8 @@
             .task-comment,
             .task-date {
                 font-size: 0.9rem;
-                margin: 5px 0px;
+                margin: 0px;
+                padding: 0px;
             }
 
             .task-comment,

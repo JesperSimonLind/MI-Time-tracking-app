@@ -1,0 +1,33 @@
+@use "../mixins";
+@use "../variables";
+
+.privacy-container {
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+    padding: 10px 0px;
+    align-items: center;
+}
+
+input[type='radio'] {
+    height: 20px;
+    width: 20px;
+    vertical-align: middle;
+}
+
+input[type='submit'] {
+    padding: 8px;
+}
+
+select {
+    background-color: #fff;
+    border: none;
+    border-radius: 4px;
+    padding: 5px 2px;
+    margin: 5px 0px;
+    width: 100%;
+    font-family: inherit;
+    font-size: inherit;
+    cursor: inherit;
+    line-height: inherit;
+}

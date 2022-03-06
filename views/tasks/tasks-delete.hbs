@@ -9,11 +9,11 @@
                     <section class="dashboard-header">
                         <div class="user-info-container">
                             <div class="image-container">
-                                <img src="/assets/profile.jpg" alt="Profile picture">
+                                <img src="{{user.profilePicture}}" alt="Profile picture">
                             </div>
                             <div class="user-info">
                                 <p class="hello">Hello,</p>
-                                <p class="username">Username</p>
+                                <p class="username">{{user.username}}</p>
                             </div>
                         </div>
 
@@ -42,13 +42,13 @@
                     <div class="dashboard-home-btn">
                         <a href="/users/{{user._id}}/dashboard" class="logout-btn">Home</a>
                     </div>
-                    <div class="delete-form">
-                        <form action="ADD FORM ACTION" method="post">
+                    <div class="delete-form-container">
+                        <form action="ADD FORM ACTION" method="post" class="delete-form">
                             <p class="sm-heading">Delete activity</p>
                             <label for="description">Description</label>
-                            <input type="text" name="description" placeholder="Description" disabled>
+                            <input type="text" name="description" placeholder="{{task.description}}" disabled>
                             <label for="hours">Hours:</label>
-                            <input type="number" name="hours" placeholder="Hours" disabled>
+                            <input type="number" name="hours" placeholder="{{task.hours}}" disabled>
                             <input type="submit" class="btn" value="Delete">
 
                         </form>
@@ -61,7 +61,7 @@
 </div>
 </div>
 
-{{> community}}
+{{> communityfeed}}
 
 </div>
 </div>
