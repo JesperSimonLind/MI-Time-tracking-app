@@ -28,9 +28,19 @@ router.get("/:userid/:id/single", async (req, res) => {
         {
             _id: task,
         },
-        function (err, task) {
-            console.log(task);
-            res.render("tasks/tasks-single", { task, user });
+        function (err, tasks) {
+            TasksModel.find(
+                {
+                    private: false,
+                },
+                (err, publicTasks) => {
+                    res.render("tasks/tasks-single", {
+                        publicTasks,
+                        user,
+                        tasks,
+                    });
+                }
+            ).lean();
         }
     ).lean();
 });
@@ -123,8 +133,18 @@ router.get("/:id/category/study", async (req, res) => {
             category: "Study",
         },
         function (err, tasks) {
-            console.log(tasks);
-            res.render("tasks/tasks-list", { tasks, user });
+            TasksModel.find(
+                {
+                    private: false,
+                },
+                (err, publicTasks) => {
+                    res.render("tasks/tasks-list", {
+                        publicTasks,
+                        user,
+                        tasks,
+                    });
+                }
+            ).lean();
         }
     ).lean();
 });
@@ -139,7 +159,18 @@ router.get("/:id/category/work", async (req, res) => {
             category: "Work",
         },
         function (err, tasks) {
-            res.render("tasks/tasks-list", { tasks, user });
+            TasksModel.find(
+                {
+                    private: false,
+                },
+                (err, publicTasks) => {
+                    res.render("tasks/tasks-list", {
+                        publicTasks,
+                        user,
+                        tasks,
+                    });
+                }
+            ).lean();
         }
     ).lean();
 });
@@ -154,7 +185,18 @@ router.get("/:id/category/exercise", async (req, res) => {
             category: "Exercise",
         },
         function (err, tasks) {
-            res.render("tasks/tasks-list", { tasks, user });
+            TasksModel.find(
+                {
+                    private: false,
+                },
+                (err, publicTasks) => {
+                    res.render("tasks/tasks-list", {
+                        publicTasks,
+                        user,
+                        tasks,
+                    });
+                }
+            ).lean();
         }
     ).lean();
 });
@@ -169,7 +211,18 @@ router.get("/:id/category/other", async (req, res) => {
             category: "Something else cool",
         },
         function (err, tasks) {
-            res.render("tasks/tasks-list", { tasks, user });
+            TasksModel.find(
+                {
+                    private: false,
+                },
+                (err, publicTasks) => {
+                    res.render("tasks/tasks-list", {
+                        publicTasks,
+                        user,
+                        tasks,
+                    });
+                }
+            ).lean();
         }
     ).lean();
 });

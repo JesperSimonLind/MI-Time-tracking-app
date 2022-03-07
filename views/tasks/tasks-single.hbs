@@ -75,16 +75,16 @@
                             </div>
                             <div class="task-single-container">
                                 <div class="task-single-info">
-                                    <p class="task-description">{{task.description}}</p>
-                                    <p class="task-date">{{task.created}}</p>
+                                    <p class="task-description">{{tasks.description}}</p>
+                                    <p class="task-date">{{tasks.created}}</p>
                                 </div>
                                 <div class="task-hours">
-                                    <p>Hours: {{task.hours}}</p>
+                                    <p>Hours: {{tasks.hours}}</p>
                                 </div>
                             </div>
                             <div class="buttons">
-                                <a href="/tasks/{{user._id}}/{{task._id}}/update" class="btn">Update</a>
-                                <a href="/tasks/{{user._id}}/{{task._id}}/delete" class="btn">Delete</a>
+                                <a href="/tasks/{{user._id}}/{{tasks._id}}/update" class="btn">Update</a>
+                                <a href="/tasks/{{user._id}}/{{tasks._id}}/delete" class="btn">Delete</a>
                             </div>
                         </div>
                     </div>
