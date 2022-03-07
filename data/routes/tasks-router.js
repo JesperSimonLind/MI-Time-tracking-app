@@ -130,6 +130,7 @@ router.post("/:id/create", async (req, res) => {
 
     if (token && jwt.verify(token, process.env.JWTSECRET)) {
         const tokenData = jwt.decode(token, process.env.JWTSECRET);
+        console.log(tokenData);
 
         const newTask = new TasksModel({
             category: category,

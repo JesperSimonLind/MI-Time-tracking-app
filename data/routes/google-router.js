@@ -27,6 +27,7 @@ router.get(
 
                 if (user) {
                     userData.userId = user._id;
+                    userData.profilePicture = user.profilePicture;
 
                     const accessToken = jwt.sign(
                         userData,
@@ -40,10 +41,11 @@ router.get(
                         username: req.user.displayName,
                         password: hashPassword(req.user.id),
                         email: req.user.emails[0].value,
-                        profilePicture: "",
+                        profilePicture: "/assets/profile.jpg",
                     });
                     const result = await newUser.save();
                     userData.userId = result._id;
+                    userData.profilePicture = result.profilePicture;
                     const accessToken = jwt.sign(
                         userData,
                         process.env.JWTSECRET
