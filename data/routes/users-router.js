@@ -36,7 +36,9 @@ router.post("/", async (req, res) => {
                 const userData = {
                     userId: user._id.toString(),
                     username,
+                    profilePicture: user.profilePicture,
                 };
+                console.log(userData);
                 const accessToken = jwt.sign(userData, process.env.JWTSECRET);
                 res.cookie("token", accessToken);
 
@@ -115,7 +117,11 @@ router.get("/:id/dashboard", async (req, res) => {
 
     TasksModel.find(
         {
-            user: { _id: user._id, username: user.username },
+            user: {
+                _id: user._id,
+                username: user.username,
+                profilePicture: user.profilePicture,
+            },
         },
         function (err, tasks) {
             TasksModel.find(

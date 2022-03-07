@@ -137,7 +137,11 @@ router.post("/:id/create", async (req, res) => {
             hours: hours,
             private: Boolean(req.body.private),
             created: date,
-            user: { _id: tokenData.userId, username: tokenData.username },
+            user: {
+                _id: tokenData.userId,
+                username: tokenData.username,
+                profilePicture: tokenData.profilePicture,
+            },
         });
         await newTask.save();
     }

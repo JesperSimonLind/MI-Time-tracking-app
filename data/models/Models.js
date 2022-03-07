@@ -11,6 +11,11 @@ const userInfo = new mongoose.Schema({
         ref: "Users",
         required: true,
     },
+    profilePicture: {
+        type: String,
+        ref: "Users",
+        required: true,
+    },
 });
 
 const taskSchema = new mongoose.Schema({
