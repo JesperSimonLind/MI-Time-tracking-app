@@ -114,31 +114,34 @@
             align-items: flex-start;
 
             @include mixins.tablet-only {
-                padding: 15px;
+                padding: 10px;
                 align-items: flex-start;
                 justify-content: flex-start;
+                gap: 0px;
                 box-shadow: 0 20px 40px rgba(40, 6, 117, 0.5);
             }
 
             @include mixins.desktop-only {
                 width: 70%;
-                width: 70%;
                 display: flex;
                 align-items: flex-start;
                 justify-content: center;
-                flex-direction: column;
-                gap: 0px;
             }
         }
 
         p {
             margin: 0;
+            text-align: left;
         }
 
         .bold {
-            font-size: 1.2rem;
+            font-size: 1.1rem;
             font-weight: 600;
             margin: 0px 5px 0px 0px;
+
+            @include mixins.desktop-only {
+                font-size: 1.2rem;
+            }
         }
 
     }
