@@ -8,25 +8,22 @@
             </div>
 
             {{#each publicTasks}}
-                <div class="user-post-container">
-                    <div class="user-image">
-                        <img
-                            {{! src="/assets/profile.jpg" }}
-                            src="{{user.profilePicture}}"
-                            alt="Profile picture of user"
-                        />
-                    </div>
-                    <div class="user-comment">
-                        <p>
-                            <span class="bold">{{user.username}}</span>
-                            added
-                            {{hours}}
-                            hours in:
-                            {{category}}
-                        </p>
-                        <p class="comment">{{description}}</p>
-                    </div>
+            <div class="user-post-container">
+                <div class="user-image">
+                    <img src="{{user.profilePicture}}" alt="Profile picture of user" />
                 </div>
+                <div class="user-comment">
+                    <p>
+                        <span class="bold">@{{user.username}}</span>
+                        added
+                        <span class="time">
+                            {{hours}}</span>
+                        hours to:
+                        {{category}}
+                    </p>
+                    <p class="comment">{{description}}</p>
+                </div>
+            </div>
             {{/each}}
 
         </div>

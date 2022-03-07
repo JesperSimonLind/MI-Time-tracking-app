@@ -22,6 +22,8 @@
         position: absolute;
         right: 0;
         top: 0;
+        height: 100vh;
+        overflow-y: scroll;
 
     }
 
@@ -91,14 +93,10 @@
         @include mixins.tablet-only {
             flex-direction: row;
             justify-content: flex-start;
-            align-items: center;
             gap: 10px;
         }
 
         @include mixins.desktop-only {
-            flex-direction: row;
-            justify-content: flex-start;
-            align-items: flex-start;
             gap: 20px;
         }
 
@@ -124,6 +122,12 @@
 
             @include mixins.desktop-only {
                 width: 70%;
+                width: 70%;
+                display: flex;
+                align-items: flex-start;
+                justify-content: center;
+                flex-direction: column;
+                gap: 0px;
             }
         }
 
@@ -132,8 +136,18 @@
         }
 
         .bold {
+            font-size: 1.2rem;
             font-weight: 600;
+            margin: 0px 5px 0px 0px;
         }
+
+    }
+
+    .time {
+        font-size: 1.3rem;
+        font-weight: 700;
+        margin: 0px 5px;
+        color: variables.$color-paleblue;
     }
 
 }
