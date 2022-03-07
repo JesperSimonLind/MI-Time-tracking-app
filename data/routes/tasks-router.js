@@ -54,9 +54,19 @@ router.get("/:userid/:id/update", async (req, res) => {
         {
             _id: task,
         },
-        function (err, task) {
-            console.log(task);
-            res.render("tasks/tasks-update", { task, user });
+        function (err, tasks) {
+            TasksModel.find(
+                {
+                    private: false,
+                },
+                (err, publicTasks) => {
+                    res.render("tasks/tasks-update", {
+                        publicTasks,
+                        user,
+                        tasks,
+                    });
+                }
+            ).lean();
         }
     ).lean();
 
@@ -72,8 +82,19 @@ router.get("/:userid/:id/delete", async (req, res) => {
         {
             _id: task,
         },
-        function (err, task) {
-            res.render("tasks/tasks-delete", { task, user });
+        function (err, tasks) {
+            TasksModel.find(
+                {
+                    private: false,
+                },
+                (err, publicTasks) => {
+                    res.render("tasks/tasks-delete", {
+                        publicTasks,
+                        user,
+                        tasks,
+                    });
+                }
+            ).lean();
         }
     ).lean();
 
