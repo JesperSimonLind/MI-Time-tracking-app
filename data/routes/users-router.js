@@ -38,7 +38,6 @@ router.post("/", async (req, res) => {
                     username,
                     profilePicture: user.profilePicture,
                 };
-                console.log(userData);
                 const accessToken = jwt.sign(userData, process.env.JWTSECRET);
                 res.cookie("token", accessToken);
 
@@ -96,7 +95,7 @@ router.post("/signup", async (req, res) => {
                         username: username,
                         password: hashPassword(password),
                         email: email,
-                        profilePicture: "",
+                        profilePicture: "/assets/profile.jpg",
                     });
                     await newUser.save();
                     res.redirect("/");
