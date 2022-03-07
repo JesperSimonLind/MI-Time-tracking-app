@@ -71,9 +71,9 @@ router.get("/:userid/:id/delete", async (req, res) => {
 });
 
 router.post("/:userid/:id/delete", async (req, res) => {
-  const user = await UsersModel.findById(req.params.id).lean();
+  const user = await UsersModel.findById(req.params.userid).lean();
   const task = await TasksModel.findByIdAndDelete(req.params.id).lean();
-  res.render("./users/users-dashboard");
+  res.redirect("/users/" + user._id + "/dashboard");
 });
 
 // READ – CREATE TASK
