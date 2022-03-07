@@ -70,12 +70,12 @@
                         </div>
                     </section>
                     <div class="delete-form-container">
-                        <form action="/tasks/{{user._id}}/{{task._id}}/delete"" method="post" class="delete-form">
+                        <form action="/tasks/{{user._id}}/{{tasks._id}}/delete"" method="post" class="delete-form">
                             <p class="sm-heading">Delete activity</p>
                             <label for="description">Description</label>
-                            <input type="text" name="description" placeholder="{{task.description}}" disabled>
+                            <input type="text" name="description" placeholder="{{tasks.description}}" disabled>
                             <label for="hours">Hours:</label>
-                            <input type="number" name="hours" placeholder="{{task.hours}}" disabled>
+                            <input type="number" name="hours" placeholder="{{tasks.hours}}" disabled>
                             <input type="submit" class="btn" value="Delete">
 
                         </form>

@@ -21,21 +21,31 @@ router.get(
     }),
     async (req, res) => {
         UsersModel.findOne(
-            { username: req.body.displayName },
+            { username: req.user.displayName },
             async (err, user) => {
                 const userData = { username: req.user.displayName };
 
                 if (user) {
                     userData.userId = user._id;
+                    userData.profilePicture = user.profilePicture;
+
+                    const accessToken = jwt.sign(
+                        userData,
+                        process.env.JWTSECRET
+                    );
+
+                    res.cookie("token", accessToken);
+                    res.redirect("/users/" + userData.userId + "/dashboard");
                 } else {
                     const newUser = new UsersModel({
                         username: req.user.displayName,
                         password: hashPassword(req.user.id),
                         email: req.user.emails[0].value,
-                        profilePicture: "",
+                        profilePicture: "/assets/profile.jpg",
                     });
                     const result = await newUser.save();
                     userData.userId = result._id;
+                    userData.profilePicture = result.profilePicture;
                     const accessToken = jwt.sign(
                         userData,
                         process.env.JWTSECRET

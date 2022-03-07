@@ -1,24 +1,33 @@
 <div class="community-wrapper">
     <div class="community-overlay">
 
-
         <div class="community">
             <div class="buttons-container">
                 <a href="/users/signout" class="logout-btn">Logout</a>
 
             </div>
 
-            {{!-- {{#each publicTasks}} --}}
-            <div class="user-post-container">
-                <div class="user-image">
-                    <img src="/assets/profile.jpg" alt="Profile picture of user" />
+            {{#each publicTasks}}
+                <div class="user-post-container">
+                    <div class="user-image">
+                        <img
+                            {{! src="/assets/profile.jpg" }}
+                            src="{{user.profilePicture}}"
+                            alt="Profile picture of user"
+                        />
+                    </div>
+                    <div class="user-comment">
+                        <p>
+                            <span class="bold">{{user.username}}</span>
+                            added
+                            {{hours}}
+                            hours in:
+                            {{category}}
+                        </p>
+                        <p class="comment">{{description}}</p>
+                    </div>
                 </div>
-                <div class="user-comment">
-                    <p> <span class="bold">@username</span> added 2 hours:</p>
-                    <p class="comment">{{publicTasks.description}}</p>
-                </div>
-            </div>
-            {{!-- {{/each}} --}}
+            {{/each}}
 
         </div>
     </div>

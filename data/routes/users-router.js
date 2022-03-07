@@ -36,6 +36,7 @@ router.post("/", async (req, res) => {
                 const userData = {
                     userId: user._id.toString(),
                     username,
+                    profilePicture: user.profilePicture,
                 };
                 const accessToken = jwt.sign(userData, process.env.JWTSECRET);
                 res.cookie("token", accessToken);
@@ -94,7 +95,7 @@ router.post("/signup", async (req, res) => {
                         username: username,
                         password: hashPassword(password),
                         email: email,
-                        profilePicture: "",
+                        profilePicture: "/assets/profile.jpg",
                     });
                     await newUser.save();
                     res.redirect("/");
@@ -115,22 +116,25 @@ router.get("/:id/dashboard", async (req, res) => {
 
     TasksModel.find(
         {
-            private: false,
-        },
-        function (err, publicTasks) {
-            // console.log(publicTasks)
-        }
-    ).lean();
-
-    TasksModel.find(
-        {
-            user: user._id,
+            user: {
+                _id: user._id,
+                username: user.username,
+                profilePicture: user.profilePicture,
+            },
         },
         function (err, tasks) {
-            res.render("users/users-dashboard", {
-                tasks,
-                user,
-            });
+            TasksModel.find(
+                {
+                    private: false,
+                },
+                (err, publicTasks) => {
+                    res.render("users/users-dashboard", {
+                        publicTasks,
+                        user,
+                        tasks,
+                    });
+                }
+            ).lean();
         }
     ).lean();
 });
@@ -146,9 +150,15 @@ router.get("/signout", async (req, res) => {
 // READ – UPDATE USER
 router.get("/:id/update", async (req, res) => {
     const user = await UsersModel.findById(req.params.id).lean();
-    res.render("users/users-update", {
-        user,
-    });
+
+    TasksModel.find(
+        {
+            private: false,
+        },
+        (err, publicTasks) => {
+            res.render("users/users-update", { publicTasks, user });
+        }
+    ).lean();
 });
 
 // POST – UPDATE USER

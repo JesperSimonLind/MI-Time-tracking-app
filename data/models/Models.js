@@ -1,5 +1,23 @@
 const mongoose = require("mongoose");
 
+const userInfo = new mongoose.Schema({
+    _id: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "Users",
+        required: true,
+    },
+    username: {
+        type: String,
+        ref: "Users",
+        required: true,
+    },
+    profilePicture: {
+        type: String,
+        ref: "Users",
+        required: true,
+    },
+});
+
 const taskSchema = new mongoose.Schema({
     category: {
         type: String,
@@ -22,8 +40,7 @@ const taskSchema = new mongoose.Schema({
         required: true,
     },
     user: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: "Users",
+        type: userInfo,
         required: true,
     },
 });
@@ -48,7 +65,7 @@ const userSchema = new mongoose.Schema({
     },
     profilePicture: {
         type: String,
-        required: false,
+        required: true,
     },
 });
 
