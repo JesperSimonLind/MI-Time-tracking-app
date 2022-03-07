@@ -117,20 +117,8 @@ router.get("/:id/dashboard", async (req, res) => {
         {
             private: false,
         },
-        function (err, publicTasks) {
-            // console.log(publicTasks)
-        }
-    ).lean();
-
-    TasksModel.find(
-        {
-            user: user._id,
-        },
-        function (err, tasks) {
-            res.render("users/users-dashboard", {
-                tasks,
-                user,
-            });
+        (err, publicTasks) => {
+            res.render("users/users-dashboard", { publicTasks, user });
         }
     ).lean();
 });
@@ -146,9 +134,15 @@ router.get("/signout", async (req, res) => {
 // READ – UPDATE USER
 router.get("/:id/update", async (req, res) => {
     const user = await UsersModel.findById(req.params.id).lean();
-    res.render("users/users-update", {
-        user,
-    });
+
+    TasksModel.find(
+        {
+            private: false,
+        },
+        (err, publicTasks) => {
+            res.render("users/users-update", { publicTasks, user });
+        }
+    ).lean();
 });
 
 // POST – UPDATE USER
