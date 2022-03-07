@@ -21,12 +21,20 @@ router.get(
     }),
     async (req, res) => {
         UsersModel.findOne(
-            { username: req.body.displayName },
+            { username: req.user.displayName },
             async (err, user) => {
                 const userData = { username: req.user.displayName };
 
                 if (user) {
                     userData.userId = user._id;
+
+                    const accessToken = jwt.sign(
+                        userData,
+                        process.env.JWTSECRET
+                    );
+
+                    res.cookie("token", accessToken);
+                    res.redirect("/users/" + userData.userId + "/dashboard");
                 } else {
                     const newUser = new UsersModel({
                         username: req.user.displayName,
