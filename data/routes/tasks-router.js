@@ -7,17 +7,17 @@ const { validateTask } = require("../utils.js");
 // ROUTES //
 
 router.get("/", (req, res) => {
-  res.status(404).render("not-found");
+    res.status(404).render("not-found");
 });
 
 router.get("/:id/list", async (req, res) => {
-  const user = await UsersModel.findById(req.params.id).lean();
-  // const taskCollection = await TasksModel.find().lean();
-  // const studyCollection = await TasksModel.find({ category: "Study" });
-  // console.log(studyCollection);
-  res.render("tasks/tasks-list", {
-    user,
-  });
+    const user = await UsersModel.findById(req.params.id).lean();
+    // const taskCollection = await TasksModel.find().lean();
+    // const studyCollection = await TasksModel.find({ category: "Study" });
+    // console.log(studyCollection);
+    res.render("tasks/tasks-list", {
+        user,
+    });
 });
 
 // READ – SINGLE TASK
@@ -84,26 +84,26 @@ router.get("/:userid/:id/update", async (req, res) => {
                 .lean();
         }
     ).lean();
-  });
+});
 
 // POST - UPDATE TASK
 router.post("/:userid/:id/update", async (req, res) => {
-  const user = await UsersModel.findById(req.params.userid).lean();
-  const date = new Date().toISOString();
-  await TasksModel.findByIdAndUpdate(
-    {
-      _id: req.params.id,
-    },
-    {
-      description: req.body.description,
-      hours: req.body.hours,
-      private: req.body.private,
-      created: date,
-      private: Boolean(req.body.private),
-    }
-  );
-  console.log(req.body.private);
-  res.redirect("/users/" + user._id + "/dashboard");
+    const user = await UsersModel.findById(req.params.userid).lean();
+    const date = new Date().toISOString();
+    await TasksModel.findByIdAndUpdate(
+        {
+            _id: req.params.id,
+        },
+        {
+            description: req.body.description,
+            hours: req.body.hours,
+            private: req.body.private,
+            created: date,
+            private: Boolean(req.body.private),
+        }
+    );
+    console.log(req.body.private);
+    res.redirect("/users/" + user._id + "/dashboard");
 });
 
 // READ - DELETE TASK
@@ -143,9 +143,9 @@ router.get("/:userid/:id/delete", async (req, res) => {
 
 // POST – DELETE TASK
 router.post("/:userid/:id/delete", async (req, res) => {
-  const user = await UsersModel.findById(req.params.userid).lean();
-  const task = await TasksModel.findByIdAndDelete(req.params.id).lean();
-  res.redirect("/users/" + user._id + "/dashboard");
+    const user = await UsersModel.findById(req.params.userid).lean();
+    const task = await TasksModel.findByIdAndDelete(req.params.id).lean();
+    res.redirect("/users/" + user._id + "/dashboard");
 });
 
 // READ – CREATE TASK
@@ -175,45 +175,50 @@ router.post("/:id/create", async (req, res) => {
     const { category, description, hours, private } = req.body;
     const { token } = req.cookies;
     const date = new Date().toISOString();
-  
-      let task = {
-    description: description,
-    hours: hours,
-    category: category,
-  };
-  
-     if (validateTask(task)) {
 
-    const newTask = new TasksModel({
-        category: category,
+    let task = {
         description: description,
         hours: hours,
-        private: Boolean(private),
-        created: date,
-        user: {
-            _id: user._id,
-            username: user.username,
-            profilePicture: user.profilePicture,
-        },
-    });
-    await newTask.save();
+        category: category,
+    };
 
-    res.redirect("/users/" + user._id + "/dashboard");
-  } else {
-    TasksModel.find(
-      {
-        private: false,
-      },
-      (err, publicTasks) => {
-        const errorMessage = "Oops! Did you forget to fill something out?";
-        res.render("tasks/tasks-create", {
-          errorMessage,
-          user,
-          publicTasks,
+    if (validateTask(task)) {
+        const newTask = new TasksModel({
+            category: category,
+            description: description,
+            hours: hours,
+            private: Boolean(private),
+            created: date,
+            user: {
+                _id: user._id,
+                username: user.username,
+                profilePicture: user.profilePicture,
+            },
         });
-      }
-    ).lean();
-  }
+        await newTask.save();
+
+        res.redirect("/users/" + user._id + "/dashboard");
+    } else {
+        TasksModel.find(
+            {
+                private: false,
+            },
+            (err, publicTask) => {
+                const publicTasks = publicTask.sort(function (a, b) {
+                    let dateA = new Date(a.created),
+                        dateB = new Date(b.created);
+                    return dateB - dateA;
+                });
+                const errorMessage =
+                    "Oops! Did you forget to fill something out?";
+                res.render("tasks/tasks-create", {
+                    errorMessage,
+                    user,
+                    publicTasks,
+                });
+            }
+        ).lean();
+    }
 });
 
 // READ – STUDY CATEGORY
