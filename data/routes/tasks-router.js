@@ -227,7 +227,11 @@ router.get("/:id/category/study", async (req, res) => {
 
     TasksModel.find(
         {
-            user: { _id: user._id, username: user.username },
+            user: {
+                _id: user._id,
+                username: user.username,
+                profilePicture: user.profilePicture,
+            },
             category: "Study",
         },
         function (err, tasks) {
@@ -260,7 +264,11 @@ router.get("/:id/category/work", async (req, res) => {
 
     TasksModel.find(
         {
-            user: { _id: user._id, username: user.username },
+            user: {
+                _id: user._id,
+                username: user.username,
+                profilePicture: user.profilePicture,
+            },
             category: "Work",
         },
         function (err, tasks) {
@@ -293,7 +301,11 @@ router.get("/:id/category/exercise", async (req, res) => {
 
     TasksModel.find(
         {
-            user: { _id: user._id, username: user.username },
+            user: {
+                _id: user._id,
+                username: user.username,
+                profilePicture: user.profilePicture,
+            },
             category: "Exercise",
         },
         function (err, tasks) {
@@ -326,7 +338,11 @@ router.get("/:id/category/other", async (req, res) => {
 
     TasksModel.find(
         {
-            user: { _id: user._id, username: user.username },
+            user: {
+                _id: user._id,
+                username: user.username,
+                profilePicture: user.profilePicture,
+            },
             category: "Something else cool",
         },
         function (err, tasks) {
