@@ -81,8 +81,6 @@
                                     <option value="social">Social</option>
                                     <option value="other">Other</option>
                                 </select>
-                                <label for="date">Date:</label>
-                                <input type="date" name="date" value={{tasks.created}}>
                                 <label for="hours">Hours:</label>
                                 <input type="number" name="hours" value="{{tasks.hours}}">
                                 <div class="privacy-container">
@@ -90,7 +88,7 @@
                                         <label for="hours">Private</label>
                                     </div>
                                     <div>
-                                        <input type="checkbox" name="private" value="private" />
+                                        <input type="checkbox" name="private" value="private" {{#if private}}checked{{/if}} />
                                     </div>
                                 </div>
                                 <input type="submit" class="btn" value="Update">

@@ -75,6 +75,7 @@ router.get("/:userid/:id/update", async (req, res) => {
 // POST - UPDATE TASK
 router.post("/:userid/:id/update", async (req, res) => {
   const user = await UsersModel.findById(req.params.userid).lean();
+  const date = new Date().toISOString();
   await TasksModel.findByIdAndUpdate(
     {
       _id: req.params.id,
@@ -83,9 +84,11 @@ router.post("/:userid/:id/update", async (req, res) => {
       description: req.body.description,
       hours: req.body.hours,
       private: req.body.private,
-      created: req.body.date,
+      created: date,
+      private: Boolean(req.body.private),
     }
   );
+  console.log(req.body.private);
   res.redirect("/users/" + user._id + "/dashboard");
 });
 
