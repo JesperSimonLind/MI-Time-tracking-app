@@ -207,6 +207,12 @@ p {
   margin: 0;
 }
 
+input:focus {
+  outline: none;
+  border-color: #5847EB;
+  box-shadow: 0 0 8px #cacdff;
+}
+
 .home-container {
   padding: 0px;
   border-radius: 20px;

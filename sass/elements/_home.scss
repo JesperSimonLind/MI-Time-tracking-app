@@ -215,3 +215,9 @@ p {
     padding: 5px;
     margin: 0;
 }
+
+input:focus {
+    outline: none;
+    border-color: variables.$color-purple;
+    box-shadow: 0 0 8px variables.$color-paleblue;
+}
