@@ -43,7 +43,10 @@ router.post("/", async (req, res) => {
 
                 res.redirect("/users/" + user._id + "/dashboard");
             } else {
-                res.render("not-found");
+                const errorUser = "Sorry! Username and password don't match."
+                res.render("home", {
+                    errorUser,
+                });
             }
         }
     );
