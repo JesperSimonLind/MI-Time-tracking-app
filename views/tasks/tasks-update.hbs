@@ -68,9 +68,9 @@
                         </section>
                         <div class="form">
                             <p class="sm-heading">Update activity</p>
-                            <form action="ADD FORM ACTION" method="post">
+                            <form action="/tasks/{{user._id}}/{{tasks._id}}/update" method="post">
                                 <label for="description">Description</label>
-                                <input type="text" name="description" placeholder="{{tasks.description}}">
+                                <input type="text" name="description" value="{{tasks.description}}">
                                 <label for="category">Category</label>
                                 <select name="category" id="category">
                                     <option value="" disabled selected>Select category</option>
@@ -82,9 +82,9 @@
                                     <option value="other">Other</option>
                                 </select>
                                 <label for="date">Date:</label>
-                                <input type="date" name="date" placeholder="Date">
+                                <input type="date" name="date" value={{tasks.created}}>
                                 <label for="hours">Hours:</label>
-                                <input type="number" name="hours" placeholder="{{tasks.hours}}">
+                                <input type="number" name="hours" value="{{tasks.hours}}">
                                 <div class="privacy-container">
                                     <div>
                                         <label for="hours">Private</label>
