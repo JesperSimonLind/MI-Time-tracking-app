@@ -225,7 +225,6 @@ input:focus {
     background-repeat: no-repeat;
     height: 100vh;
     color: #fff;
-    height: 100vh;
     overflow-y: scroll;
     background-attachment: fixed;
   }
@@ -242,7 +241,7 @@ input:focus {
 @media screen and (min-width: 768px) {
   .home-container-overlay {
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     width: 100%;
   }
 }
@@ -270,7 +269,7 @@ input:focus {
 
 .dashboard-wrapper {
   width: 100%;
-  background-color: #1c1f4a;
+  background-color: #0d0924;
   height: auto;
   color: #fff;
   border-radius: 20px;
@@ -281,11 +280,10 @@ input:focus {
 @media screen and (min-width: 768px) {
   .dashboard-wrapper {
     overflow-y: scroll;
-    position: fixed;
     height: 55vh;
-    width: 37%;
+    width: 70%;
     padding-top: 0px;
-    margin: 10px;
+    margin: 10px auto;
   }
 }
 @media screen and (min-width: 1100px) {
@@ -377,6 +375,7 @@ input:focus {
   display: flex;
   flex-direction: column;
   position: relative;
+  padding: 10px 0px;
 }
 .dashboard-wrapper .icon-setting {
   display: flex;
@@ -384,6 +383,7 @@ input:focus {
   align-items: flex-end;
   gap: 14px;
   flex-direction: column;
+  padding: 7px;
 }
 .dashboard-wrapper .icon-setting:hover {
   cursor: pointer;
@@ -461,7 +461,7 @@ input:focus {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  padding: 10px;
+  padding: 10px 20px;
   align-items: center;
   margin: 5px 0px;
 }
@@ -527,11 +527,17 @@ input:focus {
 }
 
 .user-image {
-  height: 120px;
-  width: 120px;
+  max-height: 120px;
+  max-width: 120px;
   display: flex;
   flex-direction: column;
   justify-content: center;
+}
+@media screen and (min-width: 768px) {
+  .user-image {
+    height: 120px;
+    width: 120px;
+  }
 }
 
 .user-image img {
@@ -864,21 +870,18 @@ select {
   display: flex;
   flex-direction: column;
   width: 100%;
-  padding: 20px 10px;
+  padding: 20px;
 }
 @media screen and (min-width: 768px) {
   .community-wrapper {
     width: 70%;
-    padding: 20px 50px 50px 100px;
-    position: absolute;
-    right: 0;
-    top: 0;
+    margin: 0 auto;
   }
 }
 @media screen and (min-width: 1100px) {
   .community-wrapper {
-    width: 74%;
-    padding: 20px 0px 50px 70px;
+    width: 70%;
+    padding: 20px 50px 50px 100px;
     position: absolute;
     right: 0;
     top: 0;
@@ -919,13 +922,12 @@ select {
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  gap: 40px;
+  gap: 10px;
 }
 @media screen and (min-width: 768px) {
   .community-wrapper .user-post {
     flex-direction: row;
     justify-content: flex-start;
-    gap: 10px;
   }
 }
 @media screen and (min-width: 1100px) {
@@ -987,14 +989,18 @@ select {
 }
 
 .buttons-container {
-  display: none;
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+  justify-content: center;
+  padding: 10px 0px 10px;
 }
 @media screen and (min-width: 768px) {
   .buttons-container {
     display: flex;
     flex-direction: row;
     gap: 10px;
-    justify-content: flex-end;
+    justify-content: center;
     padding: 10px 0px 10px;
   }
 }
@@ -1002,13 +1008,22 @@ select {
   .buttons-container {
     display: flex;
     flex-direction: row;
-    gap: 10px;
+    gap: 20px;
     justify-content: flex-end;
-    padding: 10px 50px 20px;
+    padding: 10px 20px 20px;
   }
 }
 .buttons-container a:hover {
   text-decoration: none;
+}
+
+.home-heading {
+  color: #5847EB;
+  margin: 0px auto 20px;
+  width: 100%;
+}
+.home-heading h1 {
+  font-size: 2.3rem;
 }
 
 .forum-form-container {
@@ -1022,7 +1037,7 @@ select {
 }
 @media screen and (min-width: 1100px) {
   .forum-form-container {
-    width: 75%;
+    width: 95%;
   }
 }
 .forum-form-container form {
@@ -1075,18 +1090,26 @@ select {
   font-weight: 500;
   transition: background-color 0.2s ease;
   padding: 10px;
-  width: 7rem;
+  width: 100%;
   margin: 10px auto;
 }
 .forum-form-container .forum-btn:hover {
   cursor: pointer;
   background-color: #453aa9;
 }
+@media screen and (min-width: 1100px) {
+  .forum-form-container .forum-btn {
+    width: 7rem;
+  }
+}
 
 .forum-heading {
   color: #5847EB;
   margin: 0px auto 20px;
   width: 100%;
+}
+.forum-heading h1 {
+  font-size: 2.3rem;
 }
 
 .public-tasks-container {

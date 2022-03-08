@@ -10,7 +10,7 @@
     }
 
     @include mixins.desktop-only {
-        width: 75%;
+        width: 95%;
 
     }
 
@@ -73,12 +73,16 @@
         font-weight: 500;
         transition: background-color 0.2s ease;
         padding: 10px;
-        width: 7rem;
+        width: 100%;
         margin: 10px auto;
 
         &:hover {
             cursor: pointer;
             background-color: #453aa9;
+        }
+
+        @include mixins.desktop-only {
+            width: 7rem;
         }
     }
 
@@ -91,6 +95,9 @@
     margin: 0px auto 20px;
     width: 100%;
 
+    h1 {
+        font-size: 2.3rem;
+    }
 
 }
 

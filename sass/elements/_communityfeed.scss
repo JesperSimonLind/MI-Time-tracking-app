@@ -5,20 +5,17 @@
     display: flex;
     flex-direction: column;
     width: 100%;
-    padding: 20px 10px;
+    padding: 20px;
 
     @include mixins.tablet-only {
         width: 70%;
-        padding: 20px 50px 50px 100px;
-        position: absolute;
-        right: 0;
-        top: 0;
+        margin: 0 auto;
     }
 
 
     @include mixins.desktop-only {
-        width: 74%;
-        padding: 20px 0px 50px 70px;
+        width: 70%;
+        padding: 20px 50px 50px 100px;
         position: absolute;
         right: 0;
         top: 0;
@@ -67,13 +64,12 @@
         flex-direction: row;
         justify-content: center;
         align-items: center;
-        gap: 40px;
+        gap: 10px;
 
 
         @include mixins.tablet-only {
             flex-direction: row;
             justify-content: flex-start;
-            gap: 10px;
         }
 
         @include mixins.desktop-only {
@@ -138,26 +134,40 @@
 }
 
 .buttons-container {
-    display: none;
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    justify-content: center;
+    padding: 10px 0px 10px;
 
     @include mixins.tablet-only {
         display: flex;
         flex-direction: row;
         gap: 10px;
-        justify-content: flex-end;
+        justify-content: center;
         padding: 10px 0px 10px;
     }
 
     @include mixins.desktop-only {
         display: flex;
         flex-direction: row;
-        gap: 10px;
+        gap: 20px;
         justify-content: flex-end;
-        padding: 10px 50px 20px;
+        padding: 10px 20px 20px;
 
     }
 
     a:hover {
         text-decoration: none;
+    }
+}
+
+.home-heading {
+    color: variables.$color-purple;
+    margin: 0px auto 20px;
+    width: 100%;
+
+    h1 {
+        font-size: 2.3rem;
     }
 }
