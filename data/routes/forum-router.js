@@ -4,5 +4,5 @@ const router = express.Router();
 const { UsersModel, TasksModel, ForumModel } = require("../models/Models.js");
 
 router.get("/", (req, res) => {
-    res.render("forum-dashboard");
+    res.render();
 });
