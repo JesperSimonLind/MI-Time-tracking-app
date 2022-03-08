@@ -198,7 +198,7 @@ router.post("/:id/update", async (req, res) => {
                 password: hashPassword(req.body.password),
                 email: req.body.email,
                 admin: false,
-                profilePicture: "",
+                profilePicture: "/assets/profile.jpg",
             }
         );
     }
