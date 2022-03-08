@@ -10,7 +10,7 @@
                             </div>
                             <div class="user-info">
                                 <p class="hello">Hello,</p>
-                                <p class="username">{{user.username}}</p>
+                                <p class="username">@{{user.username}}</p>
                             </div>
                         </div>
 
@@ -46,6 +46,7 @@
                         <p class="sm-heading">Add hours</p>
                         <form action="/tasks/{{user._id}}/create" method="post" class="task-form">
                             <div>
+                                <p class="error-message">{{errorMessage}}</p>
                                 <label for="category">Pick a category*</label>
                                 <select name="category" id="category">
                                     <option value="" disabled selected>Select category</option>

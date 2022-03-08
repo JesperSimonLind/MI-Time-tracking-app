@@ -2,21 +2,22 @@ const express = require("express");
 const jwt = require("jsonwebtoken");
 const router = express.Router();
 const { UsersModel, TasksModel } = require("../models/Models.js");
+const { validateTask } = require("../utils.js");
 
 // ROUTES //
 
 router.get("/", (req, res) => {
-    res.status(404).render("not-found");
+  res.status(404).render("not-found");
 });
 
 router.get("/:id/list", async (req, res) => {
-    const user = await UsersModel.findById(req.params.id).lean();
-    // const taskCollection = await TasksModel.find().lean();
-    // const studyCollection = await TasksModel.find({ category: "Study" });
-    // console.log(studyCollection);
-    res.render("tasks/tasks-list", {
-        user,
-    });
+  const user = await UsersModel.findById(req.params.id).lean();
+  // const taskCollection = await TasksModel.find().lean();
+  // const studyCollection = await TasksModel.find({ category: "Study" });
+  // console.log(studyCollection);
+  res.render("tasks/tasks-list", {
+    user,
+  });
 });
 
 // READ – SINGLE TASK
@@ -83,8 +84,26 @@ router.get("/:userid/:id/update", async (req, res) => {
                 .lean();
         }
     ).lean();
+  });
 
-    // LÄGG TILL FUNKTIONALITET FÖR ATT UPPDATERA TASK
+// POST - UPDATE TASK
+router.post("/:userid/:id/update", async (req, res) => {
+  const user = await UsersModel.findById(req.params.userid).lean();
+  const date = new Date().toISOString();
+  await TasksModel.findByIdAndUpdate(
+    {
+      _id: req.params.id,
+    },
+    {
+      description: req.body.description,
+      hours: req.body.hours,
+      private: req.body.private,
+      created: date,
+      private: Boolean(req.body.private),
+    }
+  );
+  console.log(req.body.private);
+  res.redirect("/users/" + user._id + "/dashboard");
 });
 
 // READ - DELETE TASK
@@ -122,10 +141,11 @@ router.get("/:userid/:id/delete", async (req, res) => {
     // LÄGG TILL FUNKTIONALITET FÖR ATT TA BORT TASK
 });
 
+// POST – DELETE TASK
 router.post("/:userid/:id/delete", async (req, res) => {
-    const user = await UsersModel.findById(req.params.userid).lean();
-    const task = await TasksModel.findByIdAndDelete(req.params.id).lean();
-    res.redirect("/users/" + user._id + "/dashboard");
+  const user = await UsersModel.findById(req.params.userid).lean();
+  const task = await TasksModel.findByIdAndDelete(req.params.id).lean();
+  res.redirect("/users/" + user._id + "/dashboard");
 });
 
 // READ – CREATE TASK
@@ -155,6 +175,14 @@ router.post("/:id/create", async (req, res) => {
     const { category, description, hours, private } = req.body;
     const { token } = req.cookies;
     const date = new Date().toISOString();
+  
+      let task = {
+    description: description,
+    hours: hours,
+    category: category,
+  };
+  
+     if (validateTask(task)) {
 
     const newTask = new TasksModel({
         category: category,
@@ -171,6 +199,21 @@ router.post("/:id/create", async (req, res) => {
     await newTask.save();
 
     res.redirect("/users/" + user._id + "/dashboard");
+  } else {
+    TasksModel.find(
+      {
+        private: false,
+      },
+      (err, publicTasks) => {
+        const errorMessage = "Oops! Did you forget to fill something out?";
+        res.render("tasks/tasks-create", {
+          errorMessage,
+          user,
+          publicTasks,
+        });
+      }
+    ).lean();
+  }
 });
 
 // READ – STUDY CATEGORY
