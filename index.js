@@ -12,6 +12,7 @@ const passport = require("passport");
 const usersRouter = require("./data/routes/users-router.js");
 const tasksRouter = require("./data/routes/tasks-router.js");
 const googleRouter = require("./data/routes/google-router.js");
+const forumRouter = require("./data/routes/forum-router.js");
 const app = express();
 const bcrypt = require("bcrypt");
 const { getUniqueFilename } = require('./data/utils.js')
@@ -65,6 +66,7 @@ app.get("/", (req, res) => {
 
 app.use("/users", usersRouter);
 app.use("/tasks", tasksRouter);
+app.use("/forum", forumRouter);
 app.use("/google", googleRouter);
 
 app.listen(8000, () => {

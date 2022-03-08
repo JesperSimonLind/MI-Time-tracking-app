@@ -896,30 +896,6 @@ select {
     gap: 30px;
   }
 }
-.community-wrapper .buttons-container {
-  display: none;
-}
-@media screen and (min-width: 768px) {
-  .community-wrapper .buttons-container {
-    display: flex;
-    flex-direction: row;
-    gap: 10px;
-    justify-content: flex-end;
-    padding: 10px 0px 50px;
-  }
-}
-@media screen and (min-width: 1100px) {
-  .community-wrapper .buttons-container {
-    display: flex;
-    flex-direction: row;
-    gap: 10px;
-    justify-content: flex-end;
-    padding: 10px 50px 50px;
-  }
-}
-.community-wrapper .buttons-container a:hover {
-  text-decoration: none;
-}
 .community-wrapper .logout {
   text-align: right;
   padding: 0px 30px;
@@ -1001,6 +977,83 @@ select {
   font-weight: 700;
   margin: 0px 5px;
   color: #cacdff;
+}
+
+.buttons-container {
+  display: none;
+}
+@media screen and (min-width: 768px) {
+  .buttons-container {
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    justify-content: flex-end;
+    padding: 10px 0px 10px;
+  }
+}
+@media screen and (min-width: 1100px) {
+  .buttons-container {
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    justify-content: flex-end;
+    padding: 10px 50px 20px;
+  }
+}
+.buttons-container a:hover {
+  text-decoration: none;
+}
+
+.forum-form-container {
+  width: 100%;
+  margin: 0 auto;
+}
+@media screen and (min-width: 768px) {
+  .forum-form-container {
+    width: 90%;
+  }
+}
+@media screen and (min-width: 1100px) {
+  .forum-form-container {
+    width: 70%;
+  }
+}
+.forum-form-container form {
+  display: flex;
+  flex-direction: column;
+}
+.forum-form-container h2 {
+  color: #cacdff;
+}
+.forum-form-container label {
+  color: #fff;
+}
+.forum-form-container input {
+  border-radius: 4px;
+  border: none;
+  padding: 5px;
+}
+.forum-form-container textarea {
+  display: block;
+  margin: 5px 0px;
+  border-radius: 5px;
+  border: 2px solid #5847EB;
+  background-color: #0F1424;
+  color: #fff;
+  height: 5rem;
+  width: 100%;
+  padding: 5px;
+}
+.forum-form-container textarea:focus {
+  outline: none;
+}
+@media screen and (min-width: 1100px) {
+  .forum-form-container textarea {
+    padding: 10px;
+    height: 10rem;
+    width: 100%;
+    font-size: 1.1rem;
+  }
 }
 
 * {
