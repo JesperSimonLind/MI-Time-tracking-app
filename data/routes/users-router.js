@@ -127,14 +127,22 @@ router.get("/:id/dashboard", async (req, res) => {
                 {
                     private: false,
                 },
-                (err, publicTasks) => {
+                (err, publicTask) => {
+                    const publicTasks = publicTask.sort(function (a, b) {
+                        let dateA = new Date(a.created),
+                            dateB = new Date(b.created);
+                        return dateB - dateA;
+                    });
+                    console.log(publicTasks);
                     res.render("users/users-dashboard", {
                         publicTasks,
                         user,
                         tasks,
                     });
                 }
-            ).lean();
+            )
+                .limit(10)
+                .lean();
         }
     ).lean();
 });

@@ -126,7 +126,7 @@ router.post("/:id/create", async (req, res) => {
     const user = await UsersModel.findById(req.params.id).lean();
     const { category, description, hours, private, created } = req.body;
     const { token } = req.cookies;
-    const date = new Date().toLocaleDateString();
+    const date = new Date().toISOString();
 
     if (token && jwt.verify(token, process.env.JWTSECRET)) {
         const tokenData = jwt.decode(token, process.env.JWTSECRET);
