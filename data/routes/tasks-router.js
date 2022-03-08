@@ -33,14 +33,21 @@ router.get("/:userid/:id/single", async (req, res) => {
                 {
                     private: false,
                 },
-                (err, publicTasks) => {
+                (err, publicTask) => {
+                    const publicTasks = publicTask.sort(function (a, b) {
+                        let dateA = new Date(a.created),
+                            dateB = new Date(b.created);
+                        return dateB - dateA;
+                    });
                     res.render("tasks/tasks-single", {
                         publicTasks,
                         user,
                         tasks,
                     });
                 }
-            ).lean();
+            )
+                .limit(10)
+                .lean();
         }
     ).lean();
 });
@@ -59,14 +66,21 @@ router.get("/:userid/:id/update", async (req, res) => {
                 {
                     private: false,
                 },
-                (err, publicTasks) => {
+                (err, publicTask) => {
+                    const publicTasks = publicTask.sort(function (a, b) {
+                        let dateA = new Date(a.created),
+                            dateB = new Date(b.created);
+                        return dateB - dateA;
+                    });
                     res.render("tasks/tasks-update", {
                         publicTasks,
                         user,
                         tasks,
                     });
                 }
-            ).lean();
+            )
+                .limit(10)
+                .lean();
         }
     ).lean();
 
@@ -87,14 +101,21 @@ router.get("/:userid/:id/delete", async (req, res) => {
                 {
                     private: false,
                 },
-                (err, publicTasks) => {
+                (err, publicTask) => {
+                    const publicTasks = publicTask.sort(function (a, b) {
+                        let dateA = new Date(a.created),
+                            dateB = new Date(b.created);
+                        return dateB - dateA;
+                    });
                     res.render("tasks/tasks-delete", {
                         publicTasks,
                         user,
                         tasks,
                     });
                 }
-            ).lean();
+            )
+                .limit(10)
+                .lean();
         }
     ).lean();
 
@@ -115,36 +136,40 @@ router.get("/:id/create", async (req, res) => {
         {
             private: false,
         },
-        (err, publicTasks) => {
+        (err, publicTask) => {
+            const publicTasks = publicTask.sort(function (a, b) {
+                let dateA = new Date(a.created),
+                    dateB = new Date(b.created);
+                return dateB - dateA;
+            });
             res.render("tasks/tasks-create", { publicTasks, user });
         }
-    ).lean();
+    )
+        .limit(10)
+        .lean();
 });
 
 // POST – CREATE TASK
 router.post("/:id/create", async (req, res) => {
     const user = await UsersModel.findById(req.params.id).lean();
-    const { category, description, hours, private, created } = req.body;
+    const { category, description, hours, private } = req.body;
     const { token } = req.cookies;
     const date = new Date().toISOString();
 
-    if (token && jwt.verify(token, process.env.JWTSECRET)) {
-        const tokenData = jwt.decode(token, process.env.JWTSECRET);
+    const newTask = new TasksModel({
+        category: category,
+        description: description,
+        hours: hours,
+        private: Boolean(private),
+        created: date,
+        user: {
+            _id: user._id,
+            username: user.username,
+            profilePicture: user.profilePicture,
+        },
+    });
+    await newTask.save();
 
-        const newTask = new TasksModel({
-            category: category,
-            description: description,
-            hours: hours,
-            private: Boolean(req.body.private),
-            created: date,
-            user: {
-                _id: tokenData.userId,
-                username: tokenData.username,
-                profilePicture: tokenData.profilePicture,
-            },
-        });
-        await newTask.save();
-    }
     res.redirect("/users/" + user._id + "/dashboard");
 });
 
@@ -162,14 +187,21 @@ router.get("/:id/category/study", async (req, res) => {
                 {
                     private: false,
                 },
-                (err, publicTasks) => {
+                (err, publicTask) => {
+                    const publicTasks = publicTask.sort(function (a, b) {
+                        let dateA = new Date(a.created),
+                            dateB = new Date(b.created);
+                        return dateB - dateA;
+                    });
                     res.render("tasks/tasks-list", {
                         publicTasks,
                         user,
                         tasks,
                     });
                 }
-            ).lean();
+            )
+                .limit(10)
+                .lean();
         }
     ).lean();
 });
@@ -188,14 +220,21 @@ router.get("/:id/category/work", async (req, res) => {
                 {
                     private: false,
                 },
-                (err, publicTasks) => {
+                (err, publicTask) => {
+                    const publicTasks = publicTask.sort(function (a, b) {
+                        let dateA = new Date(a.created),
+                            dateB = new Date(b.created);
+                        return dateB - dateA;
+                    });
                     res.render("tasks/tasks-list", {
                         publicTasks,
                         user,
                         tasks,
                     });
                 }
-            ).lean();
+            )
+                .limit(10)
+                .lean();
         }
     ).lean();
 });
@@ -214,14 +253,21 @@ router.get("/:id/category/exercise", async (req, res) => {
                 {
                     private: false,
                 },
-                (err, publicTasks) => {
+                (err, publicTask) => {
+                    const publicTasks = publicTask.sort(function (a, b) {
+                        let dateA = new Date(a.created),
+                            dateB = new Date(b.created);
+                        return dateB - dateA;
+                    });
                     res.render("tasks/tasks-list", {
                         publicTasks,
                         user,
                         tasks,
                     });
                 }
-            ).lean();
+            )
+                .limit(10)
+                .lean();
         }
     ).lean();
 });
@@ -240,14 +286,21 @@ router.get("/:id/category/other", async (req, res) => {
                 {
                     private: false,
                 },
-                (err, publicTasks) => {
+                (err, publicTask) => {
+                    const publicTasks = publicTask.sort(function (a, b) {
+                        let dateA = new Date(a.created),
+                            dateB = new Date(b.created);
+                        return dateB - dateA;
+                    });
                     res.render("tasks/tasks-list", {
                         publicTasks,
                         user,
                         tasks,
                     });
                 }
-            ).lean();
+            )
+                .limit(10)
+                .lean();
         }
     ).lean();
 });

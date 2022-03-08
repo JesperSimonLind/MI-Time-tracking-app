@@ -133,7 +133,7 @@ router.get("/:id/dashboard", async (req, res) => {
                             dateB = new Date(b.created);
                         return dateB - dateA;
                     });
-                    console.log(publicTasks);
+                    // console.log(publicTasks);
                     res.render("users/users-dashboard", {
                         publicTasks,
                         user,
@@ -163,7 +163,12 @@ router.get("/:id/update", async (req, res) => {
         {
             private: false,
         },
-        (err, publicTasks) => {
+        (err, publicTask) => {
+            const publicTasks = publicTask.sort(function (a, b) {
+                let dateA = new Date(a.created),
+                    dateB = new Date(b.created);
+                return dateB - dateA;
+            });
             res.render("users/users-update", { publicTasks, user });
         }
     ).lean();
@@ -172,6 +177,7 @@ router.get("/:id/update", async (req, res) => {
 // POST – UPDATE USER
 router.post("/:id/update", async (req, res) => {
     const { token } = req.cookies;
+    const user = await UsersModel.findById(req.params.id).lean();
 
     if (req.files != null) {
         // Profile picture (image upload)
@@ -196,6 +202,11 @@ router.post("/:id/update", async (req, res) => {
                 profilePicture: "/uploads/" + filename,
             }
         );
+
+        await TasksModel.updateMany(
+            { "user.profilePicture": user.profilePicture },
+            { $set: { "user.profilePicture": "/uploads/" + filename } }
+        );
     } else {
         await UsersModel.findOneAndUpdate(
             {
@@ -206,7 +217,7 @@ router.post("/:id/update", async (req, res) => {
                 password: hashPassword(req.body.password),
                 email: req.body.email,
                 admin: false,
-                profilePicture: "/assets/profile.jpg",
+                profilePicture: user.profilePicture,
             }
         );
     }
