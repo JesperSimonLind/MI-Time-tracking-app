@@ -69,10 +69,27 @@ const userSchema = new mongoose.Schema({
     },
 });
 
+const forumSchema = new mongoose.Schema({
+    titel: {
+        type: String,
+        required: true,
+    },
+    post: {
+        type: String,
+        required: true,
+    },
+    user: {
+        type: userInfo,
+        required: true,
+    },
+});
+
 const UsersModel = mongoose.model("Users", userSchema);
 const TasksModel = mongoose.model("Tasks", taskSchema);
+const ForumModel = mongoose.model("Forum", forumSchema);
 
 module.exports = {
     UsersModel,
     TasksModel,
+    ForumModel,
 };
