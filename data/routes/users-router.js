@@ -10,6 +10,8 @@ const {
     hashPassword,
     comparePassword,
     getUniqueFilename,
+    validateEmail,
+    validateUsername,
 } = require("../utils.js");
 const bcrypt = require("bcrypt");
 const path = require("path");
@@ -43,7 +45,7 @@ router.post("/", async (req, res) => {
 
                 res.redirect("/users/" + user._id + "/dashboard");
             } else {
-                const errorUser = "Sorry! Username and password don't match."
+                const errorUser = "Sorry! Username and password don't match.";
                 res.render("home", {
                     errorUser,
                 });
@@ -63,6 +65,38 @@ router.post("/signup", async (req, res) => {
 
     const usernameTaken =
         "That username is already taken! Please pick another one.";
+
+    // let errorMessage = "";
+
+    // if (
+    //     validateUsername(username) === false &&
+    //     username.length < 4 &&
+    //     username.length > 16
+    // ) {
+    //     errorMessage = "Username incorrect";
+    //     res.render("users/users-create", {
+    //         errorMessage,
+    //     });
+    // }
+    // if (validateEmail(email) === false) {
+    //     errorMessage = "Email incorrect";
+    //     res.render("users/users-create", {
+    //         errorMessage,
+    //     });
+    // }
+    // if (password.length < 4 && password.length > 16) {
+    //     errorMessage =
+    //         "Password is incorrect need to be between 4-16 characters";
+    //     res.render("users/users-create", {
+    //         errorMessage,
+    //     });
+    // } else {
+    // try {
+    //     validateUsername(username);
+    //     validateEmail(email);
+    // } catch (err) {
+    //     console.log(err);
+    // }
 
     UsersModel.findOne(
         {
@@ -245,6 +279,5 @@ router.post("/:id/delete", async (req, res) => {
     res.clearCookie("token");
     res.redirect("/");
 });
-
 
 module.exports = router;
