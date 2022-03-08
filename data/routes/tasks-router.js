@@ -1,7 +1,13 @@
 const express = require("express");
 const jwt = require("jsonwebtoken");
 const router = express.Router();
-const { UsersModel, TasksModel } = require("../models/Models.js");
+const {
+    UsersModel,
+    TasksModel
+} = require("../models/Models.js");
+const {
+    validateTask
+} = require("../utils.js");
 
 // ROUTES //
 
@@ -24,13 +30,11 @@ router.get("/:userid/:id/single", async (req, res) => {
     const user = await UsersModel.findById(req.params.userid).lean();
     const task = await TasksModel.findById(req.params.id).lean();
 
-    TasksModel.findOne(
-        {
+    TasksModel.findOne({
             _id: task,
         },
         function (err, tasks) {
-            TasksModel.find(
-                {
+            TasksModel.find({
                     private: false,
                 },
                 (err, publicTasks) => {
@@ -50,13 +54,11 @@ router.get("/:userid/:id/update", async (req, res) => {
     const user = await UsersModel.findById(req.params.userid).lean();
     const task = await TasksModel.findById(req.params.id).lean();
 
-    TasksModel.findOne(
-        {
+    TasksModel.findOne({
             _id: task,
         },
         function (err, tasks) {
-            TasksModel.find(
-                {
+            TasksModel.find({
                     private: false,
                 },
                 (err, publicTasks) => {
@@ -78,13 +80,11 @@ router.get("/:userid/:id/delete", async (req, res) => {
     const user = await UsersModel.findById(req.params.userid).lean();
     const task = await TasksModel.findById(req.params.id).lean();
 
-    TasksModel.findOne(
-        {
+    TasksModel.findOne({
             _id: task,
         },
         function (err, tasks) {
-            TasksModel.find(
-                {
+            TasksModel.find({
                     private: false,
                 },
                 (err, publicTasks) => {
@@ -101,6 +101,7 @@ router.get("/:userid/:id/delete", async (req, res) => {
     // LÄGG TILL FUNKTIONALITET FÖR ATT TA BORT TASK
 });
 
+// POST – DELETE TASK
 router.post("/:userid/:id/delete", async (req, res) => {
     const user = await UsersModel.findById(req.params.userid).lean();
     const task = await TasksModel.findByIdAndDelete(req.params.id).lean();
@@ -111,12 +112,14 @@ router.post("/:userid/:id/delete", async (req, res) => {
 router.get("/:id/create", async (req, res) => {
     const user = await UsersModel.findById(req.params.id).lean();
 
-    TasksModel.find(
-        {
+    TasksModel.find({
             private: false,
         },
         (err, publicTasks) => {
-            res.render("tasks/tasks-create", { publicTasks, user });
+            res.render("tasks/tasks-create", {
+                publicTasks,
+                user
+            });
         }
     ).lean();
 });
@@ -124,11 +127,25 @@ router.get("/:id/create", async (req, res) => {
 // POST – CREATE TASK
 router.post("/:id/create", async (req, res) => {
     const user = await UsersModel.findById(req.params.id).lean();
-    const { category, description, hours, private, created } = req.body;
-    const { token } = req.cookies;
+    const {
+        category,
+        description,
+        hours,
+        private,
+        created
+    } = req.body;
+    const {
+        token
+    } = req.cookies;
     const date = new Date().toLocaleDateString();
 
-    if (token && jwt.verify(token, process.env.JWTSECRET)) {
+    let task = {
+        description: description,
+        hours: hours,
+        category: category
+    }
+
+    if (validateTask(task) && token && jwt.verify(token, process.env.JWTSECRET)) {
         const tokenData = jwt.decode(token, process.env.JWTSECRET);
 
         const newTask = new TasksModel({
@@ -144,22 +161,38 @@ router.post("/:id/create", async (req, res) => {
             },
         });
         await newTask.save();
+        res.redirect("/users/" + user._id + "/dashboard");
+    } else {
+        TasksModel.find({
+                private: false,
+            },
+            (err, publicTasks) => {
+                const errorMessage = "Oops! Did you forget to fill something out?"
+                res.render("tasks/tasks-create", {
+                    errorMessage,
+                    user,
+                    publicTasks,
+                });
+            }
+        ).lean();
+
     }
-    res.redirect("/users/" + user._id + "/dashboard");
+
 });
 
 // READ – STUDY CATEGORY
 router.get("/:id/category/study", async (req, res) => {
     const user = await UsersModel.findById(req.params.id).lean();
 
-    TasksModel.find(
-        {
-            user: { _id: user._id, username: user.username },
+    TasksModel.find({
+            user: {
+                _id: user._id,
+                username: user.username
+            },
             category: "Study",
         },
         function (err, tasks) {
-            TasksModel.find(
-                {
+            TasksModel.find({
                     private: false,
                 },
                 (err, publicTasks) => {
@@ -178,14 +211,15 @@ router.get("/:id/category/study", async (req, res) => {
 router.get("/:id/category/work", async (req, res) => {
     const user = await UsersModel.findById(req.params.id).lean();
 
-    TasksModel.find(
-        {
-            user: { _id: user._id, username: user.username },
+    TasksModel.find({
+            user: {
+                _id: user._id,
+                username: user.username
+            },
             category: "Work",
         },
         function (err, tasks) {
-            TasksModel.find(
-                {
+            TasksModel.find({
                     private: false,
                 },
                 (err, publicTasks) => {
@@ -204,14 +238,15 @@ router.get("/:id/category/work", async (req, res) => {
 router.get("/:id/category/exercise", async (req, res) => {
     const user = await UsersModel.findById(req.params.id).lean();
 
-    TasksModel.find(
-        {
-            user: { _id: user._id, username: user.username },
+    TasksModel.find({
+            user: {
+                _id: user._id,
+                username: user.username
+            },
             category: "Exercise",
         },
         function (err, tasks) {
-            TasksModel.find(
-                {
+            TasksModel.find({
                     private: false,
                 },
                 (err, publicTasks) => {
@@ -230,14 +265,15 @@ router.get("/:id/category/exercise", async (req, res) => {
 router.get("/:id/category/other", async (req, res) => {
     const user = await UsersModel.findById(req.params.id).lean();
 
-    TasksModel.find(
-        {
-            user: { _id: user._id, username: user.username },
+    TasksModel.find({
+            user: {
+                _id: user._id,
+                username: user.username
+            },
             category: "Something else cool",
         },
         function (err, tasks) {
-            TasksModel.find(
-                {
+            TasksModel.find({
                     private: false,
                 },
                 (err, publicTasks) => {

@@ -33,8 +33,19 @@ const getUniqueFilename = (filename) => {
         return `${timestamp}.${extension}`
     }
 
+const validateTask = (task) => {
+        let valid = true;
+        valid = valid && task.category;
+        valid = valid && task.description;
+        valid = valid && task.hours;
+        valid = valid && task.description.length > 0;
+        return valid;
+      }
+
+
 module.exports = {
     hashPassword,
     comparePassword,
-    getUniqueFilename
+    getUniqueFilename,
+    validateTask
 };

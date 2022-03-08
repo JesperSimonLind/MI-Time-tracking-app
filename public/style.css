@@ -761,7 +761,7 @@ p {
 .privacy-container {
   display: flex;
   flex-direction: row;
-  gap: 20px;
+  gap: 10px;
   padding: 10px 0px;
   align-items: center;
 }
@@ -776,6 +776,11 @@ input[type=submit] {
   padding: 8px;
 }
 
+input[type=checkbox] {
+  width: 18px;
+  height: 18px;
+}
+
 select {
   background-color: #fff;
   border: none;
@@ -787,6 +792,13 @@ select {
   font-size: inherit;
   cursor: inherit;
   line-height: inherit;
+}
+
+.error-message {
+  color: #cf1313;
+  font-weight: 500;
+  text-align: left;
+  font-size: 1rem;
 }
 
 .delete-form {
