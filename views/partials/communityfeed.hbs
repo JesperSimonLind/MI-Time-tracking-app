@@ -3,8 +3,9 @@
 
         <div class="community">
             <div class="buttons-container">
+                <a href="/users/{{user._id}}/dashboard" class="logout-btn">Home</a>
+                <a href="/forum/{{user._id}}" class="logout-btn">Forum</a>
                 <a href="/users/signout" class="logout-btn">Logout</a>
-
             </div>
 
             {{#each publicTasks}}

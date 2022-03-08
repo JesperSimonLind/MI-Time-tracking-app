@@ -39,32 +39,6 @@
         }
     }
 
-
-    .buttons-container {
-        display: none;
-
-        @include mixins.tablet-only {
-            display: flex;
-            flex-direction: row;
-            gap: 10px;
-            justify-content: flex-end;
-            padding: 10px 0px 50px;
-        }
-
-        @include mixins.desktop-only {
-            display: flex;
-            flex-direction: row;
-            gap: 10px;
-            justify-content: flex-end;
-            padding: 10px 50px 50px;
-
-        }
-
-        a:hover {
-            text-decoration: none;
-        }
-    }
-
     .logout {
         text-align: right;
         padding: 0px 30px;
@@ -153,4 +127,29 @@
         color: variables.$color-paleblue;
     }
 
+}
+
+.buttons-container {
+    display: none;
+
+    @include mixins.tablet-only {
+        display: flex;
+        flex-direction: row;
+        gap: 10px;
+        justify-content: flex-end;
+        padding: 10px 0px 10px;
+    }
+
+    @include mixins.desktop-only {
+        display: flex;
+        flex-direction: row;
+        gap: 10px;
+        justify-content: flex-end;
+        padding: 10px 50px 20px;
+
+    }
+
+    a:hover {
+        text-decoration: none;
+    }
 }
