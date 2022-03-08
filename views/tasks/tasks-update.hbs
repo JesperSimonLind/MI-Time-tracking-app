@@ -12,7 +12,7 @@
                             </div>
                             <div class="user-info">
                                 <p class="hello">Hello,</p>
-                                <p class="username">{{user.username}}</p>
+                                <p class="username">@{{user.username}}</p>
                             </div>
                         </div>
                         <div class="icons">
@@ -88,7 +88,8 @@
                                         <label for="hours">Private</label>
                                     </div>
                                     <div>
-                                        <input type="checkbox" name="private" value="private" {{#if tasks.private}}checked{{/if}} />
+                                        <input type="checkbox" name="private" value="private" {{#if
+                                            tasks.private}}checked{{/if}} />
                                     </div>
                                 </div>
                                 <input type="submit" class="btn" value="Update">
