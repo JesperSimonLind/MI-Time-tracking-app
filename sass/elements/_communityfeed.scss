@@ -17,7 +17,7 @@
 
 
     @include mixins.desktop-only {
-        width: 70%;
+        width: 74%;
         padding: 20px 0px 50px 70px;
         position: absolute;
         right: 0;
@@ -34,7 +34,7 @@
         gap: 55px;
 
         @include mixins.tablet-only {
-            gap: 30px;
+            gap: 0px;
 
         }
     }
@@ -56,13 +56,19 @@
         }
     }
 
-
     .user-post-container {
+        width: 100%;
+        margin: 0 auto;
+        padding: 15px 0px;
+    }
+
+    .user-post {
         display: flex;
         flex-direction: row;
         justify-content: center;
         align-items: center;
-        gap: 20px;
+        gap: 40px;
+
 
         @include mixins.tablet-only {
             flex-direction: row;
@@ -72,11 +78,13 @@
 
         @include mixins.desktop-only {
             gap: 20px;
+            display: flex;
+            justify-content: center;
         }
 
         .user-comment {
             width: 100%;
-            background-color: rgba(177, 177, 177, 0.1);
+            background-color: rgba(19, 18, 18, 0.5);
             color: #fff;
             padding: 5px;
             border-radius: 7px;
@@ -96,7 +104,7 @@
             }
 
             @include mixins.desktop-only {
-                width: 70%;
+                width: 100%;
                 display: flex;
                 align-items: flex-start;
                 justify-content: center;

@@ -527,8 +527,8 @@ input:focus {
 }
 
 .user-image {
-  height: 100px;
-  width: 100px;
+  height: 120px;
+  width: 120px;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -877,7 +877,7 @@ select {
 }
 @media screen and (min-width: 1100px) {
   .community-wrapper {
-    width: 70%;
+    width: 74%;
     padding: 20px 0px 50px 70px;
     position: absolute;
     right: 0;
@@ -893,7 +893,7 @@ select {
 }
 @media screen and (min-width: 768px) {
   .community-wrapper .community {
-    gap: 30px;
+    gap: 0px;
   }
 }
 .community-wrapper .logout {
@@ -910,27 +910,34 @@ select {
   text-decoration: underline;
 }
 .community-wrapper .user-post-container {
+  width: 100%;
+  margin: 0 auto;
+  padding: 15px 0px;
+}
+.community-wrapper .user-post {
   display: flex;
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  gap: 20px;
+  gap: 40px;
 }
 @media screen and (min-width: 768px) {
-  .community-wrapper .user-post-container {
+  .community-wrapper .user-post {
     flex-direction: row;
     justify-content: flex-start;
     gap: 10px;
   }
 }
 @media screen and (min-width: 1100px) {
-  .community-wrapper .user-post-container {
+  .community-wrapper .user-post {
     gap: 20px;
+    display: flex;
+    justify-content: center;
   }
 }
-.community-wrapper .user-post-container .user-comment {
+.community-wrapper .user-post .user-comment {
   width: 100%;
-  background-color: rgba(177, 177, 177, 0.1);
+  background-color: rgba(19, 18, 18, 0.5);
   color: #fff;
   padding: 5px;
   border-radius: 7px;
@@ -942,7 +949,7 @@ select {
   align-items: flex-start;
 }
 @media screen and (min-width: 768px) {
-  .community-wrapper .user-post-container .user-comment {
+  .community-wrapper .user-post .user-comment {
     padding: 10px;
     align-items: flex-start;
     justify-content: flex-start;
@@ -951,24 +958,24 @@ select {
   }
 }
 @media screen and (min-width: 1100px) {
-  .community-wrapper .user-post-container .user-comment {
-    width: 70%;
+  .community-wrapper .user-post .user-comment {
+    width: 100%;
     display: flex;
     align-items: flex-start;
     justify-content: center;
   }
 }
-.community-wrapper .user-post-container p {
+.community-wrapper .user-post p {
   margin: 0;
   text-align: left;
 }
-.community-wrapper .user-post-container .bold {
+.community-wrapper .user-post .bold {
   font-size: 1.1rem;
   font-weight: 600;
   margin: 0px 5px 0px 0px;
 }
 @media screen and (min-width: 1100px) {
-  .community-wrapper .user-post-container .bold {
+  .community-wrapper .user-post .bold {
     font-size: 1.2rem;
   }
 }
@@ -1015,7 +1022,7 @@ select {
 }
 @media screen and (min-width: 1100px) {
   .forum-form-container {
-    width: 70%;
+    width: 75%;
   }
 }
 .forum-form-container form {
@@ -1027,17 +1034,21 @@ select {
 }
 .forum-form-container label {
   color: #fff;
+  margin: 5px 0px;
 }
 .forum-form-container input {
   border-radius: 4px;
-  border: none;
+  border: 2px solid #22277a;
   padding: 5px;
+  background-color: #0F1424;
+  color: #fff;
+  margin: 5px 0px;
 }
 .forum-form-container textarea {
   display: block;
   margin: 5px 0px;
   border-radius: 5px;
-  border: 2px solid #5847EB;
+  border: 2px solid #22277a;
   background-color: #0F1424;
   color: #fff;
   height: 5rem;
@@ -1054,6 +1065,67 @@ select {
     width: 100%;
     font-size: 1.1rem;
   }
+}
+.forum-form-container .forum-btn {
+  padding: 10px;
+  background-color: #5847EB;
+  border: none;
+  color: #fff;
+  border-radius: 6px;
+  font-weight: 500;
+  transition: background-color 0.2s ease;
+  padding: 10px;
+  width: 7rem;
+  margin: 10px auto;
+}
+.forum-form-container .forum-btn:hover {
+  cursor: pointer;
+  background-color: #453aa9;
+}
+
+.forum-heading {
+  color: #5847EB;
+  margin: 0px auto 20px;
+  width: 100%;
+}
+
+.public-tasks-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+}
+
+.forum-feed {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  padding: 15px 0px 0px;
+}
+
+.forum-post-container {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  gap: 50px;
+  justify-content: flex-start;
+  align-items: center;
+  color: #fff;
+  background-color: rgba(19, 18, 18, 0.5);
+  border: 2px solid rgba(21, 14, 39, 0.5);
+  border-radius: 7px;
+  box-shadow: 0 20px 40px rgba(40, 6, 117, 0.5);
+}
+.forum-post-container p {
+  margin: 0;
+  padding: 0;
+}
+
+.comment {
+  padding: 0;
+  margin: 0;
+  text-align: left;
 }
 
 * {

@@ -73,7 +73,7 @@ const userSchema = new mongoose.Schema({
 });
 
 const forumSchema = new mongoose.Schema({
-    titel: {
+    title: {
         type: String,
         required: true,
     },

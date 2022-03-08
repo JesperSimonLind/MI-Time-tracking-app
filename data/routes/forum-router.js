@@ -7,7 +7,8 @@ const jwt = require("jsonwebtoken");
 const cookieParser = require("cookie-parser");
 const {
     UsersModel,
-    TasksModel
+    TasksModel,
+    ForumModel
 } = require("../models/Models.js");
 const {
     hashPassword,
@@ -24,21 +25,43 @@ const {
 
 // READ – FORUM
 router.get("/:id", async (req, res) => {
-const user = await UsersModel.findById(req.params.id).lean();
+    const user = await UsersModel.findById(req.params.id).lean();
 
-TasksModel.find({
-        user: {
-            _id: user._id,
-            username: user.username,
-            profilePicture: user.profilePicture,
+    TasksModel.find({
+            user: {
+                _id: user._id,
+                username: user.username,
+                profilePicture: user.profilePicture,
+            },
         },
-    },
-    function (err, tasks) {
-        res.render("forum/forum-dashboard", {
-            user,
-            tasks
+        function (err, tasks) {
+            res.render("forum/forum-dashboard", {
+                user,
+                tasks
+            });
+        }).lean();
+})
+
+// CREATE – ADD POST TO FORUM
+router.post("/:id", async (req, res) => {
+    const user = await UsersModel.findById(req.params.id).lean();
+    const { title, post } = req.body;
+
+    if (post) {
+        const newPost = new ForumModel({
+            title: title,
+            post: post,
+            user: {
+                _id: user._id,
+                username: user.username,
+                profilePicture: user.profilePicture,
+            },
         });
-    }).lean();
+        await newPost.save();
+        res.redirect("/forum/" + user._id);
+    } else {
+        console.log(error)
+    }
 })
 
 

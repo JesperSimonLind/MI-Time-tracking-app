@@ -8,24 +8,32 @@
                 <a href="/users/signout" class="logout-btn">Logout</a>
             </div>
 
-            {{#each publicTasks}}
-            <div class="user-post-container">
-                <div class="user-image">
-                    <img src="{{user.profilePicture}}" alt="Profile picture of user" />
+            <div class="forum-form-container">
+                <div class="forum-heading">
+                    <h1>Home</h1>
                 </div>
-                <div class="user-comment">
-                    <p>
-                        <span class="bold">@{{user.username}}</span>
-                        added
-                        <span class="time">
-                            {{hours}}</span>
-                        hours to:
-                        {{category}}
-                    </p>
-                    <p class="comment">{{description}}</p>
+                {{#each publicTasks}}
+                <div class="user-post-container">
+
+                    <div class="user-post">
+                        <div class="user-image">
+                            <img src="{{user.profilePicture}}" alt="Profile picture of user" />
+                        </div>
+                        <div class="user-comment">
+                            <p>
+                                <span class="bold">@{{user.username}}</span>
+                                added
+                                <span class="time">
+                                    {{hours}}</span>
+                                hours to:
+                                {{category}}
+                            </p>
+                            <p class="comment">{{description}}</p>
+                        </div>
+                    </div>
                 </div>
+                {{/each}}
             </div>
-            {{/each}}
 
         </div>
     </div>
