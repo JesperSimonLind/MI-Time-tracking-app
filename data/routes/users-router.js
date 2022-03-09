@@ -98,48 +98,54 @@ router.post("/signup", async (req, res) => {
     //     console.log(err);
     // }
 
-    UsersModel.findOne(
-        {
-            username,
-        },
-        async (error, user) => {
-            if (user) {
-                res.render("users/users-create", {
-                    usernameTaken,
-                });
-            } else {
-                if (req.files != null) {
-                    // Profile picture (image upload)
-                    const image = req.files.profilePic;
-                    const filename = getUniqueFilename(image.name);
-                    const uploadPath = path.join(
-                        __dirname,
-                        "../../public/uploads",
-                        filename
-                    );
-                    await image.mv(uploadPath);
-
-                    const newUser = new UsersModel({
-                        username: username,
-                        password: hashPassword(password),
-                        email: email,
-                        profilePicture: "/uploads/" + filename,
+    try {
+        validateUsername(username);
+    } catch (err) {
+        res.status(400).send(err);
+    } finally {
+        UsersModel.findOne(
+            {
+                username,
+            },
+            async (error, user) => {
+                if (user) {
+                    res.render("users/users-create", {
+                        usernameTaken,
                     });
-                    await newUser.save();
-                    res.redirect("/");
                 } else {
-                    const newUser = new UsersModel({
-                        username: username,
-                        password: hashPassword(password),
-                        email: email,
-                        profilePicture: "/assets/profile.jpg",
-                    });
-                    await newUser.save();
-                    res.redirect("/");
+                    if (req.files != null) {
+                        // Profile picture (image upload)
+                        const image = req.files.profilePic;
+                        const filename = getUniqueFilename(image.name);
+                        const uploadPath = path.join(
+                            __dirname,
+                            "../../public/uploads",
+                            filename
+                        );
+                        await image.mv(uploadPath);
+
+                        const newUser = new UsersModel({
+                            username: username,
+                            password: hashPassword(password),
+                            email: email,
+                            profilePicture: "/uploads/" + filename,
+                        });
+                        await newUser.save();
+                        res.redirect("/");
+                    } else {
+                        const newUser = new UsersModel({
+                            username: username,
+                            password: hashPassword(password),
+                            email: email,
+                            profilePicture: "/assets/profile.jpg",
+                        });
+                        await newUser.save();
+                        res.redirect("/");
+                    }
                 }
             }
-        }
-    );
+        );
+    }
 });
 
 // READ - DASHBOARD

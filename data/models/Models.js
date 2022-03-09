@@ -49,7 +49,13 @@ const taskSchema = new mongoose.Schema({
 const userSchema = new mongoose.Schema({
     username: {
         type: String,
-        required: true,
+        required: [
+            function () {
+                return this.username != null;
+            },
+            "Username is incorrect",
+        ],
+        minlength: 4,
     },
     password: {
         type: String,
