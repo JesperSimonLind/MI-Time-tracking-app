@@ -25,6 +25,8 @@ router.get(
             async (err, user) => {
                 const userData = { username: req.user.displayName };
 
+                console.log(req.user);
+
                 if (user) {
                     userData.userId = user._id;
                     userData.profilePicture = user.profilePicture;

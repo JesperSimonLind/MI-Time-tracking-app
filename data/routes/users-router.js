@@ -66,72 +66,51 @@ router.post("/signup", async (req, res) => {
     const usernameTaken =
         "That username is already taken! Please pick another one.";
 
-    // let errorMessage = "";
+    UsersModel.findOne(
+        {
+            username,
+        },
+        async (error, user) => {
+            if (user) {
+                res.render("users/users-create", {
+                    usernameTaken,
+                });
+            } else {
+                if (req.files != null) {
+                    // Profile picture (image upload)
+                    const image = req.files.profilePic;
+                    const filename = getUniqueFilename(image.name);
+                    const uploadPath = path.join(
+                        __dirname,
+                        "../../public/uploads",
+                        filename
+                    );
+                    await image.mv(uploadPath);
 
-    // if (
-    //     validateUsername(username) === false &&
-    //     username.length < 4 &&
-    //     username.length > 16
-    // ) {
-    //     errorMessage = "Username incorrect";
-    //     res.render("users/users-create", {
-    //         errorMessage,
-    //     });
-    // }
-    // if (validateEmail(email) === false) {
-    //     errorMessage = "Email incorrect";
-    //     res.render("users/users-create", {
-    //         errorMessage,
-    //     });
-    // }
-    // if (password.length < 4 && password.length > 16) {
-    //     errorMessage =
-    //         "Password is incorrect need to be between 4-16 characters";
-    //     res.render("users/users-create", {
-    //         errorMessage,
-    //     });
-    // } else {
-    // try {
-    //     validateUsername(username);
-    //     validateEmail(email);
-    // } catch (err) {
-    //     console.log(err);
-    // }
-
-    try {
-        validateUsername(username);
-    } catch (err) {
-        res.status(400).send(err);
-    } finally {
-        UsersModel.findOne(
-            {
-                username,
-            },
-            async (error, user) => {
-                if (user) {
-                    res.render("users/users-create", {
-                        usernameTaken,
+                    const newUser = new UsersModel({
+                        username: username,
+                        password: hashPassword(password),
+                        email: email,
+                        profilePicture: "/uploads/" + filename,
                     });
+                    await newUser.save();
+                    res.redirect("/");
                 } else {
-                    if (req.files != null) {
-                        // Profile picture (image upload)
-                        const image = req.files.profilePic;
-                        const filename = getUniqueFilename(image.name);
-                        const uploadPath = path.join(
-                            __dirname,
-                            "../../public/uploads",
-                            filename
-                        );
-                        await image.mv(uploadPath);
-
-                        const newUser = new UsersModel({
-                            username: username,
-                            password: hashPassword(password),
-                            email: email,
-                            profilePicture: "/uploads/" + filename,
+                    if (
+                        validateUsername(username) === false ||
+                        username.length < 4 ||
+                        username.length > 16
+                    ) {
+                        errorMessage = "Username incorrect";
+                        res.render("users/users-create", {
+                            errorMessage,
                         });
-                        await newUser.save();
-                        res.redirect("/");
+                    }
+                    if (validateEmail(email) === false) {
+                        errorMessage = "Email incorrect";
+                        res.render("users/users-create", {
+                            errorMessage,
+                        });
                     } else {
                         const newUser = new UsersModel({
                             username: username,
@@ -144,8 +123,8 @@ router.post("/signup", async (req, res) => {
                     }
                 }
             }
-        );
-    }
+        }
+    );
 });
 
 // READ - DASHBOARD
