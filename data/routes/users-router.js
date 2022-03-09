@@ -10,10 +10,13 @@ const {
     hashPassword,
     comparePassword,
     getUniqueFilename,
+    validateEmail,
+    validateUsername,
 } = require("../utils.js");
 const bcrypt = require("bcrypt");
 const path = require("path");
 const { default: mongoose } = require("mongoose");
+const { stringify } = require("querystring");
 
 // ROUTES //
 
@@ -43,7 +46,7 @@ router.post("/", async (req, res) => {
 
                 res.redirect("/users/" + user._id + "/dashboard");
             } else {
-                const errorUser = "Sorry! Username and password don't match."
+                const errorUser = "Sorry! Username and password don't match.";
                 res.render("home", {
                     errorUser,
                 });
@@ -59,7 +62,7 @@ router.get("/signup", (req, res) => {
 
 // POST – SIGN UP PAGE
 router.post("/signup", async (req, res) => {
-    const { username, password, email, profilePic } = req.body;
+    const { username, password, email, confirmPassword } = req.body;
 
     const usernameTaken =
         "That username is already taken! Please pick another one.";
@@ -83,25 +86,77 @@ router.post("/signup", async (req, res) => {
                         "../../public/uploads",
                         filename
                     );
-                    await image.mv(uploadPath);
 
-                    const newUser = new UsersModel({
-                        username: username,
-                        password: hashPassword(password),
-                        email: email,
-                        profilePicture: "/uploads/" + filename,
-                    });
-                    await newUser.save();
-                    res.redirect("/");
+                    let errorMessage = {};
+                    if (
+                        validateUsername(username) === false ||
+                        username.length < 4 ||
+                        username.length > 16
+                    ) {
+                        errorMessage.error = "Username incorrect";
+                    }
+                    if (validateEmail(email) === false) {
+                        errorMessage.error2 = "Email incorrect";
+                    }
+                    if (password !== confirmPassword) {
+                        errorMessage.error3 = "Password dont match";
+                    }
+
+                    if (
+                        Object.keys(errorMessage).length === 0 &&
+                        errorMessage.constructor === Object
+                    ) {
+                        await image.mv(uploadPath);
+                        const newUser = new UsersModel({
+                            username: username,
+                            password: hashPassword(password),
+                            email: email,
+                            profilePicture: "/uploads/" + filename,
+                        });
+                        await newUser.save();
+                        res.redirect("/");
+                    } else {
+                        res.render("users/users-create", {
+                            errorMessage,
+                            username,
+                            email,
+                        });
+                    }
                 } else {
-                    const newUser = new UsersModel({
-                        username: username,
-                        password: hashPassword(password),
-                        email: email,
-                        profilePicture: "/assets/profile.jpg",
-                    });
-                    await newUser.save();
-                    res.redirect("/");
+                    let errorMessage = {};
+                    if (
+                        validateUsername(username) === false ||
+                        username.length < 4 ||
+                        username.length > 16
+                    ) {
+                        errorMessage.error = "Username incorrect";
+                    }
+                    if (validateEmail(email) === false) {
+                        errorMessage.error2 = "Email incorrect";
+                    }
+                    if (password !== confirmPassword) {
+                        errorMessage.error3 = "Password dont match";
+                    }
+
+                    if (
+                        Object.keys(errorMessage).length === 0 &&
+                        errorMessage.constructor === Object
+                    ) {
+                        const newUser = new UsersModel({
+                            username: username,
+                            password: hashPassword(password),
+                            email: email,
+                            profilePicture: "/assets/profile.jpg",
+                        });
+                        await newUser.save();
+                        res.redirect("/");
+                    } else {
+                        res.render("users/users-create", {
+                            errorMessage,
+                            username,
+                            email,
+                        });
+                    }
                 }
             }
         }
@@ -245,6 +300,5 @@ router.post("/:id/delete", async (req, res) => {
     res.clearCookie("token");
     res.redirect("/");
 });
-
 
 module.exports = router;
