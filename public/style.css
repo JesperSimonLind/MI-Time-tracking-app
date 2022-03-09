@@ -353,18 +353,8 @@ input:focus {
 .dashboard-wrapper .username {
   margin: 0;
   padding: 0;
-  font-size: 1rem;
+  font-size: 0.9rem;
   font-weight: 500;
-}
-@media screen and (min-width: 768px) {
-  .dashboard-wrapper .username {
-    font-size: 0.9rem;
-  }
-}
-@media screen and (min-width: 1100px) {
-  .dashboard-wrapper .username {
-    font-size: 1rem;
-  }
 }
 .dashboard-wrapper .icons {
   display: flex;
@@ -527,16 +517,22 @@ input:focus {
 }
 
 .user-image {
-  max-height: 120px;
-  max-width: 120px;
+  max-height: 200px;
+  max-width: 200px;
   display: flex;
   flex-direction: column;
   justify-content: center;
 }
 @media screen and (min-width: 768px) {
   .user-image {
-    height: 120px;
+    height: 220px;
     width: 100%;
+  }
+}
+@media screen and (min-width: 1100px) {
+  .user-image {
+    max-width: 100px;
+    max-height: 100px;
   }
 }
 
@@ -549,12 +545,7 @@ input:focus {
 }
 @media screen and (min-width: 768px) {
   .user-image img {
-    max-height: 70px;
-  }
-}
-@media screen and (min-width: 1100px) {
-  .user-image img {
-    max-height: 150px;
+    max-height: 200px;
   }
 }
 
@@ -880,7 +871,7 @@ select {
 }
 @media screen and (min-width: 768px) {
   .community-wrapper {
-    width: 70%;
+    width: 90%;
     margin: 0 auto;
   }
 }
@@ -925,7 +916,7 @@ select {
 }
 .community-wrapper .user-post {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   gap: 10px;
@@ -951,7 +942,7 @@ select {
   border-radius: 7px;
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  gap: 0px;
   border: 2px solid rgba(21, 14, 39, 0.5);
   justify-content: flex-start;
   align-items: flex-start;
@@ -1137,9 +1128,9 @@ select {
 
 .forum-post-container {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   width: 100%;
-  gap: 50px;
+  gap: 10px;
   justify-content: flex-start;
   align-items: center;
   color: #fff;
@@ -1149,9 +1140,18 @@ select {
   box-shadow: 0 20px 40px rgba(40, 6, 117, 0.5);
   padding: 10px;
 }
+@media screen and (min-width: 768px) {
+  .forum-post-container {
+    flex-direction: row;
+    gap: 50px;
+  }
+}
 .forum-post-container p {
   margin: 0;
   padding: 0;
+}
+.forum-post-container .post-title {
+  font-size: 1.2rem;
 }
 .forum-post-container .post {
   display: flex;
@@ -1192,7 +1192,7 @@ select {
   font-weight: 300;
 }
 
-.comment {
+.post-comment {
   padding: 0;
   margin: 0;
   text-align: left;

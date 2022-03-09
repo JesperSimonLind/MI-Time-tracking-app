@@ -120,9 +120,9 @@
 
 .forum-post-container {
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     width: 100%;
-    gap: 50px;
+    gap: 10px;
     justify-content: flex-start;
     align-items: center;
     color: #fff;
@@ -132,11 +132,21 @@
     box-shadow: 0 20px 40px rgba(40, 6, 117, 0.5);
     padding: 10px;
 
+    @include mixins.tablet-only {
+        flex-direction: row;
+        gap: 50px;
+    }
+
     p {
         margin: 0;
         padding: 0;
 
     }
+
+    .post-title {
+        font-size: 1.2rem;
+    }
+
 
 
     .post {
@@ -186,7 +196,8 @@
     }
 }
 
-.comment {
+
+.post-comment {
     padding: 0;
     margin: 0;
     text-align: left;
