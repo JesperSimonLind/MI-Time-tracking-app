@@ -353,8 +353,9 @@ input:focus {
 .dashboard-wrapper .username {
   margin: 0;
   padding: 0;
-  font-size: 0.9rem;
-  font-weight: 500;
+  font-size: 1rem;
+  font-weight: 400;
+  display: block;
 }
 .dashboard-wrapper .icons {
   display: flex;
@@ -445,6 +446,10 @@ input:focus {
 .dashboard-wrapper svg:hover {
   cursor: pointer;
   color: #fff;
+}
+.dashboard-wrapper .dashboard-username {
+  font-size: 1.3rem;
+  font-weight: 300;
 }
 
 .task {
@@ -629,6 +634,33 @@ input:focus {
 
 .dropdown-container {
   min-width: 14rem;
+}
+
+.mobile-nav {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 40px;
+  padding: 10px 0px;
+}
+@media screen and (min-width: 768px) {
+  .mobile-nav {
+    display: none;
+  }
+}
+@media screen and (min-width: 1100px) {
+  .mobile-nav {
+    display: none;
+  }
+}
+.mobile-nav a {
+  font-size: 1.1rem;
+  border-bottom: 2px solid #5847EB;
+  text-decoration: none;
+}
+.mobile-nav a:hover {
+  text-decoration: none;
 }
 
 .not-found-container {
@@ -969,13 +1001,13 @@ select {
   text-align: left;
 }
 .community-wrapper .user-post .bold {
-  font-size: 1.1rem;
-  font-weight: 600;
+  font-size: 0.8rem;
+  font-weight: 500;
   margin: 0px 5px 0px 0px;
 }
 @media screen and (min-width: 1100px) {
   .community-wrapper .user-post .bold {
-    font-size: 1.2rem;
+    font-size: 1rem;
   }
 }
 .community-wrapper .time {
@@ -986,11 +1018,7 @@ select {
 }
 
 .buttons-container {
-  display: flex;
-  flex-direction: row;
-  gap: 10px;
-  justify-content: center;
-  padding: 10px 0px 10px;
+  display: none;
 }
 @media screen and (min-width: 768px) {
   .buttons-container {
@@ -1159,6 +1187,7 @@ select {
   justify-content: flex-start;
   align-items: flex-start;
   width: 100%;
+  padding: 10px;
 }
 .forum-post-container .post p {
   margin: 2px 0px;
@@ -1176,6 +1205,9 @@ select {
 }
 .forum-post-container .post-buttons svg:hover {
   cursor: pointer;
+}
+.forum-post-container .post-username {
+  font-size: 0.9rem;
 }
 
 .forum-links {

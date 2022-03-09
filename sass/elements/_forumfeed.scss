@@ -155,6 +155,7 @@
         justify-content: flex-start;
         align-items: flex-start;
         width: 100%;
+        padding: 10px;
 
         p {
             margin: 2px 0px;
@@ -176,6 +177,10 @@
                 cursor: pointer;
             }
         }
+    }
+
+    .post-username {
+        font-size: 0.9rem;
     }
 
 

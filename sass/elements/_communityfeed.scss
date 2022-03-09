@@ -113,12 +113,12 @@
         }
 
         .bold {
-            font-size: 1.1rem;
-            font-weight: 600;
+            font-size: 0.8rem;
+            font-weight: 500;
             margin: 0px 5px 0px 0px;
 
             @include mixins.desktop-only {
-                font-size: 1.2rem;
+                font-size: 1rem;
             }
         }
 
@@ -134,11 +134,7 @@
 }
 
 .buttons-container {
-    display: flex;
-    flex-direction: row;
-    gap: 10px;
-    justify-content: center;
-    padding: 10px 0px 10px;
+    display: none;
 
     @include mixins.tablet-only {
         display: flex;
