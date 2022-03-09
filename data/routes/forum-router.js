@@ -99,4 +99,27 @@ router.get("/:id/list", async (req, res) => {
 })
 
 
+
+// READ – UPDATE POST
+router.get("/:userid/:id/update", async (req, res) => {
+    const user = await UsersModel.findById(req.params.userid).lean();
+    const post = await ForumModel.findById(req.params.id).lean()
+
+    TasksModel.find({
+            user: {
+                _id: user._id,
+                username: user.username,
+                profilePicture: user.profilePicture,
+            },
+        },
+        function (err, tasks) {
+            res.render("forum/forum-update", {
+                user,
+                tasks,
+                post
+            });
+        }).lean();
+})
+
+
 module.exports = router;

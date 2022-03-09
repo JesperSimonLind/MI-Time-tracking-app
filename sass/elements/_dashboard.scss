@@ -358,7 +358,7 @@
 
     @include mixins.tablet-only {
         height: 120px;
-        width: 120px;
+        width: 100%;
     }
 
 }

@@ -144,9 +144,27 @@
         flex-direction: column;
         justify-content: flex-start;
         align-items: flex-start;
+        width: 100%;
 
         p {
             margin: 2px 0px;
+        }
+    }
+
+    .post-buttons {
+        display: flex;
+        justify-content: flex-end;
+        align-items: flex-end;
+        width: 100%;
+        gap: 20px;
+
+        svg {
+            height: 20px;
+            width: 20px;
+
+            &:hover {
+                cursor: pointer;
+            }
         }
     }
 

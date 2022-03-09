@@ -536,7 +536,7 @@ input:focus {
 @media screen and (min-width: 768px) {
   .user-image {
     height: 120px;
-    width: 120px;
+    width: 100%;
   }
 }
 
@@ -1158,9 +1158,24 @@ select {
   flex-direction: column;
   justify-content: flex-start;
   align-items: flex-start;
+  width: 100%;
 }
 .forum-post-container .post p {
   margin: 2px 0px;
+}
+.forum-post-container .post-buttons {
+  display: flex;
+  justify-content: flex-end;
+  align-items: flex-end;
+  width: 100%;
+  gap: 20px;
+}
+.forum-post-container .post-buttons svg {
+  height: 20px;
+  width: 20px;
+}
+.forum-post-container .post-buttons svg:hover {
+  cursor: pointer;
 }
 
 .forum-links {
