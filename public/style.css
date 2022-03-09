@@ -251,7 +251,6 @@ input:focus {
     background-repeat: no-repeat;
     height: 100vh;
     color: #fff;
-    overflow-y: scroll;
     background-attachment: fixed;
   }
 }
@@ -299,13 +298,14 @@ input:focus {
   height: auto;
   color: #fff;
   border-radius: 20px;
-  overflow-y: scroll;
   padding-top: 10px;
   box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
 }
+.dashboard-wrapper:hover {
+  overflow-y: auto;
+}
 @media screen and (min-width: 768px) {
   .dashboard-wrapper {
-    overflow-y: scroll;
     height: 55vh;
     width: 70%;
     padding-top: 0px;
@@ -314,7 +314,6 @@ input:focus {
 }
 @media screen and (min-width: 1100px) {
   .dashboard-wrapper {
-    overflow-y: scroll;
     position: fixed;
     height: 95vh;
     width: 29%;
@@ -971,7 +970,9 @@ select {
     right: 0;
     top: 0;
     height: 100vh;
-    overflow-y: scroll;
+  }
+  .community-wrapper:hover {
+    overflow-y: auto;
   }
 }
 .community-wrapper .community {
@@ -1238,7 +1239,12 @@ select {
 @media screen and (min-width: 768px) {
   .forum-post-container {
     flex-direction: row;
-    gap: 50px;
+    gap: 10px;
+  }
+}
+@media screen and (min-width: 768px) {
+  .forum-post-container {
+    gap: 30px;
   }
 }
 .forum-post-container p {

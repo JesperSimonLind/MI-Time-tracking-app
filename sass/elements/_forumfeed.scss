@@ -135,7 +135,11 @@
 
     @include mixins.tablet-only {
         flex-direction: row;
-        gap: 50px;
+        gap: 10px;
+    }
+
+    @include mixins.tablet-only {
+        gap: 30px;
     }
 
     p {
