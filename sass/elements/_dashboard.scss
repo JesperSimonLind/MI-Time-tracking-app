@@ -148,16 +148,8 @@
         margin: 0;
         padding: 0;
         font-size: 1rem;
-        font-weight: 500;
-
-
-        @include mixins.tablet-only {
-            font-size: 0.9rem;
-        }
-
-        @include mixins.desktop-only {
-            font-size: 1rem;
-        }
+        font-weight: 400;
+        display: block;
     }
 
     .icons {
@@ -266,6 +258,11 @@
         color: #fff;
     }
 
+    .dashboard-username {
+        font-size: 1.3rem;
+        font-weight: 300;
+    }
+
 }
 
 .task {
@@ -350,15 +347,20 @@
 
 
 .user-image {
-    max-height: 120px;
-    max-width: 120px;
+    max-height: 200px;
+    max-width: 200px;
     display: flex;
     flex-direction: column;
     justify-content: center;
 
     @include mixins.tablet-only {
-        height: 120px;
+        height: 220px;
         width: 100%;
+    }
+
+    @include mixins.desktop-only {
+        max-width: 100px;
+        max-height: 100px;
     }
 
 }
@@ -371,12 +373,9 @@
     object-fit: cover;
 
     @include mixins.tablet-only {
-        max-height: 70px;
+        max-height: 200px;
     }
 
-    @include mixins.desktop-only {
-        max-height: 150px;
-    }
 }
 
 .form {
@@ -471,4 +470,32 @@
 
 .dropdown-container {
     min-width: 14rem;
+}
+
+.mobile-nav {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 40px;
+    padding: 10px 0px;
+
+
+    @include mixins.tablet-only {
+        display: none;
+    }
+
+    @include mixins.desktop-only {
+        display: none;
+    }
+
+    a {
+        font-size: 1.1rem;
+        border-bottom: 2px solid variables.$color-purple;
+        text-decoration: none;
+
+        &:hover {
+            text-decoration: none;
+        }
+    }
 }
