@@ -5,11 +5,7 @@ const express = require("express");
 const router = express.Router();
 const jwt = require("jsonwebtoken");
 const cookieParser = require("cookie-parser");
-const {
-    UsersModel,
-    TasksModel,
-    ForumModel
-} = require("../models/Models.js");
+const { UsersModel, TasksModel, ForumModel } = require("../models/Models.js");
 const {
     hashPassword,
     comparePassword,
@@ -17,9 +13,7 @@ const {
 } = require("../utils.js");
 const bcrypt = require("bcrypt");
 const path = require("path");
-const {
-    default: mongoose
-} = require("mongoose");
+const { default: mongoose } = require("mongoose");
 
 // ROUTES //
 
@@ -28,7 +22,8 @@ router.get("/:id", async (req, res) => {
     const user = await UsersModel.findById(req.params.id).lean();
     const forumPosts = await ForumModel.find().lean();
 
-    TasksModel.find({
+    TasksModel.find(
+        {
             user: {
                 _id: user._id,
                 username: user.username,
@@ -39,23 +34,23 @@ router.get("/:id", async (req, res) => {
             res.render("forum/forum-dashboard", {
                 user,
                 tasks,
-                forumPosts
+                forumPosts,
             });
-        }).lean();
-})
+        }
+    ).lean();
+});
 
 // CREATE – ADD POST TO FORUM
 router.post("/:id", async (req, res) => {
     const user = await UsersModel.findById(req.params.id).lean();
-    const {
-        title,
-        post
-    } = req.body;
+    const { title, post } = req.body;
+    const date = new Date().toISOString();
 
     if (post) {
         const newPost = new ForumModel({
             title: title,
             post: post,
+            created: date,
             user: {
                 _id: user._id,
                 username: user.username,
@@ -65,15 +60,16 @@ router.post("/:id", async (req, res) => {
         await newPost.save();
         res.redirect("/forum/" + user._id);
     } else {
-        console.log(error)
+        console.log(error);
     }
-})
+});
 
 // READ – FORUM LIST
 router.get("/:id/list", async (req, res) => {
     const user = await UsersModel.findById(req.params.id).lean();
 
-    TasksModel.find({
+    TasksModel.find(
+        {
             user: {
                 _id: user._id,
                 username: user.username,
@@ -81,31 +77,33 @@ router.get("/:id/list", async (req, res) => {
             },
         },
         function (err, tasks) {
-            ForumModel.find({
+            ForumModel.find(
+                {
                     user: {
                         _id: user._id,
                         username: user.username,
                         profilePicture: user.profilePicture,
-                    }
+                    },
                 },
                 (err, myPosts) => {
                     res.render("forum/forum-list", {
                         user,
                         tasks,
-                        myPosts
+                        myPosts,
                     });
-                }).lean();
-        }).lean();
-})
-
-
+                }
+            ).lean();
+        }
+    ).lean();
+});
 
 // READ – UPDATE POST
 router.get("/:userid/:id/update", async (req, res) => {
     const user = await UsersModel.findById(req.params.userid).lean();
-    const post = await ForumModel.findById(req.params.id).lean()
+    const post = await ForumModel.findById(req.params.id).lean();
 
-    TasksModel.find({
+    TasksModel.find(
+        {
             user: {
                 _id: user._id,
                 username: user.username,
@@ -116,20 +114,21 @@ router.get("/:userid/:id/update", async (req, res) => {
             res.render("forum/forum-update", {
                 user,
                 tasks,
-                post
+                post,
             });
-        }).lean();
-})
-
+        }
+    ).lean();
+});
 
 // POST – UPDATE POST
 router.post("/:userid/:id/update", async (req, res) => {
     const user = await UsersModel.findById(req.params.userid).lean();
-    const post = await ForumModel.findById(req.params.id).lean()
+    const post = await ForumModel.findById(req.params.id).lean();
 
-    console.log(post)
+    // console.log(post);
 
-    TasksModel.find({
+    TasksModel.find(
+        {
             user: {
                 _id: user._id,
                 username: user.username,
@@ -137,19 +136,18 @@ router.post("/:userid/:id/update", async (req, res) => {
             },
         },
         async function (err, tasks) {
-            await ForumModel.findByIdAndUpdate({
-                _id: req.params.id,
-            }, {
-                title: req.body.title,
-                post: req.body.post,
-            });
-            res.render("forum/forum-dashboard", {
-                user,
-                tasks,
-                post
-            })
-        }).lean();
-})
-
+            await ForumModel.findByIdAndUpdate(
+                {
+                    _id: req.params.id,
+                },
+                {
+                    title: req.body.title,
+                    post: req.body.post,
+                }
+            );
+            res.redirect("/forum/" + user._id);
+        }
+    ).lean();
+});
 
 module.exports = router;
