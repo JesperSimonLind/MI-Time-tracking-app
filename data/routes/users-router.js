@@ -86,7 +86,6 @@ router.post("/signup", async (req, res) => {
                         "../../public/uploads",
                         filename
                     );
-                    await image.mv(uploadPath);
 
                     let errorMessage = {};
                     if (
@@ -107,6 +106,7 @@ router.post("/signup", async (req, res) => {
                         Object.keys(errorMessage).length === 0 &&
                         errorMessage.constructor === Object
                     ) {
+                        await image.mv(uploadPath);
                         const newUser = new UsersModel({
                             username: username,
                             password: hashPassword(password),
