@@ -2,9 +2,14 @@
 
     <div class="home-container-overlay">
         <div class="mobile-nav">
-            <a href="/users/{{user._id}}/dashboard">Home</a>
-            <a href="/forum/{{user._id}}">Forum</a>
-            <a href="/users/signout">Logout</a>
+            <div class="logo-container">
+                <img src="/assets/logo-white.png" alt="">
+            </div>
+            <div class="mobile-nav-links">
+                <a href="/users/{{user._id}}/dashboard">Home</a>
+                <a href="/forum/{{user._id}}">Forum</a>
+                <a href="/users/signout">Logout</a>
+            </div>
         </div>
         <div class="dashboard-wrapper">
             <div class="dashboard-overlay">
