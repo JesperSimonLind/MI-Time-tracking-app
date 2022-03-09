@@ -5,7 +5,7 @@ const express = require("express");
 const router = express.Router();
 const jwt = require("jsonwebtoken");
 const cookieParser = require("cookie-parser");
-const { UsersModel, TasksModel } = require("../models/Models.js");
+const { UsersModel, TasksModel, ForumModel } = require("../models/Models.js");
 const {
     hashPassword,
     comparePassword,
@@ -262,6 +262,10 @@ router.post("/:id/update", async (req, res) => {
         );
 
         await TasksModel.updateMany(
+            { "user.profilePicture": user.profilePicture },
+            { $set: { "user.profilePicture": "/uploads/" + filename } }
+        );
+        await ForumModel.updateMany(
             { "user.profilePicture": user.profilePicture },
             { $set: { "user.profilePicture": "/uploads/" + filename } }
         );
