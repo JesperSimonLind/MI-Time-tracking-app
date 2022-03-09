@@ -2,14 +2,15 @@
 
     <div class="home-container-overlay">
 
-
         <div class="dashboard-wrapper">
             <div class="dashboard-overlay">
                 <div class="dashboard">
                     <section class="dashboard-header">
                         <div class="user-info-container">
-                            <div class="image-container">
-                                <img src="{{user.profilePicture}}" alt="Profile picture">
+                            <div class="image-section">
+                                <div class="image-container">
+                                    <img src="{{user.profilePicture}}" class="img-circle" alt="Profile picture of user">
+                                </div>
                             </div>
                             <div class="user-info">
                                 <p class="hello">Hello,</p>
@@ -40,6 +41,7 @@
                 </div>
 
                 </section>
+
                 <!-- DROPDOWN MENU -->
                 <section class="dashboard-navigation">
                     <div class="category-dropdown">
@@ -68,27 +70,91 @@
                         <a href="/users/{{user._id}}/dashboard" class="dashboard-btn">My hours</a>
                     </div>
                 </section>
+
                 <section class="dashboard-content">
-                    <div class="delete-form-container">
-                        <form action="/tasks/{{user._id}}/{{tasks._id}}/delete" method="post" class="delete-form">
-                            <p class="sm-heading">Delete activity</p>
-                            <label for="description">Description</label>
-                            <input type="text" name="description" placeholder="{{tasks.description}}" disabled>
-                            <label for="hours">Hours:</label>
-                            <input type="number" name="hours" placeholder="{{tasks.hours}}" disabled>
-                            <input type="submit" class="btn" value="Delete">
 
-                        </form>
-                    </div>
-
+                    {{#each tasks}}
+                    <a href="/tasks/{{user._id}}/{{_id}}/single">
+                        <div class="task">
+                            <div class="task-info-container">
+                                <div class="task-name-container">
+                                    <p class="task-name">{{category}}</p>
+                                </div>
+                                <div class="task-description-container">
+                                    <p class="task-decription">{{description}}</p>
+                                </div>
+                                <div class="task-hours-container">
+                                    <p class="task-hours">Hours: {{hours}}</p>
+                                </div>
+                            </div>
+                            <div class="arrow-container">
+                                <div class="arrow-icon">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" fill="currentColor"
+                                        class="bi bi-arrow-right-circle" viewBox="0 0 16 16">
+                                        <path fill-rule="evenodd"
+                                            d="M1 8a7 7 0 1 0 14 0A7 7 0 0 0 1 8zm15 0A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM4.5 7.5a.5.5 0 0 0 0 1h5.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3a.5.5 0 0 0 0-.708l-3-3a.5.5 0 1 0-.708.708L10.293 7.5H4.5z" />
+                                    </svg>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                    {{/each}}
             </div>
+            </section>
         </div>
-        </section>
     </div>
 </div>
-</div>
 
-{{> communityfeed}}
+<div class="community-wrapper">
+    <div class="community-overlay">
+
+        <div class="community">
+            <div class="buttons-container">
+                <a href="/users/{{user._id}}/dashboard" class="logout-btn">Home</a>
+                <a href="/forum/{{user._id}}" class="logout-btn">Forum</a>
+                <a href="/users/signout" class="logout-btn">Logout</a>
+            </div>
+
+            <!-- FORUM FORM -->
+            <div class="forum-form-container">
+                <div class="forum-heading">
+                    <h1>Forum</h1>
+                </div>
+                <h2>Add a post</h2>
+                <div class="forum-form">
+                    <form action="/forum/{{user._id}}" method="post">
+                        <label for="title">Title*</label>
+                        <input type="text" name="title" placeholder="Title">
+                        <label for="post">Comment*</label>
+                        <textarea name="post" placeholder="Comment..."></textarea>
+                        <input type="submit" value="Post" class="forum-btn">
+                    </form>
+                </div>
+
+                <div class="forum-links">
+                    <a href="/forum/{{user._id}}/list">My posts</a>
+                    <a href="/forum/{{user._id}}">All Posts</a>
+                </div>
+                <div class="forum-feed">
+                    {{#each myPosts}}
+                    <div class="forum-post-container">
+                        <div class="user-image">
+                            <img src="{{user.profilePicture}}" alt="Profile picture of user" />
+                        </div>
+                        <div class="post">
+                            <p>
+                                <span class="bold">@{{user.username}}</span>
+                            <p>{{title}}</p>
+                            </p>
+                            <p class="comment">{{post}}</p>
+                        </div>
+                    </div>
+                    {{/each}}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 
 </div>
 </div>

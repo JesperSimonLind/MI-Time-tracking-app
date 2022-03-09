@@ -36,36 +36,37 @@
                             </a>
                         </div>
                     </section>
+                    <!-- DROPDOWN MENU -->
+                    <section class="dashboard-navigation">
+                        <div class="category-dropdown">
+                            <div class="dropdown show">
+                                <a class="categories-btn dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
+                                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    Find by category
+                                </a>
 
-                    <section class="dashboard-content">
-
-                        <!-- DROPDOWN MENU -->
-                        <section class="dashboard-navigation">
-                            <div class="category-dropdown">
-                                <div class="dropdown show">
-                                    <a class="categories-btn dropdown-toggle" href="#" role="button"
-                                        id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true"
-                                        aria-expanded="false">
-                                        Categories
-                                    </a>
-
-                                    <div class="dropdown-menu dropdown-container" aria-labelledby="dropdownMenuLink">
-                                        <a class="dropdown-item category-link"
-                                            href="/tasks/{{user._id}}/category/work">Work</a>
-                                        <a class="dropdown-item category-link"
-                                            href="/tasks/{{user._id}}/category/study">Study</a>
-                                        <a class="dropdown-item category-link"
-                                            href="/tasks/{{user._id}}/category/exercise">Exercise</a>
-                                        <a class="dropdown-item category-link"
-                                            href="/tasks/{{user._id}}/category/other">Something else
-                                            cool</a>
-                                    </div>
+                                <div class="dropdown-menu dropdown-container" aria-labelledby="dropdownMenuLink">
+                                    <a class="dropdown-item category-link"
+                                        href="/tasks/{{user._id}}/category/work">Work</a>
+                                    <a class="dropdown-item category-link"
+                                        href="/tasks/{{user._id}}/category/study">Study</a>
+                                    <a class="dropdown-item category-link"
+                                        href="/tasks/{{user._id}}/category/exercise">Exercise</a>
+                                    <a class="dropdown-item category-link"
+                                        href="/tasks/{{user._id}}/category/other">Something else
+                                        cool</a>
                                 </div>
                             </div>
-                            <div class="create-btn">
-                                <a href="/tasks/{{user._id}}/create" class="btn">Add hours</a>
-                            </div>
-                        </section>
+                        </div>
+                        <div class="dashboard-btn-container">
+                            <a href="/tasks/{{user._id}}/create" class="dashboard-btn">Add hours</a>
+                        </div>
+                        <div class="dashboard-btn-container">
+                            <a href="/users/{{user._id}}/dashboard" class="dashboard-btn">My hours</a>
+                        </div>
+                    </section>
+                    <section class="dashboard-content">
+
                         <div class="form">
                             <p class="sm-heading">Update activity</p>
                             <form action="/tasks/{{user._id}}/{{tasks._id}}/update" method="post">

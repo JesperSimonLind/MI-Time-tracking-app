@@ -26,6 +26,7 @@ const {
 // READ – FORUM
 router.get("/:id", async (req, res) => {
     const user = await UsersModel.findById(req.params.id).lean();
+    const forumPosts = await ForumModel.find().lean();
 
     TasksModel.find({
             user: {
@@ -37,7 +38,8 @@ router.get("/:id", async (req, res) => {
         function (err, tasks) {
             res.render("forum/forum-dashboard", {
                 user,
-                tasks
+                tasks,
+                forumPosts
             });
         }).lean();
 })
@@ -45,7 +47,10 @@ router.get("/:id", async (req, res) => {
 // CREATE – ADD POST TO FORUM
 router.post("/:id", async (req, res) => {
     const user = await UsersModel.findById(req.params.id).lean();
-    const { title, post } = req.body;
+    const {
+        title,
+        post
+    } = req.body;
 
     if (post) {
         const newPost = new ForumModel({
@@ -62,6 +67,35 @@ router.post("/:id", async (req, res) => {
     } else {
         console.log(error)
     }
+})
+
+// READ – FORUM LIST
+router.get("/:id/list", async (req, res) => {
+    const user = await UsersModel.findById(req.params.id).lean();
+
+    TasksModel.find({
+            user: {
+                _id: user._id,
+                username: user.username,
+                profilePicture: user.profilePicture,
+            },
+        },
+        function (err, tasks) {
+            ForumModel.find({
+                    user: {
+                        _id: user._id,
+                        username: user.username,
+                profilePicture: user.profilePicture,
+                    }
+                },
+                (err, myPosts) => {
+                    res.render("forum/forum-list", {
+                        user,
+                        tasks,
+                        myPosts
+                    });
+                }).lean();
+        }).lean();
 })
 
 

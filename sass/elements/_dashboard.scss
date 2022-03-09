@@ -222,10 +222,10 @@
 
     .dashboard-navigation {
         border-radius: 8px;
-        padding: 8px 0px;
+        padding: 15px 0px;
         display: flex;
         flex-direction: row;
-        gap: 40px;
+        gap: 25px;
         justify-content: center;
         align-items: center;
         margin: 5px 0px;
@@ -375,7 +375,7 @@
     }
 
     @include mixins.desktop-only {
-        max-height: 90px;
+        max-height: 150px;
     }
 }
 
@@ -408,18 +408,25 @@
     }
 }
 
-.btn {
-    margin: 5px 0px;
-    transition: background-color 0.2s ease;
+.dashboard-btn {
+    padding: 8px;
+    background-color: variables.$color-purple;
+    border: none;
+    color: #fff;
+    border-radius: 6px;
+    font-weight: 500;
+    width: 100%;
+    font-size: 0.8rem;
+
 
     &:hover {
-        background-color: #453aa9;
-
+        text-decoration: none;
+        color: #fff;
     }
 }
 
 .dropdown a {
-    font-size: 1rem;
+    font-size: 0.85rem;
     border-bottom: 2px solid variables.$color-dkblue;
     transition: border-bottom 0.1s ease-in-out;
 

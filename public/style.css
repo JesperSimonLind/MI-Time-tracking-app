@@ -420,10 +420,10 @@ input:focus {
 }
 .dashboard-wrapper .dashboard-navigation {
   border-radius: 8px;
-  padding: 8px 0px;
+  padding: 15px 0px;
   display: flex;
   flex-direction: row;
-  gap: 40px;
+  gap: 25px;
   justify-content: center;
   align-items: center;
   margin: 5px 0px;
@@ -554,7 +554,7 @@ input:focus {
 }
 @media screen and (min-width: 1100px) {
   .user-image img {
-    max-height: 90px;
+    max-height: 150px;
   }
 }
 
@@ -584,16 +584,23 @@ input:focus {
   cursor: pointer;
 }
 
-.btn {
-  margin: 5px 0px;
-  transition: background-color 0.2s ease;
+.dashboard-btn {
+  padding: 8px;
+  background-color: #5847EB;
+  border: none;
+  color: #fff;
+  border-radius: 6px;
+  font-weight: 500;
+  width: 100%;
+  font-size: 0.8rem;
 }
-.btn:hover {
-  background-color: #453aa9;
+.dashboard-btn:hover {
+  text-decoration: none;
+  color: #fff;
 }
 
 .dropdown a {
-  font-size: 1rem;
+  font-size: 0.85rem;
   border-bottom: 2px solid #1c1f4a;
   transition: border-bottom 0.1s ease-in-out;
 }
@@ -744,7 +751,6 @@ input:focus {
 
 .task-single-container {
   border-radius: 8px;
-  background-color: #1c1f4a;
   width: 100%;
   margin: 5px 0px;
   display: flex;
@@ -760,7 +766,6 @@ input:focus {
   justify-content: space-between;
   align-items: flex-start;
   margin: 5px 0px;
-  background-color: #1c1f4a;
 }
 .task-single-info:hover {
   cursor: pointer;
@@ -799,6 +804,7 @@ input:focus {
   border-radius: 6px;
   font-weight: 500;
   width: 100%;
+  font-weight: 0.85rem;
 }
 .btn:hover {
   text-decoration: none;
@@ -1046,6 +1052,7 @@ select {
 }
 .forum-form-container h2 {
   color: #cacdff;
+  font-size: 1.6rem;
 }
 .forum-form-container label {
   color: #fff;
@@ -1109,7 +1116,7 @@ select {
   width: 100%;
 }
 .forum-heading h1 {
-  font-size: 2.3rem;
+  font-size: 2.1rem;
 }
 
 .public-tasks-container {
@@ -1125,6 +1132,7 @@ select {
   justify-content: flex-start;
   align-items: flex-start;
   padding: 15px 0px 0px;
+  gap: 30px;
 }
 
 .forum-post-container {
@@ -1139,10 +1147,34 @@ select {
   border: 2px solid rgba(21, 14, 39, 0.5);
   border-radius: 7px;
   box-shadow: 0 20px 40px rgba(40, 6, 117, 0.5);
+  padding: 10px;
 }
 .forum-post-container p {
   margin: 0;
   padding: 0;
+}
+.forum-post-container .post {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+}
+.forum-post-container .post p {
+  margin: 2px 0px;
+}
+
+.forum-links {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 50px;
+  flex-direction: row;
+  padding: 20px 0px;
+}
+.forum-links a {
+  font-size: 1.2rem;
+  text-decoration: underline;
+  font-weight: 300;
 }
 
 .comment {

@@ -24,19 +24,26 @@
                     </form>
                 </div>
 
+                <div class="forum-links">
+                    <a href="/forum/{{user._id}}/list">My posts</a>
+                    <a href="/forum/{{user._id}}">All Posts</a>
+                </div>
 
                 <div class="forum-feed">
+                    {{#each forumPosts}}
                     <div class="forum-post-container">
                         <div class="user-image">
-                            <img src="" alt="Profile picture of user" />
+                            <img src="{{user.profilePicture}}" alt="Profile picture of user" />
                         </div>
-                        <div class="user-comment">
+                        <div class="post">
                             <p>
-                                <span class="bold">@username ska vara här</span>
+                                <span class="bold">@{{user.username}}</span>
+                            <p>{{title}}</p>
                             </p>
-                            <p class="comment">Kommentar ska vara här</p>
+                            <p class="comment">{{post}}</p>
                         </div>
                     </div>
+                    {{/each}}
                 </div>
             </div>
         </div>

@@ -39,12 +39,13 @@
                         </div>
                     </section>
 
+                    <!-- DROPDOWN MENU -->
                     <section class="dashboard-navigation">
                         <div class="category-dropdown">
                             <div class="dropdown show">
                                 <a class="categories-btn dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
                                     data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    Categories
+                                    Find by category
                                 </a>
 
                                 <div class="dropdown-menu dropdown-container" aria-labelledby="dropdownMenuLink">
@@ -60,8 +61,11 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="create-btn">
-                            <a href="/tasks/{{user._id}}/create" class="btn">Add hours</a>
+                        <div class="dashboard-btn-container">
+                            <a href="/tasks/{{user._id}}/create" class="dashboard-btn">Add hours</a>
+                        </div>
+                        <div class="dashboard-btn-container">
+                            <a href="/users/{{user._id}}/dashboard" class="dashboard-btn">My hours</a>
                         </div>
                     </section>
 
