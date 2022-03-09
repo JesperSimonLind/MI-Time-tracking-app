@@ -7,9 +7,14 @@
     >
         <h1>Sign up</h1>
         <label for="username">Username</label>
-        <input type="text" name="username" placeholder="Username" />
+        <input
+            type="text"
+            name="username"
+            placeholder="Username"
+            value="{{username}}"
+        />
         <p class="error-message">{{usernameTaken}}</p>
-        <p class="error-message">{{errorMessage}}</p>
+        <p class="error-message">{{errorMessage.error}}</p>
         <label for="password">Password</label>
         <input type="password" name="password" placeholder="Password" />
         <label for="password">Confirm password</label>
@@ -18,8 +23,10 @@
             name="confirmPassword"
             placeholder="Confirm password"
         />
+        <p class="error-message">{{errorMessage.error3}}</p>
         <label for="email">Email</label>
-        <input type="text" name="email" placeholder="Email" />
+        <input type="text" name="email" placeholder="Email" value="{{email}}" />
+        <p class="error-message">{{errorMessage.error2}}</p>
         <label for="profilePic">Profile picture</label>
         <input
             type="file"
@@ -27,6 +34,7 @@
             id="profilePic"
             placeholder="Profile Picture"
         />
+
         <input type="submit" class="login-btn" value="Sign up" />
     </form>
 </div>

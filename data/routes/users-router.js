@@ -16,6 +16,7 @@ const {
 const bcrypt = require("bcrypt");
 const path = require("path");
 const { default: mongoose } = require("mongoose");
+const { stringify } = require("querystring");
 
 // ROUTES //
 
@@ -61,7 +62,7 @@ router.get("/signup", (req, res) => {
 
 // POST – SIGN UP PAGE
 router.post("/signup", async (req, res) => {
-    const { username, password, email, profilePic } = req.body;
+    const { username, password, email, confirmPassword } = req.body;
 
     const usernameTaken =
         "That username is already taken! Please pick another one.";
@@ -87,31 +88,60 @@ router.post("/signup", async (req, res) => {
                     );
                     await image.mv(uploadPath);
 
-                    const newUser = new UsersModel({
-                        username: username,
-                        password: hashPassword(password),
-                        email: email,
-                        profilePicture: "/uploads/" + filename,
-                    });
-                    await newUser.save();
-                    res.redirect("/");
-                } else {
+                    let errorMessage = {};
                     if (
                         validateUsername(username) === false ||
                         username.length < 4 ||
                         username.length > 16
                     ) {
-                        errorMessage = "Username incorrect";
-                        res.render("users/users-create", {
-                            errorMessage,
-                        });
+                        errorMessage.error = "Username incorrect";
                     }
                     if (validateEmail(email) === false) {
-                        errorMessage = "Email incorrect";
+                        errorMessage.error2 = "Email incorrect";
+                    }
+                    if (password !== confirmPassword) {
+                        errorMessage.error3 = "Password dont match";
+                    }
+
+                    if (
+                        Object.keys(errorMessage).length === 0 &&
+                        errorMessage.constructor === Object
+                    ) {
+                        const newUser = new UsersModel({
+                            username: username,
+                            password: hashPassword(password),
+                            email: email,
+                            profilePicture: "/uploads/" + filename,
+                        });
+                        await newUser.save();
+                        res.redirect("/");
+                    } else {
                         res.render("users/users-create", {
                             errorMessage,
+                            username,
+                            email,
                         });
-                    } else {
+                    }
+                } else {
+                    let errorMessage = {};
+                    if (
+                        validateUsername(username) === false ||
+                        username.length < 4 ||
+                        username.length > 16
+                    ) {
+                        errorMessage.error = "Username incorrect";
+                    }
+                    if (validateEmail(email) === false) {
+                        errorMessage.error2 = "Email incorrect";
+                    }
+                    if (password !== confirmPassword) {
+                        errorMessage.error3 = "Password dont match";
+                    }
+
+                    if (
+                        Object.keys(errorMessage).length === 0 &&
+                        errorMessage.constructor === Object
+                    ) {
                         const newUser = new UsersModel({
                             username: username,
                             password: hashPassword(password),
@@ -120,6 +150,12 @@ router.post("/signup", async (req, res) => {
                         });
                         await newUser.save();
                         res.redirect("/");
+                    } else {
+                        res.render("users/users-create", {
+                            errorMessage,
+                            username,
+                            email,
+                        });
                     }
                 }
             }
