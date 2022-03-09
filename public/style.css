@@ -300,9 +300,7 @@ input:focus {
   border-radius: 20px;
   padding-top: 10px;
   box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
-}
-.dashboard-wrapper:hover {
-  overflow-y: auto;
+  overflow-y: scroll;
 }
 @media screen and (min-width: 768px) {
   .dashboard-wrapper {
@@ -623,7 +621,7 @@ input:focus {
   border-radius: 6px;
   font-weight: 500;
   width: 100%;
-  font-size: 0.8rem;
+  font-size: 0.9rem;
 }
 .dashboard-btn:hover {
   text-decoration: none;
@@ -703,6 +701,11 @@ input:focus {
 }
 .mobile-nav img {
   width: 50%;
+}
+@media screen and (min-width: 768px) {
+  .mobile-nav img {
+    width: 40%;
+  }
 }
 @media screen and (min-width: 1100px) {
   .mobile-nav {
@@ -835,6 +838,7 @@ input:focus {
   flex-direction: row;
   gap: 10px;
   padding: 0px 10px;
+  background-color: #1c1f4a;
 }
 
 .task-single-info {
@@ -844,9 +848,6 @@ input:focus {
   justify-content: space-between;
   align-items: flex-start;
   margin: 5px 0px;
-}
-.task-single-info:hover {
-  cursor: pointer;
 }
 .task-single-info .task-description,
 .task-single-info .task-comment,
@@ -970,9 +971,7 @@ select {
     right: 0;
     top: 0;
     height: 100vh;
-  }
-  .community-wrapper:hover {
-    overflow-y: auto;
+    overflow-y: scroll;
   }
 }
 .community-wrapper .community {

@@ -63,10 +63,7 @@
     border-radius: 20px;
     padding-top: 10px;
     box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
-
-    &:hover {
-        overflow-y: auto;
-    }
+    overflow-y: scroll;
 
     @include mixins.tablet-only {
         height: 55vh;
@@ -424,7 +421,7 @@
     border-radius: 6px;
     font-weight: 500;
     width: 100%;
-    font-size: 0.8rem;
+    font-size: 0.9rem;
 
 
     &:hover {
@@ -513,6 +510,10 @@
 
     img {
         width: 50%;
+
+        @include mixins.tablet-only {
+            width: 40%;
+        }
     }
 
 
