@@ -85,7 +85,7 @@ router.get("/:id/list", async (req, res) => {
                     user: {
                         _id: user._id,
                         username: user.username,
-                profilePicture: user.profilePicture,
+                        profilePicture: user.profilePicture,
                     }
                 },
                 (err, myPosts) => {
@@ -118,6 +118,36 @@ router.get("/:userid/:id/update", async (req, res) => {
                 tasks,
                 post
             });
+        }).lean();
+})
+
+
+// POST – UPDATE POST
+router.post("/:userid/:id/update", async (req, res) => {
+    const user = await UsersModel.findById(req.params.userid).lean();
+    const post = await ForumModel.findById(req.params.id).lean()
+
+    console.log(post)
+
+    TasksModel.find({
+            user: {
+                _id: user._id,
+                username: user.username,
+                profilePicture: user.profilePicture,
+            },
+        },
+        async function (err, tasks) {
+            await ForumModel.findByIdAndUpdate({
+                _id: req.params.id,
+            }, {
+                title: req.body.title,
+                post: req.body.post,
+            });
+            res.render("forum/forum-dashboard", {
+                user,
+                tasks,
+                post
+            })
         }).lean();
 })
 
