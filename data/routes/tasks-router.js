@@ -1,8 +1,13 @@
 const express = require("express");
 const jwt = require("jsonwebtoken");
 const router = express.Router();
-const { UsersModel, TasksModel } = require("../models/Models.js");
-const { validateTask } = require("../utils.js");
+const {
+  UsersModel,
+  TasksModel
+} = require("../models/Models.js");
+const {
+  validateTask
+} = require("../utils.js");
 
 // ROUTES //
 
@@ -25,28 +30,26 @@ router.get("/:userid/:id/single", async (req, res) => {
   const user = await UsersModel.findById(req.params.userid).lean();
   const task = await TasksModel.findById(req.params.id).lean();
 
-  TasksModel.findOne(
-    {
+  TasksModel.findOne({
       _id: task,
     },
     function (err, tasks) {
-      TasksModel.find(
-        {
-          private: false,
-        },
-        (err, publicTask) => {
-          const publicTasks = publicTask.sort(function (a, b) {
-            let dateA = new Date(a.created),
-              dateB = new Date(b.created);
-            return dateB - dateA;
-          });
-          res.render("tasks/tasks-single", {
-            publicTasks,
-            user,
-            tasks,
-          });
-        }
-      )
+      TasksModel.find({
+            private: false,
+          },
+          (err, publicTask) => {
+            const publicTasks = publicTask.sort(function (a, b) {
+              let dateA = new Date(a.created),
+                dateB = new Date(b.created);
+              return dateB - dateA;
+            });
+            res.render("tasks/tasks-single", {
+              publicTasks,
+              user,
+              tasks,
+            });
+          }
+        )
         .limit(10)
         .lean();
     }
@@ -58,28 +61,26 @@ router.get("/:userid/:id/update", async (req, res) => {
   const user = await UsersModel.findById(req.params.userid).lean();
   const task = await TasksModel.findById(req.params.id).lean();
 
-  TasksModel.findOne(
-    {
+  TasksModel.findOne({
       _id: task,
     },
     function (err, tasks) {
-      TasksModel.find(
-        {
-          private: false,
-        },
-        (err, publicTask) => {
-          const publicTasks = publicTask.sort(function (a, b) {
-            let dateA = new Date(a.created),
-              dateB = new Date(b.created);
-            return dateB - dateA;
-          });
-          res.render("tasks/tasks-update", {
-            publicTasks,
-            user,
-            tasks,
-          });
-        }
-      )
+      TasksModel.find({
+            private: false,
+          },
+          (err, publicTask) => {
+            const publicTasks = publicTask.sort(function (a, b) {
+              let dateA = new Date(a.created),
+                dateB = new Date(b.created);
+              return dateB - dateA;
+            });
+            res.render("tasks/tasks-update", {
+              publicTasks,
+              user,
+              tasks,
+            });
+          }
+        )
         .limit(10)
         .lean();
     }
@@ -90,19 +91,16 @@ router.get("/:userid/:id/update", async (req, res) => {
 router.post("/:userid/:id/update", async (req, res) => {
   const user = await UsersModel.findById(req.params.userid).lean();
   const date = new Date().toISOString();
-  await TasksModel.findByIdAndUpdate(
-    {
-      _id: req.params.id,
-    },
-    {
-      description: req.body.description,
-      category: req.body.category,
-      hours: req.body.hours,
-      private: req.body.private,
-      created: date,
-      private: Boolean(req.body.private),
-    }
-  );
+  await TasksModel.findByIdAndUpdate({
+    _id: req.params.id,
+  }, {
+    description: req.body.description,
+    category: req.body.category,
+    hours: req.body.hours,
+    private: req.body.private,
+    created: date,
+    private: Boolean(req.body.private),
+  });
   res.redirect("/users/" + user._id + "/dashboard");
 });
 
@@ -111,28 +109,26 @@ router.get("/:userid/:id/delete", async (req, res) => {
   const user = await UsersModel.findById(req.params.userid).lean();
   const task = await TasksModel.findById(req.params.id).lean();
 
-  TasksModel.findOne(
-    {
+  TasksModel.findOne({
       _id: task,
     },
     function (err, tasks) {
-      TasksModel.find(
-        {
-          private: false,
-        },
-        (err, publicTask) => {
-          const publicTasks = publicTask.sort(function (a, b) {
-            let dateA = new Date(a.created),
-              dateB = new Date(b.created);
-            return dateB - dateA;
-          });
-          res.render("tasks/tasks-delete", {
-            publicTasks,
-            user,
-            tasks,
-          });
-        }
-      )
+      TasksModel.find({
+            private: false,
+          },
+          (err, publicTask) => {
+            const publicTasks = publicTask.sort(function (a, b) {
+              let dateA = new Date(a.created),
+                dateB = new Date(b.created);
+              return dateB - dateA;
+            });
+            res.render("tasks/tasks-delete", {
+              publicTasks,
+              user,
+              tasks,
+            });
+          }
+        )
         .limit(10)
         .lean();
     }
@@ -152,19 +148,21 @@ router.post("/:userid/:id/delete", async (req, res) => {
 router.get("/:id/create", async (req, res) => {
   const user = await UsersModel.findById(req.params.id).lean();
 
-  TasksModel.find(
-    {
-      private: false,
-    },
-    (err, publicTask) => {
-      const publicTasks = publicTask.sort(function (a, b) {
-        let dateA = new Date(a.created),
-          dateB = new Date(b.created);
-        return dateB - dateA;
-      });
-      res.render("tasks/tasks-create", { publicTasks, user });
-    }
-  )
+  TasksModel.find({
+        private: false,
+      },
+      (err, publicTask) => {
+        const publicTasks = publicTask.sort(function (a, b) {
+          let dateA = new Date(a.created),
+            dateB = new Date(b.created);
+          return dateB - dateA;
+        });
+        res.render("tasks/tasks-create", {
+          publicTasks,
+          user
+        });
+      }
+    )
     .limit(10)
     .lean();
 });
@@ -172,8 +170,15 @@ router.get("/:id/create", async (req, res) => {
 // POST – CREATE TASK
 router.post("/:id/create", async (req, res) => {
   const user = await UsersModel.findById(req.params.id).lean();
-  const { category, description, hours, private } = req.body;
-  const { token } = req.cookies;
+  const {
+    category,
+    description,
+    hours,
+    private
+  } = req.body;
+  const {
+    token
+  } = req.cookies;
   const date = new Date().toISOString();
 
   let task = {
@@ -199,8 +204,7 @@ router.post("/:id/create", async (req, res) => {
 
     res.redirect("/users/" + user._id + "/dashboard");
   } else {
-    TasksModel.find(
-      {
+    TasksModel.find({
         private: false,
       },
       (err, publicTask) => {
@@ -224,8 +228,7 @@ router.post("/:id/create", async (req, res) => {
 router.get("/:id/category/study", async (req, res) => {
   const user = await UsersModel.findById(req.params.id).lean();
 
-  TasksModel.find(
-    {
+  TasksModel.find({
       user: {
         _id: user._id,
         username: user.username,
@@ -234,23 +237,22 @@ router.get("/:id/category/study", async (req, res) => {
       category: "Study",
     },
     function (err, tasks) {
-      TasksModel.find(
-        {
-          private: false,
-        },
-        (err, publicTask) => {
-          const publicTasks = publicTask.sort(function (a, b) {
-            let dateA = new Date(a.created),
-              dateB = new Date(b.created);
-            return dateB - dateA;
-          });
-          res.render("tasks/tasks-list", {
-            publicTasks,
-            user,
-            tasks,
-          });
-        }
-      )
+      TasksModel.find({
+            private: false,
+          },
+          (err, publicTask) => {
+            const publicTasks = publicTask.sort(function (a, b) {
+              let dateA = new Date(a.created),
+                dateB = new Date(b.created);
+              return dateB - dateA;
+            });
+            res.render("tasks/tasks-list", {
+              publicTasks,
+              user,
+              tasks,
+            });
+          }
+        )
         .limit(10)
         .lean();
     }
@@ -261,8 +263,7 @@ router.get("/:id/category/study", async (req, res) => {
 router.get("/:id/category/work", async (req, res) => {
   const user = await UsersModel.findById(req.params.id).lean();
 
-  TasksModel.find(
-    {
+  TasksModel.find({
       user: {
         _id: user._id,
         username: user.username,
@@ -271,23 +272,22 @@ router.get("/:id/category/work", async (req, res) => {
       category: "Work",
     },
     function (err, tasks) {
-      TasksModel.find(
-        {
-          private: false,
-        },
-        (err, publicTask) => {
-          const publicTasks = publicTask.sort(function (a, b) {
-            let dateA = new Date(a.created),
-              dateB = new Date(b.created);
-            return dateB - dateA;
-          });
-          res.render("tasks/tasks-list", {
-            publicTasks,
-            user,
-            tasks,
-          });
-        }
-      )
+      TasksModel.find({
+            private: false,
+          },
+          (err, publicTask) => {
+            const publicTasks = publicTask.sort(function (a, b) {
+              let dateA = new Date(a.created),
+                dateB = new Date(b.created);
+              return dateB - dateA;
+            });
+            res.render("tasks/tasks-list", {
+              publicTasks,
+              user,
+              tasks,
+            });
+          }
+        )
         .limit(10)
         .lean();
     }
@@ -298,8 +298,7 @@ router.get("/:id/category/work", async (req, res) => {
 router.get("/:id/category/exercise", async (req, res) => {
   const user = await UsersModel.findById(req.params.id).lean();
 
-  TasksModel.find(
-    {
+  TasksModel.find({
       user: {
         _id: user._id,
         username: user.username,
@@ -308,23 +307,22 @@ router.get("/:id/category/exercise", async (req, res) => {
       category: "Exercise",
     },
     function (err, tasks) {
-      TasksModel.find(
-        {
-          private: false,
-        },
-        (err, publicTask) => {
-          const publicTasks = publicTask.sort(function (a, b) {
-            let dateA = new Date(a.created),
-              dateB = new Date(b.created);
-            return dateB - dateA;
-          });
-          res.render("tasks/tasks-list", {
-            publicTasks,
-            user,
-            tasks,
-          });
-        }
-      )
+      TasksModel.find({
+            private: false,
+          },
+          (err, publicTask) => {
+            const publicTasks = publicTask.sort(function (a, b) {
+              let dateA = new Date(a.created),
+                dateB = new Date(b.created);
+              return dateB - dateA;
+            });
+            res.render("tasks/tasks-list", {
+              publicTasks,
+              user,
+              tasks,
+            });
+          }
+        )
         .limit(10)
         .lean();
     }
@@ -335,8 +333,7 @@ router.get("/:id/category/exercise", async (req, res) => {
 router.get("/:id/category/other", async (req, res) => {
   const user = await UsersModel.findById(req.params.id).lean();
 
-  TasksModel.find(
-    {
+  TasksModel.find({
       user: {
         _id: user._id,
         username: user.username,
@@ -345,23 +342,22 @@ router.get("/:id/category/other", async (req, res) => {
       category: "Something else cool",
     },
     function (err, tasks) {
-      TasksModel.find(
-        {
-          private: false,
-        },
-        (err, publicTask) => {
-          const publicTasks = publicTask.sort(function (a, b) {
-            let dateA = new Date(a.created),
-              dateB = new Date(b.created);
-            return dateB - dateA;
-          });
-          res.render("tasks/tasks-list", {
-            publicTasks,
-            user,
-            tasks,
-          });
-        }
-      )
+      TasksModel.find({
+            private: false,
+          },
+          (err, publicTask) => {
+            const publicTasks = publicTask.sort(function (a, b) {
+              let dateA = new Date(a.created),
+                dateB = new Date(b.created);
+              return dateB - dateA;
+            });
+            res.render("tasks/tasks-list", {
+              publicTasks,
+              user,
+              tasks,
+            });
+          }
+        )
         .limit(10)
         .lean();
     }
