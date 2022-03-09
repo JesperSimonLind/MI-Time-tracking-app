@@ -31,6 +31,12 @@ router.get("/:id", async (req, res) => {
             },
         },
         function (err, tasks) {
+            const forumPost = forumPosts.sort(function (a, b) {
+                let dateA = new Date(a.created),
+                    dateB = new Date(b.created);
+                return dateB - dateA;
+            });
+            // console.log(task, tasks);
             res.render("forum/forum-dashboard", {
                 user,
                 tasks,
