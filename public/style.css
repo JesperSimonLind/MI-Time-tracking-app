@@ -85,6 +85,9 @@ a:hover {
     gap: 2px;
   }
 }
+.signin-form svg {
+  margin: 0px 10px;
+}
 .signin-form h1 {
   text-align: center;
 }
@@ -120,7 +123,7 @@ a:hover {
     display: flex;
     flex-direction: column;
     width: 100%;
-    padding: 60px 0px 50px;
+    padding: 0px;
     gap: 2px;
   }
 }
@@ -211,6 +214,29 @@ input:focus {
   outline: none;
   border-color: #5847EB;
   box-shadow: 0 0 8px #cacdff;
+}
+
+.logo-container-signin {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.logo-container-signin img {
+  width: 60%;
+}
+
+.logo-container-signup {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 55px 0px 0px;
+}
+.logo-container-signup img {
+  width: 60%;
+}
+
+.input-container {
+  padding: 0px 0px 20px;
 }
 
 .home-container {
@@ -367,6 +393,16 @@ input:focus {
   flex-direction: column;
   position: relative;
   padding: 10px 0px;
+}
+@media screen and (min-width: 768px) {
+  .dashboard-wrapper .dashboard-content {
+    padding: 10px 25px;
+  }
+}
+@media screen and (min-width: 1100px) {
+  .dashboard-wrapper .dashboard-content {
+    padding: 10px 0px;
+  }
 }
 .dashboard-wrapper .icon-setting {
   display: flex;
@@ -638,16 +674,36 @@ input:focus {
 
 .mobile-nav {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
-  gap: 40px;
+  gap: 10px;
   padding: 10px 0px;
 }
 @media screen and (min-width: 768px) {
   .mobile-nav {
-    display: none;
+    flex-direction: row;
+    margin: 0px 0px 15px;
   }
+}
+.mobile-nav .logo-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+@media screen and (min-width: 768px) {
+  .mobile-nav .logo-container {
+    display: unset;
+  }
+}
+.mobile-nav .mobile-nav-links {
+  display: flex;
+  flex-direction: row;
+  gap: 40px;
+  padding: 10px 0px;
+}
+.mobile-nav img {
+  width: 50%;
 }
 @media screen and (min-width: 1100px) {
   .mobile-nav {
@@ -1017,17 +1073,28 @@ select {
   color: #cacdff;
 }
 
-.buttons-container {
+.desktop-header {
   display: none;
 }
-@media screen and (min-width: 768px) {
-  .buttons-container {
+@media screen and (min-width: 1100px) {
+  .desktop-header {
     display: flex;
     flex-direction: row;
-    gap: 10px;
-    justify-content: center;
-    padding: 10px 0px 10px;
+    justify-content: flex-end;
+    align-items: center;
   }
+}
+.desktop-header .logo-container {
+  display: flex;
+  justify-content: flex-end;
+  padding: 0px 40px;
+}
+.desktop-header .logo-container img {
+  width: 50%;
+}
+
+.buttons-container {
+  display: none;
 }
 @media screen and (min-width: 1100px) {
   .buttons-container {
@@ -1035,7 +1102,6 @@ select {
     flex-direction: row;
     gap: 20px;
     justify-content: flex-end;
-    padding: 10px 20px 20px;
   }
 }
 .buttons-container a:hover {
@@ -1048,7 +1114,7 @@ select {
   width: 100%;
 }
 .home-heading h1 {
-  font-size: 2.3rem;
+  font-size: 2rem;
 }
 
 .forum-form-container {
@@ -1062,7 +1128,8 @@ select {
 }
 @media screen and (min-width: 1100px) {
   .forum-form-container {
-    width: 95%;
+    width: 100%;
+    padding: 50px 0px 0px;
   }
 }
 .forum-form-container form {

@@ -133,24 +133,36 @@
 
 }
 
-.buttons-container {
+.desktop-header {
     display: none;
 
-    @include mixins.tablet-only {
+    @include mixins.desktop-only {
         display: flex;
         flex-direction: row;
-        gap: 10px;
-        justify-content: center;
-        padding: 10px 0px 10px;
+        justify-content: flex-end;
+        align-items: center;
     }
+
+
+    .logo-container {
+        display: flex;
+        justify-content: flex-end;
+        padding: 0px 40px;
+    }
+
+    .logo-container img {
+        width: 50%;
+    }
+}
+
+.buttons-container {
+    display: none;
 
     @include mixins.desktop-only {
         display: flex;
         flex-direction: row;
         gap: 20px;
         justify-content: flex-end;
-        padding: 10px 20px 20px;
-
     }
 
     a:hover {
@@ -164,6 +176,6 @@
     width: 100%;
 
     h1 {
-        font-size: 2.3rem;
+        font-size: 2rem;
     }
 }

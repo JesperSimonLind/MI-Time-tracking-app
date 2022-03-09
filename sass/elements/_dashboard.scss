@@ -163,6 +163,14 @@
         flex-direction: column;
         position: relative;
         padding: 10px 0px;
+
+        @include mixins.tablet-only {
+            padding: 10px 25px;
+        }
+
+        @include mixins.desktop-only {
+            padding: 10px 0px;
+        }
     }
 
     .icon-setting {
@@ -474,16 +482,38 @@
 
 .mobile-nav {
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
-    gap: 40px;
+    gap: 10px;
     padding: 10px 0px;
 
-
     @include mixins.tablet-only {
-        display: none;
+        flex-direction: row;
+        margin: 0px 0px 15px;
     }
+
+    .logo-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        @include mixins.tablet-only {
+            display: unset;
+        }
+    }
+
+    .mobile-nav-links {
+        display: flex;
+        flex-direction: row;
+        gap: 40px;
+        padding: 10px 0px;
+    }
+
+    img {
+        width: 50%;
+    }
+
 
     @include mixins.desktop-only {
         display: none;
