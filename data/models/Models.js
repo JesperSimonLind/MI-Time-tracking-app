@@ -81,6 +81,10 @@ const forumSchema = new mongoose.Schema({
         type: String,
         required: true,
     },
+    created: {
+        type: String,
+        required: true,
+    },
     user: {
         type: userInfo,
         required: true,
