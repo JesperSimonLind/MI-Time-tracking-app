@@ -198,9 +198,7 @@ router.get("/:id/dashboard", async (req, res) => {
             tasks,
           });
         }
-      )
-        .limit(10)
-        .lean();
+      ).lean();
     }
   ).lean();
 });
