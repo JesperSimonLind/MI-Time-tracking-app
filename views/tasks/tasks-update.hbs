@@ -79,26 +79,27 @@
 
                         <div class="form">
                             <p class="sm-heading">Update activity</p>
-                            <form action="/tasks/{{user._id}}/{{tasks._id}}/update" method="post">
+                            <p class="error-message">{{errorMessage}}</p>
+                            <form action="/tasks/{{user._id}}/{{task._id}}/update" method="post">
                                 <label for="description">Description</label>
-                                <input type="text" name="description" value="{{tasks.description}}">
+                                <input type="text" name="description" value="{{task.description}}">
                                 <label for="category">Category</label>
                                 <select name="category" id="category">
                                     <option value="" disabled selected>Select category</option>
-                                    <option value="exercise">Exercise</option>
-                                    <option value="study">Study</option>
-                                    <option value="work">Work</option>
+                                    <option value="Exercise">Exercise</option>
+                                    <option value="Study">Study</option>
+                                    <option value="Work">Work</option>
                                     <option value="Something else cool">Something else cool</option>
                                 </select>
                                 <label for="hours">Hours:</label>
-                                <input type="number" name="hours" value="{{tasks.hours}}">
+                                <input type="number" name="hours" value="{{task.hours}}">
                                 <div class="privacy-container">
                                     <div>
                                         <label for="hours">Private</label>
                                     </div>
                                     <div>
                                         <input type="checkbox" name="private" value="private" {{#if
-                                            tasks.private}}checked{{/if}} />
+                                            task.private}}checked{{/if}} />
                                     </div>
                                 </div>
                                 <input type="submit" class="btn" value="Update">

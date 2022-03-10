@@ -61,10 +61,6 @@ router.get("/:userid/:id/update", async (req, res) => {
   const user = await UsersModel.findById(req.params.userid).lean();
   const task = await TasksModel.findById(req.params.id).lean();
 
-  TasksModel.findOne({
-      _id: task,
-    },
-    function (err, tasks) {
       TasksModel.find({
             private: false,
           },
@@ -77,32 +73,65 @@ router.get("/:userid/:id/update", async (req, res) => {
             res.render("tasks/tasks-update", {
               publicTasks,
               user,
-              tasks,
+              task,
             });
           }
         )
         .limit(10)
         .lean();
-    }
-  ).lean();
 });
 
 // POST - UPDATE TASK
 router.post("/:userid/:id/update", async (req, res) => {
-  const user = await UsersModel.findById(req.params.userid).lean();
-  const date = new Date().toISOString();
+const user = await UsersModel.findById(req.params.userid).lean();
+const task = await TasksModel.findById(req.params.id).lean()
+const date = new Date().toISOString();
+
+
+const updatedTask = {
+  description: req.body.description,
+  hours: req.body.hours,
+  category: req.body.category,
+  private: (req.body.private === 'on'),
+  created: date
+}
+
+console.log(updatedTask)
+
+const validated = validateTask(updatedTask)
+console.log({validated})
+if (validated) {
   await TasksModel.findByIdAndUpdate({
-    _id: req.params.id,
+    _id: req.params.id
   }, {
     description: req.body.description,
     category: req.body.category,
     hours: req.body.hours,
-    private: req.body.private,
     created: date,
-    private: Boolean(req.body.private),
+    private: (req.body.private === 'on')
   });
   res.redirect("/users/" + user._id + "/dashboard");
-});
+} else {
+  TasksModel.find({
+      private: false,
+    },
+    (err, publicTask) => {
+      const publicTasks = publicTask.sort(function (a, b) {
+        let dateA = new Date(a.created),
+          dateB = new Date(b.created);
+        return dateB - dateA;
+      });
+      const errorMessage = "Oops! Did you forget to fill something out?";
+      res.render("tasks/tasks-update", {
+        errorMessage,
+        user,
+        publicTasks,
+        task
+      });
+    }
+  ).lean();
+}
+})
 
 // READ - DELETE TASK
 router.get("/:userid/:id/delete", async (req, res) => {
