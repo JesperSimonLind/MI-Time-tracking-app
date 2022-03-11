@@ -43,6 +43,7 @@ router.get("/:id", async (req, res) => {
 // CREATE – ADD POST TO FORUM
 router.post("/:id", async (req, res) => {
   const user = await UsersModel.findById(req.params.id).lean();
+
   const { title, post } = req.body;
   const date = new Date().toISOString();
 
@@ -152,28 +153,31 @@ router.get("/:userid/:id/update", async (req, res) => {
 router.post("/:userid/:id/update", async (req, res) => {
   const user = await UsersModel.findById(req.params.userid).lean();
   const post = await ForumModel.findById(req.params.id).lean();
-
-  TasksModel.find(
-    {
-      user: {
-        _id: user._id,
-        username: user.username,
-        profilePicture: user.profilePicture,
-      },
-    },
-    async function (err, tasks) {
-      await ForumModel.findByIdAndUpdate(
-        {
-          _id: req.params.id,
+  if (post == "") {
+    console.log("ERROR");
+  } else {
+    TasksModel.find(
+      {
+        user: {
+          _id: user._id,
+          username: user.username,
+          profilePicture: user.profilePicture,
         },
-        {
-          title: req.body.title,
-          post: req.body.post,
-        }
-      );
-      res.redirect("/forum/" + user._id);
-    }
-  ).lean();
+      },
+      async function (err, tasks) {
+        await ForumModel.findByIdAndUpdate(
+          {
+            _id: req.params.id,
+          },
+          {
+            title: req.body.title,
+            post: req.body.post,
+          }
+        );
+        res.redirect("/forum/" + user._id);
+      }
+    ).lean();
+  }
 });
 
 // POST - DELETE POST
