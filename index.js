@@ -69,6 +69,10 @@ app.use("/tasks", tasksRouter);
 app.use("/forum", forumRouter);
 app.use("/google", googleRouter);
 
+app.use("/", (req, res) => {
+    res.status(404).render("not-found");
+  });
+  
 app.listen(8000, () => {
     console.log("http://localhost:8000/");
 });
