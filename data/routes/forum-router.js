@@ -43,14 +43,39 @@ router.get("/:id", async (req, res) => {
 // CREATE – ADD POST TO FORUM
 router.post("/:id", async (req, res) => {
   const user = await UsersModel.findById(req.params.id).lean();
-  const forumPosts = await ForumModel.find().lean();
   const { title, post } = req.body;
   const date = new Date().toISOString();
 
   if (post == "") {
-    console.log("error");
-    const errorMessage = "Oops! Did you forget to fill something out?";
-    res.render("forum/forum-list", { errorMessage, user });
+    TasksModel.find(
+      {
+        user: {
+          _id: user._id,
+          username: user.username,
+          profilePicture: user.profilePicture,
+        },
+      },
+      function (err, tasks) {
+        ForumModel.find(
+          {
+            user: {
+              _id: user._id,
+              username: user.username,
+              profilePicture: user.profilePicture,
+            },
+          },
+          (err, myPosts) => {
+            const errorMessage = "Oops! Did you forget to fill something out?";
+            res.render("forum/forum-list", {
+              errorMessage,
+              user,
+              tasks,
+              myPosts,
+            });
+          }
+        ).lean();
+      }
+    ).lean();
   } else {
     const newPost = new ForumModel({
       title: title,
