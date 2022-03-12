@@ -137,6 +137,7 @@
                 <h2>Add a post</h2>
                 <div class="forum-form">
                     <form action="/forum/{{user._id}}" method="post">
+                    <p class="error-message">{{errorMessage}}</p>
                         <label for="title">Title*</label>
                         <input type="text" name="title" placeholder="Title">
                         <label for="post">Comment*</label>
