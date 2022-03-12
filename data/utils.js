@@ -58,4 +58,5 @@ module.exports = {
     validateTask,
     validateUsername,
     validateEmail,
+    forceAuthorize,
 };

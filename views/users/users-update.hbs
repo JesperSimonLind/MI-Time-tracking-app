@@ -89,10 +89,13 @@
                             <form action="/users/{{user._id}}/update" method="post" enctype="multipart/form-data">
                                 <label for="username">Username</label>
                                 <input type="text" name="username" value="{{user.username}}">
+                                <p class="error-message">{{errorMessage.error}}</p>
                                 <label for="password">Password</label>
-                                <input type="password" name="password" value="" required>
+                                <input type="password" name="password" value="">
+                                <p class="error-message">{{errorMessage.error3}}</p>
                                 <label for="email">Email</label>
-                                <input type="email" name="email" value="{{user.email}}">
+                                <input type="text" name="email" value="{{user.email}}">
+                                <p class="error-message">{{errorMessage.error2}}</p>
                                 <label for="profilePic">Profile picture</label>
                                 <input type="file" name="profilePic" id="profilePic">
                                 <input type="submit" class="btn" value="Update">
