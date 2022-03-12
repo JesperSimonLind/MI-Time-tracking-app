@@ -4,7 +4,6 @@ require("dotenv").config();
 const express = require("express");
 const router = express.Router();
 const jwt = require("jsonwebtoken");
-const cookieParser = require("cookie-parser");
 const { UsersModel, TasksModel, ForumModel } = require("../models/Models.js");
 const {
     hashPassword,
@@ -13,10 +12,7 @@ const {
     validateEmail,
     validateUsername,
 } = require("../utils.js");
-const bcrypt = require("bcrypt");
 const path = require("path");
-const { default: mongoose } = require("mongoose");
-const { stringify } = require("querystring");
 
 // ROUTES //
 
