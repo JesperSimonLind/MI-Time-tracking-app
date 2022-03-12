@@ -7,9 +7,9 @@ const jwt = require("jsonwebtoken");
 const cookieParser = require("cookie-parser");
 const { UsersModel, TasksModel, ForumModel } = require("../models/Models.js");
 const {
-    hashPassword,
-    comparePassword,
-    getUniqueFilename,
+  hashPassword,
+  comparePassword,
+  getUniqueFilename,
 } = require("../utils.js");
 const bcrypt = require("bcrypt");
 const path = require("path");
@@ -19,152 +19,202 @@ const { default: mongoose } = require("mongoose");
 
 // READ – FORUM
 router.get("/:id", async (req, res) => {
-    const user = await UsersModel.findById(req.params.id).lean();
-    const forumPosts = await ForumModel.find().lean();
+  const user = await UsersModel.findById(req.params.id).lean();
+  const forumPosts = await ForumModel.find().lean();
 
-    TasksModel.find(
-        {
-            user: {
-                _id: user._id,
-                username: user.username,
-                profilePicture: user.profilePicture,
-            },
-        },
-        function (err, tasks) {
-            const forumPost = forumPosts.sort(function (a, b) {
-                let dateA = new Date(a.created),
-                    dateB = new Date(b.created);
-                return dateB - dateA;
-            });
-            // console.log(task, tasks);
-            res.render("forum/forum-dashboard", {
-                user,
-                tasks,
-                forumPosts,
-            });
-        }
-    ).lean();
+  TasksModel.find(
+    {
+      user: {
+        _id: user._id,
+        username: user.username,
+        profilePicture: user.profilePicture,
+      },
+    },
+    function (err, tasks) {
+      const forumPost = forumPosts.sort(function (a, b) {
+        let dateA = new Date(a.created),
+          dateB = new Date(b.created);
+        return dateB - dateA;
+      });
+      // console.log(task, tasks);
+      res.render("forum/forum-dashboard", {
+        user,
+        tasks,
+        forumPosts,
+      });
+    }
+  ).lean();
 });
 
 // CREATE – ADD POST TO FORUM
 router.post("/:id", async (req, res) => {
-    const user = await UsersModel.findById(req.params.id).lean();
-    const { title, post } = req.body;
-    const date = new Date().toISOString();
+  const user = await UsersModel.findById(req.params.id).lean();
 
-    if (post) {
-        const newPost = new ForumModel({
-            title: title,
-            post: post,
-            created: date,
+  const { title, post } = req.body;
+  const date = new Date().toISOString();
+
+  if (post == "") {
+    TasksModel.find(
+      {
+        user: {
+          _id: user._id,
+          username: user.username,
+          profilePicture: user.profilePicture,
+        },
+      },
+      function (err, tasks) {
+        ForumModel.find(
+          {
             user: {
-                _id: user._id,
-                username: user.username,
-                profilePicture: user.profilePicture,
+              _id: user._id,
+              username: user.username,
+              profilePicture: user.profilePicture,
             },
-        });
-        await newPost.save();
-        res.redirect("/forum/" + user._id);
-    } else {
-        console.log(error);
-    }
+          },
+          (err, myPosts) => {
+            const errorMessage = "Oops! Did you forget to fill something out?";
+            res.render("forum/forum-list", {
+              errorMessage,
+              user,
+              tasks,
+              myPosts,
+            });
+          }
+        ).lean();
+      }
+    ).lean();
+  } else {
+    const newPost = new ForumModel({
+      title: title,
+      post: post,
+      created: date,
+      user: {
+        _id: user._id,
+        username: user.username,
+        profilePicture: user.profilePicture,
+      },
+    });
+    await newPost.save();
+    res.redirect("/forum/" + user._id);
+  }
 });
 
 // READ – FORUM LIST
 router.get("/:id/list", async (req, res) => {
-    const user = await UsersModel.findById(req.params.id).lean();
+  const user = await UsersModel.findById(req.params.id).lean();
 
-    TasksModel.find(
+  TasksModel.find(
+    {
+      user: {
+        _id: user._id,
+        username: user.username,
+        profilePicture: user.profilePicture,
+      },
+    },
+    function (err, tasks) {
+      ForumModel.find(
         {
-            user: {
-                _id: user._id,
-                username: user.username,
-                profilePicture: user.profilePicture,
-            },
+          user: {
+            _id: user._id,
+            username: user.username,
+            profilePicture: user.profilePicture,
+          },
         },
-        function (err, tasks) {
-            ForumModel.find(
-                {
-                    user: {
-                        _id: user._id,
-                        username: user.username,
-                        profilePicture: user.profilePicture,
-                    },
-                },
-                (err, myPosts) => {
-                    res.render("forum/forum-list", {
-                        user,
-                        tasks,
-                        myPosts,
-                    });
-                }
-            ).lean();
+        (err, myPosts) => {
+          res.render("forum/forum-list", {
+            user,
+            tasks,
+            myPosts,
+          });
         }
-    ).lean();
+      ).lean();
+    }
+  ).lean();
 });
 
 // READ – UPDATE POST
 router.get("/:userid/:id/update", async (req, res) => {
-    const user = await UsersModel.findById(req.params.userid).lean();
-    const post = await ForumModel.findById(req.params.id).lean();
+  const user = await UsersModel.findById(req.params.userid).lean();
+  const post = await ForumModel.findById(req.params.id).lean();
 
-    TasksModel.find(
-        {
-            user: {
-                _id: user._id,
-                username: user.username,
-                profilePicture: user.profilePicture,
-            },
-        },
-        function (err, tasks) {
-            res.render("forum/forum-update", {
-                user,
-                tasks,
-                post,
-            });
-        }
-    ).lean();
+  TasksModel.find(
+    {
+      user: {
+        _id: user._id,
+        username: user.username,
+        profilePicture: user.profilePicture,
+      },
+    },
+    function (err, tasks) {
+      res.render("forum/forum-update", {
+        user,
+        tasks,
+        post,
+      });
+    }
+  ).lean();
 });
 
 // POST – UPDATE POST
 router.post("/:userid/:id/update", async (req, res) => {
-    const user = await UsersModel.findById(req.params.userid).lean();
-    const post = await ForumModel.findById(req.params.id).lean();
-
+  const user = await UsersModel.findById(req.params.userid).lean();
+  const { title, post } = req.body;
+  if (post == "" || title == "") {
     TasksModel.find(
-        {
-            user: {
-                _id: user._id,
-                username: user.username,
-                profilePicture: user.profilePicture,
-            },
+      {
+        user: {
+          _id: user._id,
+          username: user.username,
+          profilePicture: user.profilePicture,
         },
-        async function (err, tasks) {
-            await ForumModel.findByIdAndUpdate(
-                {
-                    _id: req.params.id,
-                },
-                {
-                    title: req.body.title,
-                    post: req.body.post,
-                }
-            );
-            res.redirect("/forum/" + user._id);
-        }
+      },
+      function (err, tasks) {
+        const errorMessage = "Oops! Did you forget to fill something out?";
+        res.render("forum/forum-update", {
+          user,
+          tasks,
+          post,
+          errorMessage,
+          title,
+        });
+      }
     ).lean();
+  } else {
+    TasksModel.find(
+      {
+        user: {
+          _id: user._id,
+          username: user.username,
+          profilePicture: user.profilePicture,
+        },
+      },
+      async function (err, tasks) {
+        await ForumModel.findByIdAndUpdate(
+          {
+            _id: req.params.id,
+          },
+          {
+            title: req.body.title,
+            post: req.body.post,
+          }
+        );
+        res.redirect("/forum/" + user._id);
+      }
+    ).lean();
+  }
 });
 
 // POST - DELETE POST
 
 router.get("/:userid/:id/delete", async (req, res) => {
-    const user = await UsersModel.findById(req.params.userid).lean();
-    const post = await ForumModel.findByIdAndDelete(req.params.id).lean();
-    res.redirect("/forum/" + user._id);
+  const user = await UsersModel.findById(req.params.userid).lean();
+  const post = await ForumModel.findByIdAndDelete(req.params.id).lean();
+  res.redirect("/forum/" + user._id);
 });
 
 router.post("/:userid/:id/delete", async (req, res) => {
-    const user = await UsersModel.findById(req.params.userid).lean();
-    const post = await ForumModel.findByIdAndDelete(req.params.id).lean();
-    res.redirect("/forum/" + user._id);
+  const user = await UsersModel.findById(req.params.userid).lean();
+  const post = await ForumModel.findByIdAndDelete(req.params.id).lean();
+  res.redirect("/forum/" + user._id);
 });
 module.exports = router;
