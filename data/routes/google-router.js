@@ -25,7 +25,7 @@ router.get(
             async (err, user) => {
                 const userData = { username: req.user.displayName };
 
-                console.log(req.user);
+                // console.log(req.user);
 
                 if (user) {
                     userData.userId = user._id;

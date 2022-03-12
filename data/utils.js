@@ -52,10 +52,11 @@ const validateEmail = (email) => {
 };
 
 module.exports = {
-  hashPassword,
-  comparePassword,
-  getUniqueFilename,
-  validateTask,
-  validateUsername,
-  validateEmail,
+    hashPassword,
+    comparePassword,
+    getUniqueFilename,
+    validateTask,
+    validateUsername,
+    validateEmail,
+    forceAuthorize,
 };
