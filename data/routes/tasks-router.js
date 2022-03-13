@@ -24,6 +24,7 @@ router.get("/:id/list", async (req, res) => {
 router.get("/:userid/:id/single", async (req, res) => {
     const user = await UsersModel.findById(req.params.userid).lean();
     const task = await TasksModel.findById(req.params.id).lean();
+    const formDate = task.created.substring(0, 10);
 
     TasksModel.findOne(
         {
@@ -44,6 +45,7 @@ router.get("/:userid/:id/single", async (req, res) => {
                         publicTasks,
                         user,
                         tasks,
+                        formDate,
                     });
                 }
             ).lean();
