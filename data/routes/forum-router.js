@@ -158,6 +158,7 @@ router.get("/:userid/:id/update", async (req, res) => {
 // POST – UPDATE POST
 router.post("/:userid/:id/update", async (req, res) => {
   const user = await UsersModel.findById(req.params.userid).lean();
+  const postId = await ForumModel.findById(req.params.id).lean();
   const { title, post } = req.body;
   if (post == "" || title == "") {
     TasksModel.find(
@@ -169,14 +170,26 @@ router.post("/:userid/:id/update", async (req, res) => {
         },
       },
       function (err, tasks) {
-        const errorMessage = "Oops! Did you forget to fill something out?";
-        res.render("forum/forum-update", {
-          user,
-          tasks,
-          post,
-          errorMessage,
-          title,
-        });
+        ForumModel.findById(
+          {
+            user: {
+              _id: user._id,
+              username: user.username,
+              profilePicture: user.profilePicture,
+            },
+          },
+          (err, myPosts) => {
+            const errorMessage = "Oops! Did you forget to fill something out?";
+            res.render("forum/forum-update", {
+              post,
+              title,
+              myPosts,
+              user,
+              tasks,
+              errorMessage,
+            });
+          }
+        ).lean();
       }
     ).lean();
   } else {
