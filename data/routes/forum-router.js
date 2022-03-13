@@ -36,7 +36,6 @@ router.get("/:id", async (req, res) => {
           dateB = new Date(b.created);
         return dateB - dateA;
       });
-      // console.log(task, tasks);
       res.render("forum/forum-dashboard", {
         user,
         tasks,
@@ -46,7 +45,7 @@ router.get("/:id", async (req, res) => {
   ).lean();
 });
 
-// CREATE – ADD POST TO FORUM
+// POST – CREATE FORUM POST
 router.post("/:id", async (req, res) => {
   const user = await UsersModel.findById(req.params.id).lean();
 
@@ -132,10 +131,10 @@ router.get("/:id/list", async (req, res) => {
   ).lean();
 });
 
-// READ – UPDATE POST
+// READ – UPDATE FORUM POST
 router.get("/:userid/:id/update", async (req, res) => {
   const user = await UsersModel.findById(req.params.userid).lean();
-  const post = await ForumModel.findById(req.params.id).lean();
+  const forumPost = await ForumModel.findById(req.params.id).lean();
 
   TasksModel.find(
     {
@@ -149,16 +148,16 @@ router.get("/:userid/:id/update", async (req, res) => {
       res.render("forum/forum-update", {
         user,
         tasks,
-        post,
+        forumPost,
       });
     }
   ).lean();
 });
 
-// POST – UPDATE POST
+// POST – UPDATE FORUM POST
 router.post("/:userid/:id/update", async (req, res) => {
   const user = await UsersModel.findById(req.params.userid).lean();
-  const postId = await ForumModel.findById(req.params.id).lean();
+  const forumPost = await ForumModel.findById(req.params.id).lean();
   const { title, post } = req.body;
   if (post == "" || title == "") {
     TasksModel.find(
@@ -175,7 +174,7 @@ router.post("/:userid/:id/update", async (req, res) => {
           user,
           tasks,
           errorMessage,
-          postId,
+          forumPost,
         });
       }
     ).lean();
@@ -204,7 +203,7 @@ router.post("/:userid/:id/update", async (req, res) => {
   }
 });
 
-// POST - DELETE POST
+// POST - DELETE FORUM POST
 
 router.get("/:userid/:id/delete", async (req, res) => {
   const user = await UsersModel.findById(req.params.userid).lean();
