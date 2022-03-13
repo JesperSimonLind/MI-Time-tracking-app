@@ -158,6 +158,7 @@ router.get("/:userid/:id/update", async (req, res) => {
 // POST – UPDATE POST
 router.post("/:userid/:id/update", async (req, res) => {
   const user = await UsersModel.findById(req.params.userid).lean();
+  const postId = await ForumModel.findById(req.params.id).lean();
   const { title, post } = req.body;
   if (post == "" || title == "") {
     TasksModel.find(
@@ -173,9 +174,8 @@ router.post("/:userid/:id/update", async (req, res) => {
         res.render("forum/forum-update", {
           user,
           tasks,
-          post,
           errorMessage,
-          title,
+          postId,
         });
       }
     ).lean();
