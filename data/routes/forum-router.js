@@ -170,26 +170,13 @@ router.post("/:userid/:id/update", async (req, res) => {
         },
       },
       function (err, tasks) {
-        ForumModel.findById(
-          {
-            user: {
-              _id: user._id,
-              username: user.username,
-              profilePicture: user.profilePicture,
-            },
-          },
-          (err, myPosts) => {
-            const errorMessage = "Oops! Did you forget to fill something out?";
-            res.render("forum/forum-update", {
-              post,
-              title,
-              myPosts,
-              user,
-              tasks,
-              errorMessage,
-            });
-          }
-        ).lean();
+        const errorMessage = "Oops! Did you forget to fill something out?";
+        res.render("forum/forum-update", {
+          user,
+          tasks,
+          errorMessage,
+          postId,
+        });
       }
     ).lean();
   } else {
