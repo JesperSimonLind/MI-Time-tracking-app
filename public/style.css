@@ -625,7 +625,7 @@ input:focus {
 }
 .dashboard-btn:hover {
   text-decoration: none;
-  color: #fff;
+  background-color: #453aa9;
 }
 
 .dropdown a {
@@ -888,6 +888,7 @@ input:focus {
 .btn:hover {
   text-decoration: none;
   color: #fff;
+  background-color: #453aa9;
 }
 
 .sm-heading {

@@ -12,9 +12,6 @@ router.get("/", (req, res) => {
 
 router.get("/:id/list", async (req, res) => {
     const user = await UsersModel.findById(req.params.id).lean();
-    // const taskCollection = await TasksModel.find().lean();
-    // const studyCollection = await TasksModel.find({ category: "Study" });
-    // console.log(studyCollection);
     res.render("tasks/tasks-list", {
         user,
     });
@@ -91,10 +88,8 @@ router.post("/:userid/:id/update", async (req, res) => {
         created: date,
     };
 
-    console.log(updatedTask);
-
     const validated = validateTask(updatedTask);
-    console.log({ validated });
+
     if (validated) {
         await TasksModel.findByIdAndUpdate(
             {

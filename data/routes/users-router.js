@@ -187,7 +187,7 @@ router.get("/:id/dashboard", async (req, res) => {
                             dateB = new Date(b.created);
                         return dateB - dateA;
                     });
-                    // console.log(publicTasks);
+                    
                     res.render("users/users-dashboard", {
                         publicTasks,
                         user,
@@ -199,7 +199,7 @@ router.get("/:id/dashboard", async (req, res) => {
     ).lean();
 });
 
-// SIGN OUT
+// READ – SIGN OUT
 router.get("/signout", async (req, res) => {
     res.cookie("token", "", {
         maxAge: 0,
