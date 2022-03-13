@@ -90,8 +90,10 @@
                                 <label for="username">Username</label>
                                 <input type="text" name="username" value="{{user.username}}">
                                 <p class="error-message">{{errorMessage.error}}</p>
+                                {{#unless user.google}}
                                 <label for="password">Password</label>
                                 <input type="password" name="password" value="">
+                                {{/unless}}
                                 <p class="error-message">{{errorMessage.error3}}</p>
                                 <label for="email">Email</label>
                                 <input type="text" name="email" value="{{user.email}}">

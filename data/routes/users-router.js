@@ -262,18 +262,30 @@ router.post("/:id/update", async (req, res) => {
             errorMessage.constructor === Object
         ) {
             await image.mv(uploadPath);
-            await UsersModel.findOneAndUpdate(
-                {
-                    _id: req.params.id,
-                },
-                {
-                    username: username,
-                    password: hashPassword(password),
-                    email: email,
-                    admin: false,
-                    profilePicture: "/uploads/" + filename,
-                }
-            );
+            if (typeof user.google == "undefined") {
+                await UsersModel.findOneAndUpdate(
+                    {
+                        _id: req.params.id,
+                    },
+                    {
+                        username: username,
+                        password: hashPassword(password),
+                        email: email,
+                        profilePicture: "/uploads/" + filename,
+                    }
+                );
+            } else {
+                await UsersModel.findOneAndUpdate(
+                    {
+                        _id: req.params.id,
+                    },
+                    {
+                        username: username,
+                        email: email,
+                        profilePicture: "/uploads/" + filename,
+                    }
+                );
+            }
 
             await TasksModel.updateMany(
                 {
@@ -341,18 +353,30 @@ router.post("/:id/update", async (req, res) => {
             Object.keys(errorMessage).length === 0 &&
             errorMessage.constructor === Object
         ) {
-            await UsersModel.findOneAndUpdate(
-                {
-                    _id: req.params.id,
-                },
-                {
-                    username: req.body.username,
-                    password: hashPassword(req.body.password),
-                    email: req.body.email,
-                    admin: false,
-                    profilePicture: user.profilePicture,
-                }
-            );
+            if (typeof user.google == "undefined") {
+                await UsersModel.findOneAndUpdate(
+                    {
+                        _id: req.params.id,
+                    },
+                    {
+                        username: req.body.username,
+                        password: hashPassword(req.body.password),
+                        email: req.body.email,
+                        profilePicture: user.profilePicture,
+                    }
+                );
+            } else {
+                await UsersModel.findOneAndUpdate(
+                    {
+                        _id: req.params.id,
+                    },
+                    {
+                        username: req.body.username,
+                        email: req.body.email,
+                        profilePicture: user.profilePicture,
+                    }
+                );
+            }
             await TasksModel.updateMany(
                 { "user.username": user.username },
                 { $set: { "user.username": req.body.username } }
