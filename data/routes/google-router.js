@@ -20,44 +20,33 @@ router.get(
         failureRedirect: "/failed",
     }),
     async (req, res) => {
-        UsersModel.findOne(
-            { username: req.user.displayName },
-            async (err, user) => {
-                const userData = { username: req.user.displayName };
+        UsersModel.findOne({ google: req.user.id }, async (err, user) => {
+            const userData = { username: req.user.displayName };
 
-                // console.log(req.user);
+            if (user) {
+                userData.userId = user._id;
+                userData.profilePicture = user.profilePicture;
 
-                if (user) {
-                    userData.userId = user._id;
-                    userData.profilePicture = user.profilePicture;
+                const accessToken = jwt.sign(userData, process.env.JWTSECRET);
 
-                    const accessToken = jwt.sign(
-                        userData,
-                        process.env.JWTSECRET
-                    );
+                res.cookie("token", accessToken);
+                res.redirect("/users/" + userData.userId + "/dashboard");
+            } else {
+                const newUser = new UsersModel({
+                    username: req.user.displayName,
+                    email: req.user.emails[0].value,
+                    google: req.user.id,
+                    profilePicture: "/assets/profile.jpg",
+                });
+                const result = await newUser.save();
+                userData.userId = result._id;
+                userData.profilePicture = result.profilePicture;
+                const accessToken = jwt.sign(userData, process.env.JWTSECRET);
 
-                    res.cookie("token", accessToken);
-                    res.redirect("/users/" + userData.userId + "/dashboard");
-                } else {
-                    const newUser = new UsersModel({
-                        username: req.user.displayName,
-                        password: hashPassword(req.user.id),
-                        email: req.user.emails[0].value,
-                        profilePicture: "/assets/profile.jpg",
-                    });
-                    const result = await newUser.save();
-                    userData.userId = result._id;
-                    userData.profilePicture = result.profilePicture;
-                    const accessToken = jwt.sign(
-                        userData,
-                        process.env.JWTSECRET
-                    );
-
-                    res.cookie("token", accessToken);
-                    res.redirect("/users/" + userData.userId + "/dashboard");
-                }
+                res.cookie("token", accessToken);
+                res.redirect("/users/" + userData.userId + "/dashboard");
             }
-        );
+        });
     }
 );
 
